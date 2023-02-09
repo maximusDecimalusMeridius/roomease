@@ -6,8 +6,19 @@ const Task = require("./Task");
 const Home = require("./Home");
 
 //Add table associations
-Roommate.belongsToMany(Event, { through: "UserEvents" })
-Event.belongsToMany(Roommate, { through: "UserEvents" })
+UOM.belongsTo(Roommate, {
+    onDelete:"CASCADE"
+});
+
+Roommate.hasMany(UOM);
+
+Roommate.belongsToMany(Event, {
+    through: "UserEvents"
+});
+
+Event.belongsToMany(Roommate, {
+    through: "UserEvents"
+});
 
 //export models
 module.exports = {
@@ -15,5 +26,5 @@ module.exports = {
     UOM,
     Event,
     Task,
-    Home,
+    Home
 };
