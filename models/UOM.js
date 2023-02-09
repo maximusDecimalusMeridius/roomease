@@ -6,7 +6,22 @@ class UOM extends Model {}
 
 //Initialize the UOM model
 UOM.init({
-    //Add fields to model
+    what: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    me: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    u: {
+        type: DataTypes.INTEGER,
+        allowNull: false 
+    },
+    amount: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    }
 },{
     sequelize,
     underscored:false
