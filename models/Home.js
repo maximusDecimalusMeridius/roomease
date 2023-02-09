@@ -16,15 +16,15 @@ Home.init(
 			},
 		},
 		zipcode: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 			allowNull: false,
-			validate,
 		},
 	},
 	{
 		sequelize,
 		modelName: "home",
 		timestamps: false,
+		underscored: true,
 	}
 );
 
