@@ -40,8 +40,11 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     console.log(req.body);
     Roommate.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: req.body.password,
+        home_id: req.body.home_id
     }).then(data => {
         res.status(201).json(data);
     }).catch(error => {
@@ -56,8 +59,11 @@ router.post("/", (req, res) => {
 //UPDATE a record
 router.put("/:id", (req, res) => {
     Roommate.update({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: req.body.password,
+        home_id: req.body.home_id
     },{
         where: {
             id:req.params.id
