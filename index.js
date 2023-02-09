@@ -53,6 +53,10 @@ app.use(allRoutes);
 //use public as the base directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get("/", (req, res) => {
+    res.render("test");
+})
+
 //wildcard redirect
 app.get("/*", (req, res) => {
     res.send("Oops we couldn't find what you're looking for!");
