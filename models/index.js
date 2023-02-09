@@ -6,6 +6,11 @@ const Task = require("./Task");
 const Home = require("./Home");
 
 //Add table associations
+UOM.belongsTo(Roommate,{
+    onDelete:"CASCADE"
+});
+
+Roommate.hasMany(UOM);
 
 //export models
 module.exports = {
