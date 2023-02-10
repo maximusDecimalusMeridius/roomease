@@ -16,6 +16,6 @@ const taskRoutes = require("./taskController");
 router.use("/tasks", taskRoutes);
 
 const homeRoutes = require("./homeController");
-router.use("/home", homeRoutes);
+router.use("/homes", homeRoutes);
 
 module.exports = router;
