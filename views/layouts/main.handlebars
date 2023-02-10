@@ -13,22 +13,31 @@
 <body>
     <div class="cover"></div>
     <header>
+
+        {{!-- {{#if isLoggedIn}} --}}
         <ul id="nav-menu">
-            <li id="nav-item-1" class="nav-items"><span>HOME</span></li>
-            <li id="nav-item-2" class="nav-items"><span>ROOMIES</span></li>
-            <li id="nav-item-3" class="nav-items"><span>TASKS</span></li>
+            <a href="/"><li id="nav-item-1" class="nav-items"><span>HOME</span></li></a>
+            <a href="/roommates"><li id="nav-item-2" class="nav-items"><span>ROOMMATES</span></li></a>
+            <a href="/tasks"><li id="nav-item-3" class="nav-items"><span>TASKS</span></li></a>
             <li id="nav-item-4" class="nav-items"><span>EVENTS</span></li>
             <li id="nav-item-5" class="nav-items"><span>UOM</span></li>
             <li id="nav-item-6" class="nav-items"><span>Settings</span></li>
         </ul>
+        {{!-- {{else}}
+        <ul id="nav-menu">
+            <li id="nav-item-1" class="nav-items"><span>LOGIN</span></li>
+        </ul>
+        {{/if}} --}}
+
+        
         <div id="mobile-menu-icon"></div>
     </header>
 
     <main>
         <ul id="mobile-menu" class="nav-menu">
-            <li id="mobile-item-1" class="nav-items"><span>HOME</span></li>
-            <li id="mobile-item-2" class="nav-items"><span>ROOMIES</span></li>
-            <li id="mobile-item-3" class="nav-items"><span>TASKS</span></li>
+            <a href="/"><li id="mobile-item-1" class="nav-items"><span>HOME</span></li></a>
+            <a href="/roommates"><li id="mobile-item-2" class="nav-items"><span>ROOMMATES</span></li></a>
+            <a href="/tasks"><li id="mobile-item-3" class="nav-items"><span>TASKS</span></li></a>
             <li id="mobile-item-4" class="nav-items"><span>EVENTS</span></li>
             <li id="mobile-item-5" class="nav-items"><span>UOM</span></li>
             <li id="mobile-item-6" class="nav-items"><span>Settings</span></li>

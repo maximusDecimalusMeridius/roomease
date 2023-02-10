@@ -1,37 +1,49 @@
 const express = require ("express");
 const router = express.Router();
-const {Event,Home,Roommate,Task,UOM} = require("../models")
 
-router.get("/roommates", (req, res)=>{
-    Roommate.findAll().then(roommateData=>{
-    const hbsRoommates = roommateData.map(roommate=>roommate.toJSON())
-    res.render("roommates",{
-        allRoommates:hbsRoommates
-    })
-    })
+router.get("/", (req, res)=>{
+    res.render("welcome")
 })
 
-router.get("/events", (req, res)=>{
-    res.render("events")
+router.get("/login", (req, res)=>{
+    res.render("login")
 })
 
-router.get("/tasks", (req, res)=>{
-    res.render("tasks")
+router.get("/logout", (req, res)=>{
+    res.render("logout")
 })
 
-router.get("/uoms", (req, res)=>{
-    res.render("uoms")
-})
+//show the user their dashboard once they're logged in
+router.get("/dashboard/:id", (req, res) => {
+    Roommate.findByPk(req.params.id, {
+        include:[
+            {
+                //tasks
+            },
+            {
+                //events
+            },
+            {
+                // UOMs
+            },
+        ]
+    }).then(userData => {
+        const hbsUser = userData.toJSON();
 
-router.get("/home", (req, res)=>{
-    res.render("home")
-})
-
-
-
-
-
-
-
+        res.render("dashboard", {
+            //isloggedin is the same req.session.loggedin
+            //ismyprofile -> boolean checking if req.params.id == req.session.userId
+        });
+    }); 
+});
 
 module.exports = router;
+
+//Will add to controllers for each
+// router.get("/uoms", (req, res)=>{
+//     res.render("uoms")
+// })
+
+// router.get("/home", (req, res)=>{
+//     res.render("home")
+// })

@@ -3,6 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 //define routers
+const frontEndRoutes = require("./frontEndController");
+router.use(frontEndRoutes);
+
 const roommateRoutes = require("./roommateController");
 router.use("/roommates", roommateRoutes);
 
