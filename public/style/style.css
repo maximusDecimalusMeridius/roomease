@@ -1,0 +1,199 @@
+:root {
+    /* CSS HEX from coolors.co*/
+    --jet: #353535ff;
+    --light-caribbean: rgb(30, 208, 218);
+    --caribbean-current: #3c6e71ff;
+    --ash-gray: #9eb7b8ff;
+    --white: #ffffffff;
+    --antiflash-white: #ecececff;
+    --platinum: #d9d9d9ff;
+    --cadet-gray: #81929eff;
+    --paynes-gray: #556f81ff;
+    --indigo-dye: #284b63ff;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img, video {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--platinum);
+    overflow: hidden;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.cover {
+    background-color: rgba(100, 100, 100, .6);
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: none;
+}
+
+header {
+    width: 100%;
+    height: 75px;
+    background-color: var(--caribbean-current);
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#nav-menu {
+    width: fit-content;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#mobile-menu-icon {
+    height: 25px;
+    width: 40px;
+    background-image: url('../images/icon-menu.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: none;
+    /* margin: 20px; */
+    cursor: pointer;
+    transition: all .1s ease-out;
+    position: relative;   
+    z-index: 4;
+}
+
+#mobile-menu-icon:hover {
+    transform: scale(1.1);
+}
+
+#mobile-menu {
+    width: 250px;
+    height: 100%;
+    padding: 100px 15px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--caribbean-current);
+    right: -350px;
+    bottom: 0px;
+    position: absolute;
+    z-index: 2;
+    transition: all .2s ease-out;
+    gap: 10px;
+    list-style-type: none;
+    z-index: 3;
+    box-shadow: -4px 0px 6px rgb(0, 0, 0);
+}
+
+.nav-items {
+    width: fit-content;
+    height: 30px;
+    background-color: var(--white);
+    color: var(--jet);
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 15px;
+    transition: all .4s cubic-bezier(0.215, 0.610, 0.355, 1);
+    user-select: none;
+    box-shadow: 2px 2px 4px black;
+}
+
+.nav-items:hover,
+#read-more-button:hover {
+    color: var(--indigo-dye);
+    text-shadow: 1px 1px 3px rgb(126, 126, 126);
+    /* box-shadow: 2px 2px 4px rgb(184, 184, 184); */
+    cursor: pointer;
+}
+
+.nav-items:active,
+#read-more-button:active {
+    background-color: var(--white);
+    color: white;
+}
+
+/* mobile menu css override for nav-items */
+#mobile-menu > .nav-items {
+    margin-top: 15px;
+}
+
+.hbs-body {
+    height: fit-content;
+}
+
+footer {
+    width: 100%;
+    height: 150px;
+    padding: 25px;
+    background: linear-gradient(270deg, hsla(183, 31%, 34%, 1) 0%, hsla(183, 19%, 44%, 1) 50%, hsla(183, 16%, 47%, 1) 61%, hsla(182, 12%, 61%, 1) 76%, hsla(180, 9%, 73%, 1) 89%, hsla(0, 0%, 85%, 1) 100%);
+    background: -moz-linear-gradient(270deg, hsla(183, 31%, 34%, 1) 0%, hsla(183, 19%, 44%, 1) 50%, hsla(183, 16%, 47%, 1) 61%, hsla(182, 12%, 61%, 1) 76%, hsla(180, 9%, 73%, 1) 89%, hsla(0, 0%, 85%, 1) 100%);    
+    background: -webkit-linear-gradient(270deg, hsla(183, 31%, 34%, 1) 0%, hsla(183, 19%, 44%, 1) 50%, hsla(183, 16%, 47%, 1) 61%, hsla(182, 12%, 61%, 1) 76%, hsla(180, 9%, 73%, 1) 89%, hsla(0, 0%, 85%, 1) 100%);
+    color: var(--platinum);
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+footer a:hover {
+    font-weight: bold;
+}
+
+#team-list {
+    width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#team-list span {
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 650px) {
+    #nav-menu {
+        display: none;
+    }
+    
+    #mobile-menu-icon {
+        display: block;
+    }
+
+    #mobile-menu {
+        display: flex;
+    }
+}

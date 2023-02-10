@@ -41,7 +41,7 @@ THEN
 
 ## Installation
 
-To install, download the files found in the root directory of github.  Create a `.env` file with `DB_NAME`, `DB_USER`, and `DB_PW` fields to connect to your MySQL database.  Run `npm install` in the root directory once downloaded to install required dependencies.
+To install, download the files found in the root directory of github.  Create a `.env` file with `DB_NAME`, `DB_USER`, and `DB_PW` fields to connect to your MySQL database, as well as `SESSION_SECRET` when defining your session object in `./index.js`.  Run `npm install` in the root directory once downloaded to install required dependencies.
 
 ## Usage
 
