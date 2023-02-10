@@ -1,21 +1,19 @@
 //loop in dependencies
 const express = require("express");
-const Task = require("../models/Task");
+const { Task } = require("../models");
 const router = express.Router();
 
 //GET all records
 router.get("/", (req, res) => {
-    Task.findAll()
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Error getting records!",
-                error: error,
-            });
+    Task.findAll({
+            //Include Roommate
+    }).then(taskData=>{
+        const hbsTasks = taskData.map(task=>task.toJSON())
+        console.log(hbsTasks);
+        res.render("tasks",{
+            allTasks: hbsTasks
         });
+    }); 
 });
 
 //GET one record by id

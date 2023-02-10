@@ -1,0 +1,14 @@
+<h1 class="content-header">Tasks</h1>
+
+<div class="content-window">
+    <div id="task-table">
+        <ul id="task-list">
+            {{#each allTasks}}
+                <li class="task-list-item">
+                    <span>{{this.task}}</span>
+                    <span>{{this.assignee}}</span>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

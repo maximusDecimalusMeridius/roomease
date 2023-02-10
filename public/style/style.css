@@ -23,6 +23,13 @@ img, video {
     height: 100%;
 }
 
+main {
+    height: calc(100vh - 225px);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
 body {
     height: 100vh;
     background-color: var(--platinum);
@@ -128,7 +135,58 @@ header {
 }
 
 .hbs-body {
+    width: 80%;
+    height: 80%;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.content-header {
+    font-style: italic;
+}
+
+.content-window {
+    width: 80%;
+    display: flex;
+    overflow-y: auto;
+}
+
+/* roommate CSS */
+.roommate-header {
+
+}
+
+.roommate-header h2 {
+    margin-top: 25px;
+}
+
+/* task CSS */
+#task-table {
+    width: 100%;
     height: fit-content;
+    margin: 10px;
+}
+
+#task-list {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+.task-list-item {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 footer {
