@@ -20,9 +20,24 @@ Home.belongsTo(Task);
 
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",
+    foreignKey: "me",
 });
 
-Roommate.hasMany(UOM);
+UOM.belongsTo(Roommate, {
+    onDelete: "CASCADE",
+    foreignKey: "u"
+});
+
+Roommate.hasMany(UOM,{
+    as:"owe",
+    foreignKey: "u"
+});
+Roommate.hasMany(UOM,{
+    as:"owed_by",
+    foreignKey: "me"
+});
+
+
 
 Roommate.belongsToMany(Event, {
     through: "UserEvents",
