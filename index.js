@@ -23,7 +23,7 @@ const { Roommate, UOM, Event, Task, Home } = require("./models");
 //create session objection
 const sess = {
     // TODO: change me
-    secret: 'poopoopeepee',
+    secret: 'process.env.SESSION_SECRET'
     cookie: {
         //set cookie age to 2 hours (1000ms * 60s * 60m * 2 hours)
         maxAge:1000*60*60*2
