@@ -136,6 +136,7 @@ header {
 
 .hbs-body {
     width: 80%;
+    min-height: 300px;
     height: 80%;
     padding-top: 25px;
     display: flex;
@@ -143,6 +144,8 @@ header {
     justify-content: flex-start;
     align-items: center;
     border: 1px solid black;
+    overflow-y: auto;
+    position: relative;
 }
 
 .content-header {
@@ -150,9 +153,40 @@ header {
 }
 
 .content-window {
-    width: 80%;
+    width: 90%;
+    background-color: var(--white);
     display: flex;
-    overflow-y: auto;
+    border-radius: 25px;
+    padding: 60px 20px 20px 20px;
+    position: relative;
+}
+
+.buttons {
+    width: 150px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons button {
+    cursor: pointer;
+}
+
+.complete-button {
+    width: 100px;
+    height: 25px;
+}
+
+.edit-button {
+    width: 30px;
+    height: 25px;
+}
+
+.delete-button {
+    width: 30px;
+    height: 25px;
 }
 
 /* roommate CSS */
@@ -165,28 +199,82 @@ header {
 }
 
 /* task CSS */
+#add-task {
+    height: 50px;
+    width: 50px;
+    background-color: var(--light-caribbean);
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    cursor: pointer;
+}
+
+#task-modal {
+    width: 80%;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    padding: 15px;
+    display: none;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+#task {
+    width: 200px;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#submit-new-task {
+    margin-top: 15px;
+    align-self: center;
+}
+
 #task-table {
     width: 100%;
     height: fit-content;
-    margin: 10px;
 }
 
 #task-list {
     width: 100%;
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     list-style-type: none;
+    border: 1px solid var(--caribbean-current);
+    border-radius: inherit;
 }
 
 .task-list-item {
-    width: 80%;
+    width: 100%;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.task-list-item:nth-child(even) {
+    background-color: var(--light-caribbean);
+}
+
+.task {
+    width: 150px;
+    flex-shrink: 0;
 }
 
 footer {
@@ -242,6 +330,8 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Responsive CSS */
+
 @media screen and (max-width: 650px) {
     #nav-menu {
         display: none;
@@ -254,4 +344,23 @@ footer a:hover {
     #mobile-menu {
         display: flex;
     }
+
+    .buttons {
+            margin-top: 10px;
+        }
+    
+    .task-list-item {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task {
+        text-align: center;
+    }
+
+    
 }

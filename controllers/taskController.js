@@ -1,12 +1,12 @@
 //loop in dependencies
 const express = require("express");
-const { Task } = require("../models");
+const { Task, Roommate } = require("../models");
 const router = express.Router();
 
 //GET all records
 router.get("/", (req, res) => {
     Task.findAll({
-            //Include Roommate
+            include: [Roommate]
     }).then(taskData=>{
         const hbsTasks = taskData.map(task=>task.toJSON())
         console.log(hbsTasks);
@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
     Task.create({
         task: req.body.task,
         assignee: req.body.assignee,
-        home_id: req.body.home_id,
+        home_id: 1,
     })
         .then((data) => {
             res.status(201).json(data);

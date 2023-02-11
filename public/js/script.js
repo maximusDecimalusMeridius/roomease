@@ -52,4 +52,7 @@ function hideMenu() {
         _mobileMenu.style.right = "-300px";
         _bedCover.style.display = "none";
     }, "250");
+
+    //hide any modals from handlebars templates
+    _taskModal.style.display = "none";
 }
