@@ -10,14 +10,6 @@ UOM.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    me: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    u: {
-        type: DataTypes.INTEGER,
-        allowNull: false 
-    },
     amount: {
         type: DataTypes.FLOAT,
         allowNull: false

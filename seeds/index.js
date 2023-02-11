@@ -105,6 +105,8 @@ const seed = async () => {
     await events[0].addRoommate(3);
     await events[1].addRoommate(2);
 
+    await roommates[2].addEvent(3);
+
     process.exit(1);
 };
 
