@@ -29,23 +29,6 @@ router.get("/", async (req, res) => {
             error: error,
         });
     }
-    // Event.findAll({
-    //     include: [
-    //         {
-    //             model: Roommate,
-    //         },
-    //     ],
-    // })
-    //     .then((data) => {
-    //         res.json(data);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //         res.status(500).json({
-    //             message: "Error getting records!",
-    //             error: error,
-    //         });
-    //     });
 });
 
 //GET one record by id
