@@ -26,10 +26,12 @@ Roommate.hasMany(UOM);
 
 Roommate.belongsToMany(Event, {
     through: "UserEvents",
+    foreignKey: "roommate_id",
 });
 
 Event.belongsToMany(Roommate, {
     through: "UserEvents",
+    foreignKey: "event_id",
 });
 
 //export models

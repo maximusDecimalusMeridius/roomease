@@ -1,21 +1,51 @@
 //loop in dependencies
 const express = require("express");
-const Event = require("../models/Event");
+const { Event, Roommate } = require("../models");
 const router = express.Router();
 
 //GET all records
-router.get("/", (req, res) => {
-    Event.findAll()
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Error getting records!",
-                error: error,
-            });
+router.get("/", async (req, res) => {
+    try {
+        const eventData = await Event.findAll({
+            include: [
+                {
+                    model: Roommate,
+                },
+            ],
         });
+        const roommateData = await Roommate.findAll();
+
+        const hbsEvents = eventData.map((event) => event.toJSON());
+        const hbsRoommates = roommateData.map((roommate) => roommate.toJSON());
+        console.log(hbsEvents);
+        res.render("events", {
+            allEvents: hbsEvents,
+            allRoommates: hbsRoommates,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error getting records!",
+            error: error,
+        });
+    }
+    // Event.findAll({
+    //     include: [
+    //         {
+    //             model: Roommate,
+    //         },
+    //     ],
+    // })
+    //     .then((data) => {
+    //         res.json(data);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //         res.status(500).json({
+    //             message: "Error getting records!",
+    //             error: error,
+    //         });
+    //     });
 });
 
 //GET one record by id
@@ -40,22 +70,26 @@ router.get("/:id", (req, res) => {
 });
 
 //POST a new record
-router.post("/", (req, res) => {
-    Event.create({
-        what: req.body.what,
-        date: req.body.date,
-        time: req.body.time,
-    })
-        .then((data) => {
-            res.status(201).json(data);
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Error creating record!",
-                err: error,
-            });
+router.post("/", async (req, res) => {
+    try {
+        const eventObj = await Event.create({
+            what: req.body.what,
+            date: req.body.date,
         });
+        console.log(req.body.time);
+        if (req.body.time.length > 0) {
+            eventObj.update({ time: req.body.time });
+        }
+        if (req.body.attendees.length > 0) {
+            await eventObj.addRoommate(req.body.attendees);
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Error creating record!",
+            err: err,
+        });
+    }
 });
 
 //UPDATE a record

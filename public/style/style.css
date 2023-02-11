@@ -12,13 +12,16 @@
     --indigo-dye: #284b63ff;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-img, video {
+img,
+video {
     width: 100%;
     height: 100%;
 }
@@ -34,11 +37,11 @@ body {
     height: 100vh;
     background-color: var(--platinum);
     overflow: hidden;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .cover {
-    background-color: rgba(100, 100, 100, .6);
+    background-color: rgba(100, 100, 100, 0.6);
     position: absolute;
     inset: 0;
     z-index: 3;
@@ -67,14 +70,14 @@ header {
 #mobile-menu-icon {
     height: 25px;
     width: 40px;
-    background-image: url('../images/icon-menu.svg');
+    background-image: url("../images/icon-menu.svg");
     background-size: cover;
     background-repeat: no-repeat;
     display: none;
     /* margin: 20px; */
     cursor: pointer;
-    transition: all .1s ease-out;
-    position: relative;   
+    transition: all 0.1s ease-out;
+    position: relative;
     z-index: 4;
 }
 
@@ -95,7 +98,7 @@ header {
     bottom: 0px;
     position: absolute;
     z-index: 2;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
     gap: 10px;
     list-style-type: none;
     z-index: 3;
@@ -110,7 +113,7 @@ header {
     padding: 8px 15px;
     margin-left: 10px;
     border-radius: 15px;
-    transition: all .4s cubic-bezier(0.215, 0.610, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     user-select: none;
     box-shadow: 2px 2px 4px black;
 }
@@ -136,13 +139,14 @@ header {
 
 .hbs-body {
     width: 80%;
-    height: 80%;
+    height: 90%;
     padding-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     border: 1px solid black;
+    position: relative;
 }
 
 .content-header {
@@ -157,7 +161,6 @@ header {
 
 /* roommate CSS */
 .roommate-header {
-
 }
 
 .roommate-header h2 {
@@ -189,15 +192,142 @@ header {
     align-items: center;
 }
 
-footer {
+/* Event CSS TODO: edit modal to bee out of eventList section */
+#eventList {
+    height: inherit;
+    overflow-y: scroll;
+}
+
+.eventBlock {
+    padding: 10px;
+    text-align: center;
+}
+
+.eventBlock h3 {
+    margin: 10px;
+}
+.eventdetails {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.date,
+.attendees {
+    margin: auto 10px;
+    flex-flow: column wrap;
+}
+
+.buttons * {
+    flex-flow: row;
+    align-items: center;
+    justify-self: center;
+}
+
+/* button CSS */
+.edit-button,
+.delete-button {
+    height: 25px;
+    width: 40px;
+}
+
+.add-button {
+    height: 7vh;
+    width: 7vh;
+    position: absolute;
+    bottom: 2vh;
+    left: 2vw;
+}
+
+.button {
+}
+
+.button:hover {
+    transform: scale(1.3);
+}
+
+/* form */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+select {
     width: 100%;
-    height: 150px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    background-color: var(--paynes-gray);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--indigo-dye);
+}
+
+.form {
+    border-radius: 5px;
+    background-color: var(--antiflash-white);
+    padding: 20px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer {
+    width: 100vw;
+    height: 15vh;
     padding: 25px;
-    background: linear-gradient(270deg, hsla(183, 31%, 34%, 1) 0%, hsla(183, 19%, 44%, 1) 50%, hsla(183, 16%, 47%, 1) 61%, hsla(182, 12%, 61%, 1) 76%, hsla(180, 9%, 73%, 1) 89%, hsla(0, 0%, 85%, 1) 100%);
-    background: -moz-linear-gradient(270deg, hsla(183, 31%, 34%, 1) 0%, hsla(183, 19%, 44%, 1) 50%, hsla(183, 16%, 47%, 1) 61%, hsla(182, 12%, 61%, 1) 76%, hsla(180, 9%, 73%, 1) 89%, hsla(0, 0%, 85%, 1) 100%);    
-    background: -webkit-linear-gradient(270deg, hsla(183, 31%, 34%, 1) 0%, hsla(183, 19%, 44%, 1) 50%, hsla(183, 16%, 47%, 1) 61%, hsla(182, 12%, 61%, 1) 76%, hsla(180, 9%, 73%, 1) 89%, hsla(0, 0%, 85%, 1) 100%);
+    background: linear-gradient(
+        270deg,
+        hsla(183, 31%, 34%, 1) 0%,
+        hsla(183, 19%, 44%, 1) 50%,
+        hsla(183, 16%, 47%, 1) 61%,
+        hsla(182, 12%, 61%, 1) 76%,
+        hsla(180, 9%, 73%, 1) 89%,
+        hsla(0, 0%, 85%, 1) 100%
+    );
+    background: -moz-linear-gradient(
+        270deg,
+        hsla(183, 31%, 34%, 1) 0%,
+        hsla(183, 19%, 44%, 1) 50%,
+        hsla(183, 16%, 47%, 1) 61%,
+        hsla(182, 12%, 61%, 1) 76%,
+        hsla(180, 9%, 73%, 1) 89%,
+        hsla(0, 0%, 85%, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        270deg,
+        hsla(183, 31%, 34%, 1) 0%,
+        hsla(183, 19%, 44%, 1) 50%,
+        hsla(183, 16%, 47%, 1) 61%,
+        hsla(182, 12%, 61%, 1) 76%,
+        hsla(180, 9%, 73%, 1) 89%,
+        hsla(0, 0%, 85%, 1) 100%
+    );
     color: var(--platinum);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -246,7 +376,7 @@ footer a:hover {
     #nav-menu {
         display: none;
     }
-    
+
     #mobile-menu-icon {
         display: block;
     }
