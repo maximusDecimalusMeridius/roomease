@@ -19,37 +19,39 @@ Task.hasOne(Home);
 Home.belongsTo(Task);
 
 UOM.belongsTo(Roommate, {
-  onDelete: "CASCADE",
-  foreignKey: "me",
+    onDelete: "CASCADE",
+    foreignKey: "me",
 });
 
 UOM.belongsTo(Roommate, {
-  onDelete: "CASCADE",
-  foreignKey: "u",
+    onDelete: "CASCADE",
+    foreignKey: "u",
 });
 
 Roommate.hasMany(UOM, {
-  as: "owe",
-  foreignKey: "u",
+    as: "owe",
+    foreignKey: "u",
 });
 Roommate.hasMany(UOM, {
-  as: "owed_by",
-  foreignKey: "me",
+    as: "owed_by",
+    foreignKey: "me",
 });
 
 Roommate.belongsToMany(Event, {
-  through: "UserEvents",
+    through: "UserEvents",
+    foreignKey: "roommate_id",
 });
 
 Event.belongsToMany(Roommate, {
-  through: "UserEvents",
+    through: "UserEvents",
+    foreignKey: "event_id",
 });
 
 //export models
 module.exports = {
-  Roommate,
-  UOM,
-  Event,
-  Task,
-  Home,
+    Roommate,
+    UOM,
+    Event,
+    Task,
+    Home,
 };
