@@ -1,15 +1,23 @@
 //loop in dependencies
 const express = require("express");
-const { Roommate } = require("../models");
+const { Roommate, Event, UOM } = require("../models");
 const router = express.Router();
 
 //GET all records
 router.get("/", (req, res) => {
 	Roommate.findAll({
-        //include Task
+        include: [
+			"tasks",
+			Event, 
+			{
+				model: UOM,
+            	as: "owed_by",
+				include: [{model: Roommate, foreignKey:"u"}]
+			}]
     }).then(roommateData=>{
         const hbsRoommates = roommateData.map(roommate=>roommate.toJSON())
         console.log(hbsRoommates);
+		console.log(hbsRoommates[2].owed_by[0])
         res.render("roommates",{
             allRoommates:hbsRoommates
         });

@@ -1,0 +1,60 @@
+<h1 class="content-header">Events</h1>
+<section id="eventList">
+    {{#each allEvents}}
+        <section class="eventBlock" id="{{id}}">
+            <h3>{{what}}</h3>
+            <div class="eventdetails">
+                <div class="date">
+                    <h4>Date</h4>
+                    <p>{{date}} {{#if time}}at {{time}}{{/if}}</p>
+                </div>
+                {{#if Roommates}}
+                    <div class="attendees">
+                        <h4>Attendees</h4>
+                        {{#each Roommates}}
+                            <p>{{first_name}} {{last_name}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+                <div class="buttons">
+                    <img src="../images/edit.svg" class="edit-button button" /><img
+                        src="../images/delete.svg"
+                        class="delete-button button"
+                    /></div>
+            </div>
+        </section>
+
+    {{/each}}
+
+    <img src="../images/add.svg" class="add-button button" />
+
+    <div class="form modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="eventForm">
+                <label for="what">Event title*:</label>
+                <input type="text" id="what" />
+                <label for="date">Date*:</label>
+                <input type="date" name="date" id="date" />
+                <label for="time">Time:</label>
+                <input type="time" name="time" id="time" />
+                {{! if there are roommates then display them as a list of attendees possible }}
+                {{#if allRoommates}}
+                    <label for="attendees">Attendees:</label>
+                    <p>To select multiple attendees, please hold down the ctrl key and select.</p>
+                    <select name="attendees" id="attendees" multiple>
+                        {{#each allRoommates}}
+                            <option value="{{id}}">{{first_name}}
+                                {{#if last_name}}{{last_name}}{{/if}}</option>
+                        {{/each}}
+                    </select>
+                {{/if}}
+                <p>*Required fields</p>
+                <button>Submit</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+<script src="/js/events.js"></script>
