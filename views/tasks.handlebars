@@ -1,22 +1,22 @@
 <h1 class="content-header">Tasks</h1>
 
-    <div id="task-modal">
-        <form id="task-form">
-            <div>
-                <label for="task">New Task</label><br>
-                <input type="text" name="task" id="task" required>
-            </div>
-            <div>
-                <label for="assignee">Assignee</label>
-                <select name="assignee" id="assignee">
-                    <option value="Roomie1">Roomie1</option>
-                    <option value="Roomie2">Roomie2</option>
-                    <option value="Roomie3">Roomie3</option>
-                </select>
-            </div>
-            <button id="submit-new-task" type="submit">Submit</button>
-        </form>
-    </div>
+<div id="task-modal">
+    <form id="task-form">
+        <div>
+            <label for="task">New Task</label><br>
+            <input type="text" name="task" id="task" required>
+        </div>
+        <div>
+            <label for="assignee">Assignee</label>
+            <select name="assignee" id="assignee">
+                <option value="Roomie1">Roomie1</option>
+                <option value="Roomie2">Roomie2</option>
+                <option value="Roomie3">Roomie3</option>
+            </select>
+        </div>
+        <button id="submit-new-task" type="submit">Submit</button>
+    </form>
+</div>
 <div class="content-window">
     <div id="add-task">+</div>
     <div id="task-table">
@@ -27,8 +27,8 @@
                     <span>{{this.assignee}}</span>
                     <div class="buttons">
                         <button type="button" class="complete-button">Complete</button>
-                        <button type="button" class="edit-button">Edit</button>
-                        <button type="button" class="delete-button">X</button>
+                        <div class="button"><img src="../images/edit.svg" class="edit-button" /></div>
+                        <div class="button"><img src="../images/delete.svg" class="delete-button"/></div>
                     </div>
                 </li>
             {{/each}}
