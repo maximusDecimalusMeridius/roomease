@@ -1,3 +1,18 @@
+let _eventModal = document.querySelector("#event-modal");
+let _addButton = document.querySelector("#add-event");
+let _modalCloseButton = document.querySelector(".close");
+
+_addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    _bedCover.style.display = "block";
+    _eventModal.style.display = "block";
+})
+
+_modalCloseButton.addEventListener("click", () => {
+    _bedCover.style.display = "none";
+    _eventModal.style.display = "none";
+});
+
 document.querySelector("#eventForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const attendees = getSelectedAttendees(

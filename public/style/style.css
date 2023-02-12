@@ -2,6 +2,7 @@
     /* CSS HEX from coolors.co*/
     --jet: #353535ff;
     --light-caribbean: rgb(30, 208, 218);
+    --caribbean-glow: rgb(101, 247, 255);
     --caribbean-current: #3c6e71ff;
     --ash-gray: #9eb7b8ff;
     --white: #ffffffff;
@@ -139,13 +140,15 @@ header {
 
 .hbs-body {
     width: 80%;
-    height: 90%;
+    min-height: 300px;
+    height: 80%;
     padding-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     border: 1px solid black;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -154,9 +157,32 @@ header {
 }
 
 .content-window {
-    width: 80%;
+    width: 90%;
+    background-color: var(--white);
     display: flex;
-    overflow-y: auto;
+    border-radius: 25px;
+    padding: 60px 20px 20px 20px;
+    position: relative;
+}
+
+.buttons {
+    width: fit-content;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons button,
+.buttons div {
+    cursor: pointer;
+}
+
+.complete-button {
+    padding: 0px;
+    width: 100px;
+    height: 25px;
 }
 
 /* roommate CSS */
@@ -168,34 +194,112 @@ header {
 }
 
 /* task CSS */
+.add-button {
+    height: 50px;
+    width: 50px;
+    background-color: var(--light-caribbean);
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    cursor: pointer;
+}
+
+#task-modal {
+    width: 80%;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    padding: 15px;
+    display: none;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+.modal {
+    width: 80%;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    padding: 15px;
+    display: none;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+#task {
+    width: 200px;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#submit-new-task {
+    margin-top: 15px;
+    align-self: center;
+}
+
 #task-table {
     width: 100%;
     height: fit-content;
-    margin: 10px;
 }
 
 #task-list {
     width: 100%;
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     list-style-type: none;
+    border: 1px solid var(--caribbean-current);
+    border-radius: inherit;
 }
 
 .task-list-item {
-    width: 80%;
+    width: 100%;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
+.task-list-item:nth-child(even) {
+    background-color: var(--light-caribbean);
+}
+
+.task {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.task-list-item:nth-child(even) {
+    background-color: var(--light-caribbean);
+}
+
+.task {
+    width: 150px;
+    flex-shrink: 0;
+}
+
 /* Event CSS TODO: edit modal to bee out of eventList section */
+#event-modal {
+    display: none;
+}
+
 #eventList {
     height: inherit;
-    overflow-y: scroll;
+    width: 100%;
 }
 
 .eventBlock {
@@ -227,22 +331,37 @@ header {
 .edit-button,
 .delete-button {
     height: 25px;
-    width: 40px;
+    width: 25px;
+    position: relative;
 }
 
-.add-button {
+
+/* .add-button {
     height: 7vh;
     width: 7vh;
     position: absolute;
     bottom: 2vh;
     left: 2vw;
-}
+} */
 
 .button {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    border-radius: 50%;
 }
 
 .button:hover {
     transform: scale(1.3);
+}
+
+.button:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: 0px 0px 3px 1px var(--caribbean-current);
+    border-radius: inherit;
+    border: 1px solid var(--caribbean-current);
 }
 
 /* form */
@@ -372,6 +491,8 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Responsive CSS */
+
 @media screen and (max-width: 650px) {
     #nav-menu {
         display: none;
@@ -384,4 +505,23 @@ footer a:hover {
     #mobile-menu {
         display: flex;
     }
+
+    .buttons {
+            margin-top: 10px;
+        }
+    
+    .task-list-item {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task {
+        text-align: center;
+    }
+
+    
 }

@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
     Task.create({
         task: req.body.task,
         assignee: req.body.assignee,
-        home_id: req.body.home_id,
+        home_id: 1,
     })
         .then((data) => {
             res.status(201).json(data);
