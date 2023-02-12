@@ -194,7 +194,7 @@ header {
 }
 
 /* task CSS */
-#add-task {
+.add-button {
     height: 50px;
     width: 50px;
     background-color: var(--light-caribbean);
@@ -211,6 +211,17 @@ header {
 }
 
 #task-modal {
+    width: 80%;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    padding: 15px;
+    display: none;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+.modal {
     width: 80%;
     background-color: white;
     z-index: 4;
@@ -282,9 +293,13 @@ header {
 }
 
 /* Event CSS TODO: edit modal to bee out of eventList section */
+#event-modal {
+    display: none;
+}
+
 #eventList {
     height: inherit;
-    overflow-y: scroll;
+    width: 100%;
 }
 
 .eventBlock {
@@ -321,13 +336,13 @@ header {
 }
 
 
-.add-button {
+/* .add-button {
     height: 7vh;
     width: 7vh;
     position: absolute;
     bottom: 2vh;
     left: 2vw;
-}
+} */
 
 .button {
     height: fit-content;

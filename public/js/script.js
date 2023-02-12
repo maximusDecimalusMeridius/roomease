@@ -37,7 +37,7 @@ function showMenu() {
         _mobileMenuButton.style.opacity = "1";
         _mobileMenu.style.right = "0px";
         _bedCover.style.display = "block";
-    }, "250")
+    }, "50")
 }
 
 function hideMenu() {
@@ -51,8 +51,14 @@ function hideMenu() {
         _mobileMenuButton.style.opacity = "1";
         _mobileMenu.style.right = "-300px";
         _bedCover.style.display = "none";
-    }, "250");
+    }, "50");
 
     //hide any modals from handlebars templates
-    _taskModal.style.display = "none";
+    if(location.pathname == "/tasks"){
+        _taskModal.style.display = "none";
+    }
+    if(location.pathname == "/events"){
+        _eventModal.style.display = "none";
+    }
+    
 }

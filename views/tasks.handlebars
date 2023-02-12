@@ -18,7 +18,7 @@
     </form>
 </div>
 <div class="content-window">
-    <div id="add-task">+</div>
+    <div id="add-task" class="add-button">+</div>
     <div id="task-table">
         <ul id="task-list">
             {{#each allTasks}}
@@ -27,8 +27,8 @@
                     <span>{{this.assignee}}</span>
                     <div class="buttons">
                         <button type="button" class="complete-button">Complete</button>
-                        <div class="button"><img src="../images/edit.svg" class="edit-button" /></div>
-                        <div class="button"><img src="../images/delete.svg" class="delete-button"/></div>
+                        <div class="edit button"><img src="../images/edit.svg" class="edit-button" /></div>
+                        <div class="delete button"><img src="../images/delete.svg" class="delete-button"/></div>
                     </div>
                 </li>
             {{/each}}
