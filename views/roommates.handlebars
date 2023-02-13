@@ -9,11 +9,11 @@
       {{/each}}
       <div>Events:</div>
       {{#each this.Events}}
-      <span>- {{this.what}} When: {{this.date}} @ {{this.time}}</span>
+      <span>- {{this.what}} WHEN: {{this.date}} @ {{this.time}}</span>
       {{/each}}
       <div>UOMs:</div>
       {{#each this.owed_by}}
-      <span>- {{this.Roommate.first_name}} owes me ${{this.amount}} for: {{this.what}} </span>
+      <span>- {{this.owe.first_name}} owes me ${{this.amount}} for: {{this.what}} </span>
       {{/each}}
     {{/each}}
   </div>
