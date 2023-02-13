@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
         const createEvent = await Event.create(createEventObj);
         let updateAttendees;
         if (req.body.attendees.length > 0) {
-            updateAttendees = await eventObj.addRoommate(req.body.attendees);
+            updateAttendees = await createEvent.addRoommate(req.body.attendees);
         }
         return res.json({ status: "success", createEvent, updateAttendees });
     } catch (err) {
