@@ -1,0 +1,56 @@
+<h1 class="content-header">UOMs</h1>
+<div id="add-task" class="add-button">+</div>
+<div class="modal-content">
+  <span class="close">&times;</span>
+  <form id="uomForm">
+    <label for="u">Who owes you?*:</label>
+    <select name="u" id="u">
+        {{#each allroomies}}
+          <option value="{{this.id}}">{{first_name}}
+            {{#if last_name}}{{last_name}}{{/if}}</option>
+        {{/each}}
+      </select>
+    <label for="what">For what do they owe you?*:</label>
+    <input type="text" name="what" id="what" />
+    <label for="amount">How much do they owe you?*</label>
+    <input type="text" name="amount" id="amount" />
+    <label for="me">Remind me which roommate you are?*</label>
+    <select name="me" id="me">
+        {{#each allroomies}}
+          <option value="{{this.id}}">{{first_name}}
+            {{#if last_name}}{{last_name}}{{/if}}</option>
+        {{/each}}
+      </select>
+    <p>*Required fields</p>
+    <button>Submit</button>
+  </form>
+</div>
+{{! {{All editable and deletable. Able to add another }}
+<div class="content-window">
+  <div id="task-table">
+    <ul id="task-list">
+      {{#each allUOM}}
+        <li class="task-list-item" id={{this.id}}>
+          <span>{{this.owe.first_name}}
+            owes ${{this.amount}}
+            for
+            {{this.what}}
+            to
+            {{this.owed_by.first_name}}</span>
+          <div class="buttons">
+            <div class="edit button"><img
+                src="../images/edit.svg"
+                class="edit-button"
+              /></div>
+            <div class="delete button"><img
+                src="../images/delete.svg"
+                class="delete-button"
+              /></div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<script src="./js/uom.js"></script>

@@ -21,11 +21,13 @@ Home.belongsTo(Task);
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",
     foreignKey: "me",
+    as:"owed_by"
 });
 
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",
     foreignKey: "u",
+    as:"owe"
 });
 
 Roommate.hasMany(UOM, {
