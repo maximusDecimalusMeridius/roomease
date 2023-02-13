@@ -2,6 +2,7 @@
     /* CSS HEX from coolors.co*/
     --jet: #353535ff;
     --light-caribbean: rgb(30, 208, 218);
+    --light-caribbean-tp: rgb(30, 208, 218, .2);
     --caribbean-glow: rgb(101, 247, 255);
     --caribbean-current: #3c6e71ff;
     --ash-gray: #9eb7b8ff;
@@ -140,28 +141,48 @@ header {
 
 .hbs-body {
     width: 80%;
-    min-height: 300px;
+    min-height: 350px;
+    background-color: var(--white);
     height: 80%;
-    padding-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black;
     overflow-y: auto;
     position: relative;
+    border-radius: 25px;
+    box-shadow: 0px 15px 10px gray,
+                8px 5px 5px gray;
+}
+
+.header-window {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px 10px 50px;
 }
 
 .content-header {
+    height: 50px;
+    width: fit-content;
+    padding: 15px; 
+    background-color: var(--white);
     font-style: italic;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
 }
 
 .content-window {
     width: 90%;
     background-color: var(--white);
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
     border-radius: 25px;
-    padding: 60px 20px 20px 20px;
+    padding: 30px 20px 20px 20px;
     position: relative;
 }
 
@@ -199,15 +220,25 @@ header {
     width: 50px;
     background-color: var(--light-caribbean);
     color: white;
-    position: absolute;
-    top: 5px;
-    right: 20px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 42px;
     cursor: pointer;
+    transition: all .3s ease-out;
+}
+
+.add-button:hover {
+    transform: rotate(90deg);
+}
+
+.add-button:hover::after {
+    content: '';
+    border-radius: inherit;
+    position: absolute;
+    inset: 0;
+    box-shadow: 0px 0px 8px black;
 }
 
 #task-modal,
@@ -256,37 +287,29 @@ header {
     height: fit-content;
 }
 
-#task-list {
+.task-list-item:nth-child(even) {
+    background-color: var(--light-caribbean-tp);
+}
+
+#task-list,
+#eventList {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     list-style-type: none;
-    border: 1px solid var(--caribbean-current);
-    border-radius: inherit;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 4px black;
 }
 
 .task-list-item {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-.task-list-item:nth-child(even) {
-    background-color: var(--light-caribbean);
-}
-
-.task {
-    width: 150px;
-    flex-shrink: 0;
-}
-
-.task-list-item:nth-child(even) {
-    background-color: var(--light-caribbean);
 }
 
 .task {
@@ -309,12 +332,72 @@ header {
     text-align: center;
 }
 
+.eventBlock:nth-child(3) {
+    background-color: var(--light-caribbean-tp);
+}
+
 .eventBlock h3 {
     margin: 10px;
 }
 .eventdetails {
     display: flex;
     justify-content: space-evenly;
+}
+
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#login-form div {
+    width: 100%;
+}
+
+#signup-form {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(200px, 80%);
+}
+
+#signup-steps {
+    height: 100%;
+    width: 100%;
+}
+
+#signup-step-one {
+    display: block;
+}
+
+#signup-step-two {
+    display: none;
+    position: relative;
+}
+
+#back-button {
+    height: 50px;
+    width: 50px;
+    font-size: 42px;
+    background-color: var(--indigo-dye);
+    color: white;
+    position: absolute;
+    left: -60px;
+    top: calc(50% - 25px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.signup-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
 }
 
 .date,
@@ -337,23 +420,16 @@ header {
     position: relative;
 }
 
-/* .add-button {
-    height: 7vh;
-    width: 7vh;
-    position: absolute;
-    bottom: 2vh;
-    left: 2vw;
-} */
-
 .button {
     height: fit-content;
     width: fit-content;
     position: relative;
     border-radius: 50%;
+    transition: transform .05s ease-in;
 }
 
 .button:hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
 }
 
 .button:hover::after {
@@ -372,6 +448,7 @@ header {
 input[type="text"],
 input[type="date"],
 input[type="time"],
+input[type="password"],
 select {
     width: 100%;
     padding: 12px 20px;
@@ -380,6 +457,10 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+input::placeholder {
+    font-style: italic;
 }
 
 button {
@@ -399,7 +480,10 @@ button:hover {
 
 .edit-event-form {
     width: 33%;
-    margin: 0 auto;
+    padding: 25px 15px;
+    margin: 0px auto 10px auto;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 4px black;
 }
 
 .form {

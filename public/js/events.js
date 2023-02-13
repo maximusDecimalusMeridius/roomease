@@ -65,14 +65,20 @@ document.querySelectorAll(".delete").forEach((deleteButton) => {
 document.querySelectorAll(".edit").forEach((editButton) => {
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
-        document.querySelectorAll(".edit-event-form").forEach((form) => {
-            form.classList.add("hide");
-        });
         eventId = e.target.parentNode.parentNode.parentNode.dataset.eventId;
         console.log(eventId);
-        edit = true;
+
         const editEventForm = document.querySelector(`[data-edit-event-id="${eventId}"]`);
-        editEventForm.classList.remove("hide");
+        
+        if(!editEventForm.classList.contains("hide")){
+            editEventForm.classList.add("hide");
+        } else {
+            document.querySelectorAll(".edit-event-form").forEach((form) => {
+                form.classList.add("hide");
+            });
+            editEventForm.classList.remove("hide");
+        }
+        
     });
 });
 

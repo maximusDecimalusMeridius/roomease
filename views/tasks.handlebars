@@ -1,14 +1,42 @@
-<h1 class="content-header">Tasks</h1>
 
+<div class="header-window">
+    <h1 class="content-header">Tasks</h1>
+    <div id="add-task" class="add-button">+</div>
+</div>
+
+<div id="task-modal">
+    <form id="task-form">
+        <div>
+            <label for="task">New Task</label><br>
+            <input type="text" name="task" id="task" required>
+        </div>
+        <div>
+            <label for="assignee">Assignee</label>
+            <select name="assignee" id="assignee">
+                {{#each allRoommates}}
+                <option dataset-roommate-id={{this.id}} value={{this.first_name}}-{{this.last_name}}>{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <button id="submit-new-task" type="submit">Submit</button>
+    </form>
+</div>
 <div class="content-window">
     <div id="task-table">
         <ul id="task-list">
             {{#each allTasks}}
-                <li class="task-list-item">
-                    <span>{{this.task}}</span>
+                <li class="task-list-item" data-task-id={{this.id}}>
+                    <span class="task">{{this.task}}</span>
                     <span>{{this.assignee}}</span>
+                    <div class="buttons">
+                        <button type="button" class="complete-button">Complete</button>
+                        <div class="edit button"><img src="../images/edit.svg" class="edit-button" /></div>
+                        <div class="delete button"><img src="../images/delete.svg" class="delete-button"/></div>
+                    </div>
                 </li>
             {{/each}}
         </ul>
     </div>
 </div>
+
+<script src="./js/task.js"></script>

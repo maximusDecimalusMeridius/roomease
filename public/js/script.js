@@ -1,5 +1,6 @@
 const _mobileMenuButton = document.querySelector("#mobile-menu-icon");
 const _mobileMenu = document.querySelector("#mobile-menu");
+const _navMenu = document.querySelector("#nav-menu");
 const _bedCover = document.querySelector(".cover");
 
 const _mobileListItems = document.querySelectorAll("#mobile-menu li");
@@ -60,5 +61,7 @@ function hideMenu() {
     if(location.pathname == "/events"){
         _eventModal.style.display = "none";
     }
-    
+    if(location.pathname == "/uoms"){
+        _uomModal.style.display = "none";
+    }
 }

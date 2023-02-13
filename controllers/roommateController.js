@@ -5,6 +5,10 @@ const router = express.Router();
 
 //GET all records
 router.get("/", (req, res) => {
+	if(!req.session.isLoggedIn){
+        return res.render("login");
+    }
+	
 	Roommate.findAll({
         include: [
 			"tasks",

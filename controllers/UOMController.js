@@ -6,6 +6,10 @@ const router = express.Router();
 
 //GET all records
 router.get("/", (req, res) => {
+    if(!req.session.isLoggedIn){
+        return res.render("login");
+    }
+    
   UOM.findAll({
     include: [
         {model: Roommate,  as:"owed_by"},

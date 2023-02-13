@@ -4,16 +4,33 @@ const { Task, Roommate } = require("../models");
 const router = express.Router();
 
 //GET all records
-router.get("/", (req, res) => {
-    Task.findAll({
-        include: [Roommate]
-    }).then(taskData=>{
-        const hbsTasks = taskData.map(task=>task.toJSON())
+router.get("/", async (req, res) => {
+    console.log(req.session);
+    if(!req.session.isLoggedIn){
+        return res.render("login");
+    }
+
+    try{
+        let hbsTasks = await Task.findAll({ include: [Roommate] })
+        let hbsRoommates = await Roommate.findAll();
+
+        hbsTasks = hbsTasks.map(task=>task.toJSON());
+        hbsRoommates = hbsRoommates.map(roommate => roommate.toJSON());
+
         console.log(hbsTasks);
+        console.log(hbsRoommates);
+        
         res.render("tasks",{
-            allTasks: hbsTasks
+            allTasks: hbsTasks,
+            allRoommates: hbsRoommates
         });
-    }); 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error getting records!",
+            error: error
+        });
+    }
 });
 
 //GET one record by id
@@ -38,6 +55,8 @@ router.get("/:id", (req, res) => {
 });
 
 //POST a new record
+//update to async/awaits with try/catch
+//create task object in table, after which try assigning the task
 router.post("/", (req, res) => {
     Task.create({
         task: req.body.task,
