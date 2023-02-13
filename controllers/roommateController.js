@@ -16,16 +16,20 @@ router.get("/", (req, res) => {
 			{
 				model: UOM,
             	as: "owed_by",
-				include: [{model: Roommate, foreignKey:"u"}]
+				include: [{model: Roommate, as:"owe"}]
 			}]
     }).then(roommateData=>{
         const hbsRoommates = roommateData.map(roommate=>roommate.toJSON())
-        console.log(hbsRoommates);
-		console.log(hbsRoommates[2].owed_by[0])
         res.render("roommates",{
             allRoommates:hbsRoommates
         });
-    });
+    }).catch((error) => {
+		console.log(error);
+		res.status(500).json({
+			message: "Error getting data",
+			error: error,
+		});
+	});
 });
 
 //GET one record by id

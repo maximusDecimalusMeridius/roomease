@@ -242,7 +242,8 @@ header {
 }
 
 #task-modal,
-#event-modal {
+#event-modal,
+#uom-modal {
     width: 80%;
     background-color: white;
     z-index: 4;
