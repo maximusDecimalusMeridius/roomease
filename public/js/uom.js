@@ -1,6 +1,6 @@
 // //tie into HTML elements
 let _submitNewTaskButton = document.querySelector("#submit-new-task");
-let _taskModal = document.querySelector("#uom-modal");
+let _uomModal = document.querySelector("#uom-modal");
 
 // //collect buttons
 let editMe = document.querySelectorAll(".edit");
@@ -17,12 +17,12 @@ let _modalCloseButton = document.querySelector(".close");
 addTask.addEventListener("click", (event) => {
   event.preventDefault();
   _bedCover.style.display = "block";
-  _taskModal.style.display = "block";
+  _uomModal.style.display = "block";
 });
 
 _modalCloseButton.addEventListener("click", () => {
   _bedCover.style.display = "none";
-  _taskModal.style.display = "none";
+  _uomModal.style.display = "none";
 });
 
 // Event listeners for delete buttons
@@ -77,7 +77,7 @@ for (let i = 0; i < editMe.length; i++) {
     editMe[i].addEventListener("click", (event) => {
       event.preventDefault();
       _bedCover.style.display = "block";
-      _taskModal.style.display = "block";
+      _uomModal.style.display = "block";
       const u = getPeeps(document.getElementById("uomForm").elements["u"]);
       const me = getPeeps(document.getElementById("uomForm").elements["me"]);
       const uomObj = {

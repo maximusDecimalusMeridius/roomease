@@ -5,6 +5,10 @@ const router = express.Router();
 
 //GET all records
 router.get("/", async (req, res) => {
+    if(!req.session.isLoggedIn){
+        return res.render("login");
+    }
+    
     try {
         const eventData = await Event.findAll({
             include: [

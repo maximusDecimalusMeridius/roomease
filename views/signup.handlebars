@@ -1,0 +1,43 @@
+<div class="content-window">
+    <h1 class="content-header">Signup</h1>
+    <form id="signup-form">
+        <div id="signup-step-one" class="signup-steps">
+            <div>
+                <label for="email">Email</label><br>
+                <input type="text" name="email" id="email" required>
+            </div>
+            <div>
+                <label for="first-name">First Name</label><br>
+                <input type="text" name="first-name" id="first-name" required>
+            </div>
+            <div>
+                <label for="last-name">Last Name</label><br>
+                <input type="text" name="last-name" id="last-name">
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="signup-buttons">
+                <button id="signup-next" type="button">Next</button>
+            </div>
+        </div>
+        <div id="signup-step-two" class="signup-steps">
+            <div id="back-button"><</div>
+            <div>
+                <label for="home">Home</label><br>
+                <input type="text" name="home" id="home" required>
+            </div>
+            <div>
+                <label for="zipcode">Zipcode</label><br>
+                <input type="text" placeholder="00000" name="zipcode" id="zipcode" required>
+            </div>
+            <div class="signup-buttons">
+                <button id="signup-join-home" type="submit">Join Existing</button>
+                <button id="signup-create-home" type="submit">Create New</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="./js/signup.js"></script>
