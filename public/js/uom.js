@@ -1,16 +1,20 @@
 // //tie into HTML elements
 let _submitNewTaskButton = document.querySelector("#submit-new-task");
+let _taskModal = document.querySelector("#uom-modal");
 
 // //collect buttons
 let editMe = document.querySelectorAll(".edit");
 let deleteMe = document.querySelectorAll(".delete");
 
+// //new task form fields/data
+// let formTask = document.querySelector("#task");
+// let formAssignee = document.querySelector("#assignee");
 
 let addTask = document.querySelector("#add-task");
 let _modalCloseButton = document.querySelector(".close");
 
-// // Add button for new tasks (display modals)
-_submitNewTaskButton.addEventListener("click", (event) => {
+// Add button for new tasks (display modals)
+addTask.addEventListener("click", (event) => {
   event.preventDefault();
   _bedCover.style.display = "block";
   _taskModal.style.display = "block";
@@ -18,7 +22,7 @@ _submitNewTaskButton.addEventListener("click", (event) => {
 
 _modalCloseButton.addEventListener("click", () => {
   _bedCover.style.display = "none";
-  _eventModal.style.display = "none";
+  _taskModal.style.display = "none";
 });
 
 // Event listeners for delete buttons
@@ -68,14 +72,16 @@ document.querySelector("#uomForm").addEventListener("submit", (e) => {
 function getPeeps(list) {
   return list.options[list.options.selectedIndex].value;
 }
-
+// edit post
 for (let i = 0; i < editMe.length; i++) {
     editMe[i].addEventListener("click", (event) => {
       event.preventDefault();
+      _bedCover.style.display = "block";
+      _taskModal.style.display = "block";
       const u = getPeeps(document.getElementById("uomForm").elements["u"]);
       const me = getPeeps(document.getElementById("uomForm").elements["me"]);
       const uomObj = {
-        what: document.querySelector("#what").value,
+        what: document.querySelector(`[data-edit-what="${uomId}"]`).value,
         me: me,
         u: u,
         amount: document.querySelector("#amount").value,

@@ -1,7 +1,7 @@
 <h1 class="content-header">UOMs</h1>
 <div id="add-task" class="add-button">+</div>
-<div class="modal-content">
-  <span class="close">&times;</span>
+<div id="uom-modal" class="modal-content">
+  <div id="close"><span class="close">&times;</span></div>
   <form id="uomForm">
     <label for="u">Who owes you?*:</label>
     <select name="u" id="u">
@@ -11,9 +11,9 @@
         {{/each}}
       </select>
     <label for="what">For what do they owe you?*:</label>
-    <input type="text" name="what" id="what" />
+    <input type="text" data-edit-time="{{id}}" name="what" id="what" />
     <label for="amount">How much do they owe you?*</label>
-    <input type="text" name="amount" id="amount" />
+    <input type="text" data-edit-time="{{id}}" name="amount" id="amount" />
     <label for="me">Remind me which roommate you are?*</label>
     <select name="me" id="me">
         {{#each allroomies}}
@@ -30,7 +30,7 @@
   <div id="task-table">
     <ul id="task-list">
       {{#each allUOM}}
-        <li class="task-list-item" id={{this.id}}>
+        <li class="task-list-item" data-me-id="{{this.owed_by.id}}" data-u-id="{{this.owe.id}}" id={{this.id}}>
           <span>{{this.owe.first_name}}
             owes ${{this.amount}}
             for
