@@ -141,7 +141,7 @@ header {
 
 .hbs-body {
     width: 80%;
-    min-height: 300px;
+    min-height: 350px;
     background-color: var(--white);
     height: 80%;
     display: flex;
@@ -155,10 +155,18 @@ header {
                 8px 5px 5px gray;
 }
 
+.header-window {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px 10px 50px;
+}
+
 .content-header {
     height: 50px;
-    width: 100%;
-    padding: 25px;
+    width: fit-content;
+    padding: 15px; 
     background-color: var(--white);
     font-style: italic;
     position: sticky;
@@ -169,9 +177,12 @@ header {
 .content-window {
     width: 90%;
     background-color: var(--white);
-    display: flex; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
     border-radius: 25px;
-    padding: 60px 20px 20px 20px;
+    padding: 30px 20px 20px 20px;
     position: relative;
 }
 
@@ -209,9 +220,6 @@ header {
     width: 50px;
     background-color: var(--light-caribbean);
     color: white;
-    position: absolute;
-    top: 5px;
-    right: 20px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -282,7 +290,8 @@ header {
     background-color: var(--light-caribbean-tp);
 }
 
-#task-list {
+#task-list,
+#eventList {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -293,7 +302,8 @@ header {
     box-shadow: inset 1px 1px 4px black;
 }
 
-.task-list-item {
+.task-list-item,
+.eventBlock {
     width: 100%;
     padding: 15px;
     display: flex;
@@ -301,7 +311,6 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 
 .task {
     width: 150px;
@@ -313,20 +322,19 @@ header {
     display: none;
 }
 
-#eventList {
+/* #eventList {
     height: inherit;
     width: 100%;
-}
+} */
 
-.eventBlock {
+/* .eventBlock {
     padding: 10px;
     text-align: center;
-    border: 1px solid red;
-}
+} */
 
-.eventBlock:nth-child(odd) {
+/* .eventBlock:nth-child(odd) {
     background-color: var(--light-caribbean-tp);
-}
+} */
 
 .eventBlock h3 {
     margin: 10px;
@@ -334,6 +342,62 @@ header {
 .eventdetails {
     display: flex;
     justify-content: space-evenly;
+}
+
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#login-form div {
+    width: 100%;
+}
+
+#signup-form {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(200px, 80%);
+}
+
+#signup-steps {
+    height: 100%;
+    width: 100%;
+}
+
+#signup-step-one {
+    display: block;
+}
+
+#signup-step-two {
+    display: none;
+    position: relative;
+}
+
+#back-button {
+    height: 50px;
+    width: 50px;
+    font-size: 42px;
+    background-color: var(--indigo-dye);
+    color: white;
+    position: absolute;
+    left: -60px;
+    top: calc(50% - 25px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.signup-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
 }
 
 .date,
@@ -384,6 +448,7 @@ header {
 input[type="text"],
 input[type="date"],
 input[type="time"],
+input[type="password"],
 select {
     width: 100%;
     padding: 12px 20px;
@@ -392,6 +457,10 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+input::placeholder {
+    font-style: italic;
 }
 
 button {

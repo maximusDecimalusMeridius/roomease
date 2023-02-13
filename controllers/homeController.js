@@ -20,6 +20,7 @@ router.get("/", (req, res) => {
 
 //GET one record by id
 router.get("/:id", (req, res) => {
+    
     Home.findByPk(req.params.id)
         .then((data) => {
             if (data) {
