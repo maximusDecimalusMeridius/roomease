@@ -210,7 +210,8 @@ header {
     cursor: pointer;
 }
 
-#task-modal {
+#task-modal,
+#event-modal {
     width: 80%;
     background-color: white;
     z-index: 4;
@@ -335,7 +336,6 @@ header {
     position: relative;
 }
 
-
 /* .add-button {
     height: 7vh;
     width: 7vh;
@@ -356,7 +356,7 @@ header {
 }
 
 .button:hover::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     box-shadow: 0px 0px 3px 1px var(--caribbean-current);
@@ -364,6 +364,9 @@ header {
     border: 1px solid var(--caribbean-current);
 }
 
+.hide {
+    display: none !important;
+}
 /* form */
 input[type="text"],
 input[type="date"],
@@ -391,6 +394,11 @@ button {
 
 button:hover {
     background-color: var(--indigo-dye);
+}
+
+.edit-event-form {
+    width: 33%;
+    margin: 0 auto;
 }
 
 .form {
@@ -507,9 +515,11 @@ footer a:hover {
     }
 
     .buttons {
-            margin-top: 10px;
-        }
-    
+        margin-top: 10px;
+        align-items: center;
+        height: inherit;
+    }
+
     .task-list-item {
         width: 100%;
         padding: 20px;
@@ -522,6 +532,4 @@ footer a:hover {
     .task {
         text-align: center;
     }
-
-    
 }
