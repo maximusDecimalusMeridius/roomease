@@ -303,8 +303,7 @@ header {
     box-shadow: inset 1px 1px 4px black;
 }
 
-.task-list-item,
-.eventBlock {
+.task-list-item {
     width: 100%;
     padding: 15px;
     display: flex;
@@ -323,19 +322,19 @@ header {
     display: none;
 }
 
-/* #eventList {
+#eventList {
     height: inherit;
     width: 100%;
-} */
+}
 
-/* .eventBlock {
+.eventBlock {
     padding: 10px;
     text-align: center;
-} */
+}
 
-/* .eventBlock:nth-child(odd) {
+.eventBlock:nth-child(3) {
     background-color: var(--light-caribbean-tp);
-} */
+}
 
 .eventBlock h3 {
     margin: 10px;
@@ -481,7 +480,10 @@ button:hover {
 
 .edit-event-form {
     width: 33%;
-    margin: 0 auto;
+    padding: 25px 15px;
+    margin: 0px auto 10px auto;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 4px black;
 }
 
 .form {

@@ -19,7 +19,7 @@ router.post("/login", async (req, res)=>{
 				email: req.body.email
 			}
         });
-        
+
         const dataMatches = (bcrypt.compareSync(req.body.password, roommate.password));
         
         if(dataMatches){
@@ -33,8 +33,8 @@ router.post("/login", async (req, res)=>{
             return res.status(401).json({msg:"Login not found - Please try again"})
         }
     } catch (error) {
-        res.status(500);
-        res.json({
+        console.log(error);
+        res.status(500).json({
             message: "Login not found - Please try again",
             error: error
         });
