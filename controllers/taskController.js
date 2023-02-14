@@ -10,10 +10,14 @@ router.get("/", async (req, res) => {
     }
 
     try{
-        let hbsTasks = await Task.findAll({ include: [Roommate] })
+        let hbsTasks = await Task.findAll({ 
+            where: {
+                home_id: req.session.homeId
+            },
+            include: [Roommate] })
         let hbsRoommates = await Roommate.findAll({
             where: {
-                home_id: req.session.userId
+                home_id: req.session.homeId
             }
         });
 
@@ -65,7 +69,7 @@ router.post("/", async (req, res) => {
 
         await Task.create({
             task: req.body.task,
-            home_id: 1
+            home_id: req.session.homeId
         });
 
         const newTask = await Task.findOne({

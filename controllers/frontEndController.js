@@ -61,7 +61,9 @@ router.get("/dashboard", (req, res) => {
     
     Roommate.findByPk(req.session.userId, {
         include:[ 
-                "tasks",
+            {
+                model: Task
+            },
             {
                 model: Event
             },
@@ -81,7 +83,7 @@ router.get("/dashboard", (req, res) => {
 
         Roommate.findAll({
             where:{
-                home_id:userData.home_id,
+                home_id: userData.home_id,
                 id:{[Op.Op.not]:userData.id}
             }}).then((roommateData)=>{const hbsUserRoommates = roommateData.map(roommate=>roommate.toJSON())
             console.log(hbsUserRoommates)

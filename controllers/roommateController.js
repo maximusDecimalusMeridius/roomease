@@ -1,6 +1,6 @@
 //loop in dependencies
 const express = require("express");
-const { Home, Roommate, Event, UOM } = require("../models");
+const { Task, Home, Roommate, Event, UOM } = require("../models");
 const router = express.Router();
 
 //GET all records
@@ -8,10 +8,13 @@ router.get("/", (req, res) => {
 	if(!req.session.isLoggedIn){
         return res.redirect("/");
     }
-	
+	console.log(req.session);
 	Roommate.findAll({
+		where: {
+			home_id: req.session.homeId
+		},
         include: [
-			"tasks",
+			Task,
 			Event, 
 			{
 				model: UOM,
@@ -20,7 +23,8 @@ router.get("/", (req, res) => {
 			}]
     }).then(roommateData=>{
         const hbsRoommates = roommateData.map(roommate=>roommate.toJSON())
-        res.render("roommates",{
+        console.log(roommateData);
+		res.render("roommates",{
             allRoommates:hbsRoommates
         });
     }).catch((error) => {

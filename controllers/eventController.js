@@ -52,6 +52,9 @@ router.get("/", async (req, res) => {
     }
     try {
         const eventData = await Event.findAll({
+            where: {
+                home_id: req.session.homeId
+            },
             include: [
                 {
                     model: Roommate,
@@ -104,6 +107,7 @@ router.post("/", async (req, res) => {
         let createEventObj = {
             what: req.body.what,
             date: req.body.date,
+            home_id: req.session.homeId
         };
         if (req.body.time.length > 0) {
             createEventObj.time = req.body.time;

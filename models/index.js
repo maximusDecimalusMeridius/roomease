@@ -10,13 +10,22 @@ const Home = require("./Home");
 Roommate.hasOne(Home);
 Home.belongsTo(Roommate);
 
-//Roommate - Task association
-Roommate.hasMany(Task);
-Task.belongsTo(Roommate);
-
 //Task - Home association
 Task.hasOne(Home);
 Home.belongsTo(Task);
+
+//Event - Home association
+Event.hasOne(Home);
+Home.belongsTo(Event);
+
+//UOM - Home association
+UOM.hasOne(Home);
+Home.belongsTo(UOM);
+
+// Roommate - Task association
+Roommate.hasMany(Task);
+Task.belongsTo(Roommate);
+
 
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",

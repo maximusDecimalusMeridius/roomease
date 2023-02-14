@@ -19,9 +19,8 @@ Task.init(
 	},
 	{
 		sequelize,
-		modelName: "task",
 		timestamps: false,
-		underscored: true,
+		underscored: true
 	}
 );
 
