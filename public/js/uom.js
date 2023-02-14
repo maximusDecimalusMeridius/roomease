@@ -7,7 +7,7 @@ let editMe = document.querySelectorAll(".edit");
 let deleteMe = document.querySelectorAll(".delete");
 
 // //new task form fields/data
-// let formTask = document.querySelector("#task");
+let editForm = document.querySelector(".edit-uom-form");
 // let formAssignee = document.querySelector("#assignee");
 
 let addTask = document.querySelector("#add-task");
@@ -74,31 +74,31 @@ function getPeeps(list) {
 }
 // edit post
 for (let i = 0; i < editMe.length; i++) {
-    editMe[i].addEventListener("click", (event) => {
-      event.preventDefault();
-      _bedCover.style.display = "block";
-      _uomModal.style.display = "block";
-      const u = getPeeps(document.getElementById("uomForm").elements["u"]);
-      const me = getPeeps(document.getElementById("uomForm").elements["me"]);
-      const uomObj = {
-        what: document.querySelector(`[data-edit-what="${uomId}"]`).value,
-        me: me,
-        u: u,
-        amount: document.querySelector("#amount").value,
-      };
-      console.log(uomObj);
-      fetch("/uoms", {
-        method: "PUT",
-        body: JSON.stringify(uomObj),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }).then((res) => {
-        console.log(res);
-        if (res.ok) {
-          location.reload();
-        } else {
-          console.log(res.body);
-        }
-      });
-    })}
+  editMe[i].addEventListener("click", (event) => {
+    event.preventDefault();
+    editForm.style.display = "block";
+    const u = getPeeps(document.getElementById("uomForm").elements["u"]);
+    const me = getPeeps(document.getElementById("uomForm").elements["me"]);
+    const uomObj = {
+      what: document.querySelector("#what").value,
+      me: me,
+      u: u,
+      amount: document.querySelector("#amount").value,
+    };
+    console.log(uomObj);
+    fetch(`/uoms/${uomId}`, {
+      method: "PUT",
+      body: JSON.stringify(uomObj),
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then((res) => {
+      console.log(res);
+      if (res.ok) {
+        location.reload();
+      } else {
+        console.log(res.body);
+      }
+    });
+  });
+}
