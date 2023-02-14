@@ -68,6 +68,18 @@ router.post("/:type", async (req, res) => {
 			})
 		}
 
+		const someonesEmail = await Roommate.findOne({
+			where: {
+				email: req.body.email
+			}
+		})
+
+		if(someonesEmail){
+			return res.status(409).json({
+				message: "Email already exists"
+			})
+		}
+
 		if(req.params.type == "join"){
 			const someonesHome = await Home.findOne({
 				where:{
@@ -88,18 +100,31 @@ router.post("/:type", async (req, res) => {
 		}
 
 		if(req.params.type == "create"){
-			await Home.create({
-				name: req.body.home_name,
-				zipcode: req.body.zipcode
-			})
-			home_id = await Home.findOne({
+			const someonesHome = await Home.findOne({
 				where:{
-					name: req.body.home_name
+					name: req.body.home_name,
+					zipcode: req.body.zipcode
 				}
 			})
-			home_id = home_id.dataValues.id;
-			makeRoommate();
-			return res.status(200);
+			if(!someonesHome){
+				await Home.create({
+					name: req.body.home_name,
+					zipcode: req.body.zipcode
+				})
+				home_id = await Home.findOne({
+					where:{
+						name: req.body.home_name,
+						zipcode: req.body.zipcode
+					}
+				})
+				home_id = home_id.dataValues.id;
+				makeRoommate();
+				res.status(200).json({
+					message: "We did it!"
+				});
+			} else {
+				res.status(400);
+			}
 		}
     } catch (error) {
         console.log(error);

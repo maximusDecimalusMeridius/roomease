@@ -18,6 +18,7 @@ Roommate.init(
         },
         last_name: {
             type: DataTypes.STRING,
+            allowNull: true,
             validate: {
                 isAlphanumeric: true,
             },
