@@ -249,7 +249,8 @@ header {
 
 #task-modal,
 #event-modal,
-#uom-modal {
+#uom-modal,
+#uom-modal-edit {
     width: 80%;
     background-color: white;
     z-index: 4;
@@ -257,6 +258,22 @@ header {
     padding: 15px;
     display: none;
     border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+#success-modal {
+    height: 50px;
+    width: 250px;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 75px);
+    padding: 15px;
+    display: block;
+    text-align: center;
+    border: 3px solid var(--light-caribbean);
+    border-radius: 10px;
     box-shadow: 2px 2px 4px black;
 }
 
@@ -334,6 +351,7 @@ header {
 }
 
 .eventBlock {
+    width: 100%;
     padding: 10px;
     text-align: center;
     width: inherit;
@@ -391,13 +409,26 @@ header {
     background-color: var(--indigo-dye);
     color: white;
     position: absolute;
-    left: -60px;
+    left: 5%;
     top: calc(50% - 25px);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
+    z-index: 3;
+    transition: left .5s ease-out;
+}
+
+.signup-warning {
+    height: fit-content;
+    width: 100%;
+    font-size: 16px;
+    font-style: italic;
+    color: red;
+    margin: 0 auto;
+    text-align: center;
+    font-family: monospace;
 }
 
 .signup-buttons {
@@ -451,6 +482,10 @@ header {
     display: none !important;
 }
 /* form */
+input {
+    position: relative;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],
@@ -467,6 +502,10 @@ select {
 
 input::placeholder {
     font-style: italic;
+}
+
+input:required {
+    background-color: rgb(255, 233, 177);
 }
 
 button {
@@ -603,6 +642,10 @@ footer a:hover {
 
     #mobile-menu {
         display: flex;
+    }
+
+    #back-button {
+        left: 10px;
     }
 
     .buttons {
