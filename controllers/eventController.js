@@ -2,13 +2,54 @@
 const express = require("express");
 const { Event, Roommate } = require("../models");
 const router = express.Router();
+require("dotenv").config();
+//nodemailer
+const nodemailer = require("nodemailer");
+const nmHbs = require("nodemailer-express-handlebars");
+
+//transporter
+const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: false,
+    auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+    tls: {
+        ciphers: "SSLv3",
+    },
+});
+
+//checks if transporter created is working
+transporter.verify(function (error, success) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log("Server is ready to take our messages");
+    }
+});
+
+// Transporting using handlbars
+transporter.use(
+    "compile",
+    nmHbs({
+        viewEngine: {
+            extname: ".handlebars",
+            layoutsDir: "../email/layouts/",
+            defaultLayout: "template",
+            partialsDir: "../email/layouts/",
+        },
+        viewPath: "../email/emails/",
+        extName: ".handlebars",
+    })
+);
 
 //GET all records
 router.get("/", async (req, res) => {
-    if(!req.session.isLoggedIn){
+    if (!req.session.isLoggedIn) {
         return res.render("login");
     }
-    
     try {
         const eventData = await Event.findAll({
             include: [
@@ -68,8 +109,27 @@ router.post("/", async (req, res) => {
         }
         const createEvent = await Event.create(createEventObj);
         let updateAttendees;
+        // if there are attendees add them to the database and send out an email letting them know they're attending.
         if (req.body.attendees.length > 0) {
+            // adding attending roomates to userEvent
             updateAttendees = await createEvent.addRoommate(req.body.attendees);
+            let mailList = [];
+            req.body.attendees.forEach((attendee) => {
+                const roommate = Roommate.findByPk(attendee);
+                const readRoommate = roommate.toJSON();
+                console.log(readRoommate.email);
+                mailList.push(readRoommate.email);
+            });
+            console.log(mailList);
+            // let mail = {
+            //     from: process.env.EMAIL_USERNAME,
+            //     to: mailList,
+            //     subject: `Event: ${req.body.what}`,
+            //     template: 'email',
+            //     context: {
+            //         name: 'Name'
+            //     }
+            // }
         }
         return res.json({ status: "success", createEvent, updateAttendees });
     } catch (err) {

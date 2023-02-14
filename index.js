@@ -37,7 +37,6 @@ const sess = {
     }),
 };
 
-//create nodemailer transporter
 // Set Handlebars as the default template engine.
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");

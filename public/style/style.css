@@ -2,7 +2,7 @@
     /* CSS HEX from coolors.co*/
     --jet: #353535ff;
     --light-caribbean: rgb(30, 208, 218);
-    --light-caribbean-tp: rgb(30, 208, 218, .2);
+    --light-caribbean-tp: rgb(30, 208, 218, 0.2);
     --caribbean-glow: rgb(101, 247, 255);
     --caribbean-current: #3c6e71ff;
     --ash-gray: #9eb7b8ff;
@@ -56,8 +56,15 @@ header {
     background-color: var(--caribbean-current);
     padding: 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+}
+
+#logo {
+    background-image: url("../images/logo.svg");
+    height: 70px;
+    width: 200px;
+    float: left;
 }
 
 #nav-menu {
@@ -151,8 +158,7 @@ header {
     overflow-y: auto;
     position: relative;
     border-radius: 25px;
-    box-shadow: 0px 15px 10px gray,
-                8px 5px 5px gray;
+    box-shadow: 0px 15px 10px gray, 8px 5px 5px gray;
 }
 
 .header-window {
@@ -166,7 +172,7 @@ header {
 .content-header {
     height: 50px;
     width: fit-content;
-    padding: 15px; 
+    padding: 15px;
     background-color: var(--white);
     font-style: italic;
     position: sticky;
@@ -180,7 +186,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     border-radius: 25px;
     padding: 30px 20px 20px 20px;
     position: relative;
@@ -226,7 +232,7 @@ header {
     align-items: center;
     font-size: 42px;
     cursor: pointer;
-    transition: all .3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .add-button:hover {
@@ -234,7 +240,7 @@ header {
 }
 
 .add-button:hover::after {
-    content: '';
+    content: "";
     border-radius: inherit;
     position: absolute;
     inset: 0;
@@ -330,9 +336,10 @@ header {
 .eventBlock {
     padding: 10px;
     text-align: center;
+    width: inherit;
 }
 
-.eventBlock:nth-child(3) {
+.eventBlock:nth-child(4n + 3) {
     background-color: var(--light-caribbean-tp);
 }
 
@@ -343,7 +350,6 @@ header {
     display: flex;
     justify-content: space-evenly;
 }
-
 
 #login-form {
     display: flex;
@@ -425,7 +431,7 @@ header {
     width: fit-content;
     position: relative;
     border-radius: 50%;
-    transition: transform .05s ease-in;
+    transition: transform 0.05s ease-in;
 }
 
 .button:hover {

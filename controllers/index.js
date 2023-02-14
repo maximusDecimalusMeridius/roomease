@@ -21,7 +21,4 @@ router.use("/tasks", taskRoutes);
 const homeRoutes = require("./homeController");
 router.use("/homes", homeRoutes);
 
-const mailAPI = require("./mailController");
-router.use("/api/mail", mailAPI);
-
 module.exports = router;
