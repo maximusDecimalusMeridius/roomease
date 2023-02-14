@@ -36,11 +36,11 @@ transporter.use(
     nmHbs({
         viewEngine: {
             extname: ".handlebars",
-            layoutsDir: "../email/layouts/",
+            layoutsDir: "./email/layouts/",
             defaultLayout: "template",
-            partialsDir: "../email/layouts/",
+            partialsDir: "./email/layouts/",
         },
-        viewPath: "../email/emails/",
+        viewPath: "./email/emails/",
         extName: ".handlebars",
     })
 );
@@ -62,7 +62,6 @@ router.get("/", async (req, res) => {
 
         const hbsEvents = eventData.map((event) => event.toJSON());
         const hbsRoommates = roommateData.map((roommate) => roommate.toJSON());
-        console.log(hbsEvents);
         res.render("events", {
             allEvents: hbsEvents,
             allRoommates: hbsRoommates,
@@ -100,6 +99,8 @@ router.get("/:id", (req, res) => {
 //POST a new record
 router.post("/", async (req, res) => {
     try {
+        var mailList = [];
+        var roommates = [];
         let createEventObj = {
             what: req.body.what,
             date: req.body.date,
@@ -112,26 +113,33 @@ router.post("/", async (req, res) => {
         // if there are attendees add them to the database and send out an email letting them know they're attending.
         if (req.body.attendees.length > 0) {
             // adding attending roomates to userEvent
+            console.log(req.body.attendees);
+            // add roommates to an event if their id was selected.
             updateAttendees = await createEvent.addRoommate(req.body.attendees);
-            let mailList = [];
-            req.body.attendees.forEach((attendee) => {
-                const roommate = Roommate.findByPk(attendee);
-                const readRoommate = roommate.toJSON();
-                console.log(readRoommate.email);
-                mailList.push(readRoommate.email);
-            });
-            console.log(mailList);
-            // let mail = {
-            //     from: process.env.EMAIL_USERNAME,
-            //     to: mailList,
-            //     subject: `Event: ${req.body.what}`,
-            //     template: 'email',
-            //     context: {
-            //         name: 'Name'
-            //     }
-            // }
+
+            //send out email based off of selected roommates by getting their emails from Roommates table
+            for (var i = 0; i < req.body.attendees.length; i++) {
+                const roommate = await Roommate.findByPk(req.body.attendees[i]);
+                console.log(roommate.dataValues.email);
+                mailList.push(roommate.dataValues.email);
+                const name = {
+                    first_name: roommate.dataValues.first_name,
+                    last_name: roommate.dataValues.last_name,
+                };
+                roommates.push(name);
+            }
+            createEventObj.Roommates = roommates;
+
+            let mail = {
+                from: process.env.EMAIL_USERNAME,
+                to: mailList,
+                subject: `Event: ${req.body.what}`,
+                template: "attendingEvent",
+                context: createEventObj,
+            };
+            transporter.sendMail(mail);
         }
-        return res.json({ status: "success", createEvent, updateAttendees });
+        res.json({ status: "success", createEvent, updateAttendees });
     } catch (err) {
         console.log(err);
         res.status(500).json({

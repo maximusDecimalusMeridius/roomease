@@ -37,13 +37,11 @@ for(let i = 0; i < _deleteButtons.length; i++){
 // Event listeners for submit new task button
 _submitNewTaskButton.addEventListener("click", (event) => {
     event.preventDefault();
-    let assigneeString = formAssignee.value.split("-");
-    assigneeString = `${assigneeString[0]} ${assigneeString[1]}`;
-    
+    // let assigneeString = formAssignee.value.split("-");
+    // assigneeString = `${assigneeString[0]} ${assigneeString[1]}`;
     const taskObj = {
         task: formTask.value,
-        assignee: assigneeString,
-        roomate_id: assignee.dataset.roommateId
+        roommate_id: formAssignee.value
     }
     // console.log(taskObj);
     fetch("/tasks",{

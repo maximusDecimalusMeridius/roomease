@@ -14,18 +14,15 @@ const seed = async () => {
     const tasks = await Task.bulkCreate([
         {
             task: "Wash the trash",
-            assignee: "Roommie1",
-            home_id: 1,
+            home_id: 1
         },
         {
             task: "Put away the dog",
-            assignee: "Roommie2",
-            home_id: 1,
+            home_id: 1
         },
         {
             task: "Walk the dishes",
-            assignee: "Roommie3",
-            home_id: 1,
+            home_id: 1
         },
     ]);
 
