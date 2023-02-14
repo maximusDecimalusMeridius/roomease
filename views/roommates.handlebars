@@ -1,0 +1,20 @@
+<h1 class="content-header">Roomies</h1>
+<div class="content-window">
+  <div class="roommate-header">
+    {{#each allRoommates}}
+      <h2>{{this.first_name}}</h2>
+      <div>Tasks:</div>
+      {{#each this.tasks}}
+        <span>- {{this.task}}</span>
+      {{/each}}
+      <div>Events:</div>
+      {{#each this.Events}}
+      <span>- {{this.what}} WHEN: {{this.date}} @ {{this.time}}</span>
+      {{/each}}
+      <div>UOMs:</div>
+      {{#each this.owed_by}}
+      <span>- {{this.owe.first_name}} owes me ${{this.amount}} for: {{this.what}} </span>
+      {{/each}}
+    {{/each}}
+  </div>
+</div>

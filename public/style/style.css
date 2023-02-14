@@ -1,0 +1,663 @@
+:root {
+    /* CSS HEX from coolors.co*/
+    --jet: #353535ff;
+    --light-caribbean: rgb(30, 208, 218);
+    --light-caribbean-tp: rgb(30, 208, 218, .2);
+    --caribbean-glow: rgb(101, 247, 255);
+    --caribbean-current: #3c6e71ff;
+    --ash-gray: #9eb7b8ff;
+    --white: #ffffffff;
+    --antiflash-white: #ecececff;
+    --platinum: #d9d9d9ff;
+    --cadet-gray: #81929eff;
+    --paynes-gray: #556f81ff;
+    --indigo-dye: #284b63ff;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img,
+video {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    height: calc(100vh - 225px);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--platinum);
+    overflow: hidden;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.cover {
+    background-color: rgba(100, 100, 100, 0.6);
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: none;
+}
+
+header {
+    width: 100%;
+    height: 75px;
+    background-color: var(--caribbean-current);
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#nav-menu {
+    width: fit-content;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#mobile-menu-icon {
+    height: 25px;
+    width: 40px;
+    background-image: url("../images/icon-menu.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: none;
+    /* margin: 20px; */
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+    position: relative;
+    z-index: 4;
+}
+
+#mobile-menu-icon:hover {
+    transform: scale(1.1);
+}
+
+#mobile-menu {
+    width: 250px;
+    height: 100%;
+    padding: 100px 15px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--caribbean-current);
+    right: -350px;
+    bottom: 0px;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.2s ease-out;
+    gap: 10px;
+    list-style-type: none;
+    z-index: 3;
+    box-shadow: -4px 0px 6px rgb(0, 0, 0);
+}
+
+.nav-items {
+    width: fit-content;
+    height: 30px;
+    background-color: var(--white);
+    color: var(--jet);
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 15px;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    user-select: none;
+    box-shadow: 2px 2px 4px black;
+}
+
+.nav-items:hover,
+#read-more-button:hover {
+    color: var(--indigo-dye);
+    text-shadow: 1px 1px 3px rgb(126, 126, 126);
+    /* box-shadow: 2px 2px 4px rgb(184, 184, 184); */
+    cursor: pointer;
+}
+
+.nav-items:active,
+#read-more-button:active {
+    background-color: var(--white);
+    color: white;
+}
+
+/* mobile menu css override for nav-items */
+#mobile-menu > .nav-items {
+    margin-top: 15px;
+}
+
+.hbs-body {
+    width: 80%;
+    min-height: 350px;
+    background-color: var(--white);
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 25px;
+    box-shadow: 0px 15px 10px gray,
+                8px 5px 5px gray;
+}
+
+.header-window {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px 10px 50px;
+}
+
+.content-header {
+    height: 50px;
+    width: fit-content;
+    padding: 15px; 
+    background-color: var(--white);
+    font-style: italic;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}
+
+.content-window {
+    width: 90%;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 25px;
+    padding: 30px 20px 20px 20px;
+    position: relative;
+}
+
+.buttons {
+    width: fit-content;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons button,
+.buttons div {
+    cursor: pointer;
+}
+
+.complete-button {
+    padding: 0px;
+    width: 100px;
+    height: 25px;
+}
+
+/* roommate CSS */
+.roommate-header {
+}
+
+.roommate-header h2 {
+    margin-top: 25px;
+}
+
+/* task CSS */
+.add-button {
+    height: 50px;
+    width: 50px;
+    background-color: var(--light-caribbean);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    cursor: pointer;
+    transition: all .3s ease-out;
+}
+
+.add-button:hover {
+    transform: rotate(90deg);
+}
+
+.add-button:hover::after {
+    content: '';
+    border-radius: inherit;
+    position: absolute;
+    inset: 0;
+    box-shadow: 0px 0px 8px black;
+}
+
+#task-modal,
+#event-modal,
+#uom-modal,
+#uom-modal-edit {
+    width: 80%;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    padding: 15px;
+    display: none;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+#success-modal {
+    height: 50px;
+    width: 250px;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 75px);
+    padding: 15px;
+    display: block;
+    text-align: center;
+    border: 3px solid var(--light-caribbean);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px black;
+}
+
+.modal {
+    width: 80%;
+    background-color: white;
+    z-index: 4;
+    position: absolute;
+    padding: 15px;
+    display: none;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px black;
+}
+
+#task {
+    width: 200px;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#submit-new-task {
+    margin-top: 15px;
+    align-self: center;
+}
+
+#task-table {
+    width: 100%;
+    height: fit-content;
+}
+
+.task-list-item:nth-child(even) {
+    background-color: var(--light-caribbean-tp);
+}
+
+#task-list,
+#eventList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 4px black;
+}
+
+.task-list-item {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+/* Event CSS TODO: edit modal to bee out of eventList section */
+#event-modal {
+    display: none;
+}
+
+#eventList {
+    height: inherit;
+    width: 100%;
+}
+
+.eventBlock {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.eventBlock:nth-child(3) {
+    background-color: var(--light-caribbean-tp);
+}
+
+.eventBlock h3 {
+    margin: 10px;
+}
+.eventdetails {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#login-form div {
+    width: 100%;
+}
+
+#signup-form {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(200px, 80%);
+}
+
+#signup-steps {
+    height: 100%;
+    width: 100%;
+}
+
+#signup-step-one {
+    display: block;
+}
+
+#signup-step-two {
+    display: none;
+    position: relative;
+}
+
+#back-button {
+    height: 50px;
+    width: 50px;
+    font-size: 42px;
+    background-color: var(--indigo-dye);
+    color: white;
+    position: absolute;
+    left: 5%;
+    top: calc(50% - 25px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 3;
+    transition: left .5s ease-out;
+}
+
+.signup-warning {
+    height: fit-content;
+    width: 100%;
+    font-size: 16px;
+    font-style: italic;
+    color: red;
+    margin: 0 auto;
+    text-align: center;
+    font-family: monospace;
+}
+
+.signup-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.date,
+.attendees {
+    margin: auto 10px;
+    flex-flow: column wrap;
+}
+
+.buttons * {
+    flex-flow: row;
+    align-items: center;
+    justify-self: center;
+}
+
+/* button CSS */
+.edit-button,
+.delete-button {
+    height: 25px;
+    width: 25px;
+    position: relative;
+}
+
+.button {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    border-radius: 50%;
+    transition: transform .05s ease-in;
+}
+
+.button:hover {
+    transform: scale(1.2);
+}
+
+.button:hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: 0px 0px 3px 1px var(--caribbean-current);
+    border-radius: inherit;
+    border: 1px solid var(--caribbean-current);
+}
+
+.hide {
+    display: none !important;
+}
+/* form */
+input {
+    position: relative;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    font-style: italic;
+}
+
+input:required {
+    background-color: rgb(255, 233, 177);
+}
+
+button {
+    width: 100%;
+    background-color: var(--paynes-gray);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--indigo-dye);
+}
+
+.edit-event-form {
+    width: 33%;
+    padding: 25px 15px;
+    margin: 0px auto 10px auto;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 4px black;
+}
+
+.form {
+    border-radius: 5px;
+    background-color: var(--antiflash-white);
+    padding: 20px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer {
+    width: 100vw;
+    height: 15vh;
+    padding: 25px;
+    background: linear-gradient(
+        270deg,
+        hsla(183, 31%, 34%, 1) 0%,
+        hsla(183, 19%, 44%, 1) 50%,
+        hsla(183, 16%, 47%, 1) 61%,
+        hsla(182, 12%, 61%, 1) 76%,
+        hsla(180, 9%, 73%, 1) 89%,
+        hsla(0, 0%, 85%, 1) 100%
+    );
+    background: -moz-linear-gradient(
+        270deg,
+        hsla(183, 31%, 34%, 1) 0%,
+        hsla(183, 19%, 44%, 1) 50%,
+        hsla(183, 16%, 47%, 1) 61%,
+        hsla(182, 12%, 61%, 1) 76%,
+        hsla(180, 9%, 73%, 1) 89%,
+        hsla(0, 0%, 85%, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        270deg,
+        hsla(183, 31%, 34%, 1) 0%,
+        hsla(183, 19%, 44%, 1) 50%,
+        hsla(183, 16%, 47%, 1) 61%,
+        hsla(182, 12%, 61%, 1) 76%,
+        hsla(180, 9%, 73%, 1) 89%,
+        hsla(0, 0%, 85%, 1) 100%
+    );
+    color: var(--platinum);
+    font-family: "Times New Roman", Times, serif;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+footer a:hover {
+    font-weight: bold;
+}
+
+#team-list {
+    width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#team-list span {
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Responsive CSS */
+
+@media screen and (max-width: 650px) {
+    #nav-menu {
+        display: none;
+    }
+
+    #mobile-menu-icon {
+        display: block;
+    }
+
+    #mobile-menu {
+        display: flex;
+    }
+
+    #back-button {
+        left: 10px;
+    }
+
+    .buttons {
+        margin-top: 10px;
+        align-items: center;
+        height: inherit;
+    }
+
+    .task-list-item {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task {
+        text-align: center;
+    }
+}

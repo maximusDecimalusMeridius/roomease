@@ -1,0 +1,69 @@
+<div class="header-window">
+    <h1 class="content-header">Events</h1>
+    <div id="add-event" class="add-button">+</div>
+</div>
+
+<!-- Modal content -->
+<div id="event-modal" class="modal-content">
+    <div id="close"><span class="close">&times;</span></div>
+    <form id="eventForm">
+        <label for="what">Event title*:</label>
+        <input type="text" id="what" />
+        <label for="date">Date*:</label>
+        <input type="date" name="date" id="date" required/>
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time" />
+        {{! if there are roommates then display them as a list of attendees possible }}
+        {{#if allRoommates}}
+            <label for="attendees">Attendees:</label>
+            <p>To select multiple attendees, please hold down the ctrl key and select.</p>
+            <select name="attendees" id="attendees" multiple>
+                {{#each allRoommates}}
+                    <option value={{id}}>{{first_name}}
+                        {{#if last_name}}{{last_name}}{{/if}}</option>
+                {{/each}}
+            </select>
+        {{/if}}
+        <p>*Required fields</p>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div class="content-window">
+    <section id="eventList">
+        {{#each allEvents}}
+            <section class="eventBlock" data-event-id={{id}}>
+                <h3>{{what}}</h3>
+                <div class="eventdetails">
+                    <div class="date">
+                        <h4>Date</h4>
+                        <p>{{date}} {{#if time}}at {{time}}{{/if}}</p>
+                    </div>
+                    {{#if Roommates}}
+                        <div class="attendees">
+                            <h4>Attendees</h4>
+                            {{#each Roommates}}
+                                <p data-roommate-id={{id}}>{{first_name}} {{last_name}}</p>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    <div class="buttons">
+                        <div class="edit button">
+                            <img src="../images/edit.svg" class="edit-button" />
+                        </div>
+                        <div class="delete button">
+                            <img src="../images/delete.svg" class="delete-button" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <form class="edit-event-form hide" data-edit-event-id={{id}}>
+                <input type="text" name="what" data-edit-what="{{id}}" value="{{what}}"/>
+                <input type="date" name="date" data-edit-date="{{id}}" value="{{date}}"/>
+                <input type="time" name="time" data-edit-time="{{id}}" {{#if time}}value="{{time}}"{{/if}}/>
+                <button type="submit">Save</button>
+            </form>
+        {{/each}}
+    </section>
+</div>
+<script src="/js/events.js"></script>
