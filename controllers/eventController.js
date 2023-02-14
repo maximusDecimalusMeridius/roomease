@@ -132,7 +132,7 @@ router.post("/", async (req, res) => {
 
             let mail = {
                 from: process.env.EMAIL_USERNAME,
-                to: "tran.clarice@gmail.com", //mailList,
+                to: mailList,
                 subject: `Event: ${req.body.what}`,
                 template: "attendingEvent",
                 context: createEventObj,
