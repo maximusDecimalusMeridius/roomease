@@ -1,6 +1,6 @@
 //loop in dependencies
 const express = require("express");
-const { Roommate, Event, UOM } = require("../models");
+const { Home, Roommate, Event, UOM } = require("../models");
 const router = express.Router();
 
 //GET all records
@@ -54,25 +54,78 @@ router.get("/:id", (req, res) => {
 });
 
 //POST a new record
-router.post("/", (req, res) => {
-	console.log(req.body);
-	Roommate.create({
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-		email: req.body.email,
-		password: req.body.password,
-		home_id: req.body.home_id,
-	})
-		.then((data) => {
-			res.status(201).json(data);
-		})
-		.catch((error) => {
-			console.log(error);
-			res.status(500).json({
-				message: "Error creating record!",
-				err: error,
-			});
-		});
+router.post("/:type", async (req, res) => {
+	try {
+		let home_id;
+
+		const makeRoommate = () => {
+			Roommate.create({
+				first_name: req.body.first_name,
+				last_name: req.body.last_name,
+				email: req.body.email,
+				password: req.body.password,
+				home_id: home_id
+			})
+		}
+
+		if(req.params.type == "join"){
+			const someonesHome = await Home.findOne({
+				where:{
+					name: req.body.home_name,
+					zipcode: req.body.zipcode
+				}
+			})
+			
+			if(someonesHome){
+				home_id = someonesHome.dataValues.id;
+				makeRoommate();
+				res.status(200).json({
+					message: "We did it!"
+				});
+			} else {
+				res.status(404);
+			}
+		}
+
+		if(req.params.type == "create"){
+			await Home.create({
+				name: req.body.home_name,
+				zipcode: req.body.zipcode
+			})
+			home_id = await Home.findOne({
+				where:{
+					name: req.body.home_name
+				}
+			})
+			home_id = home_id.dataValues.id;
+			makeRoommate();
+			return res.status(200);
+		}
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Can't join home - please check name and zipcode",
+            error: error
+        })
+    }    
+	
+	// Roommate.create({
+	// 	first_name: req.body.first_name,
+	// 	last_name: req.body.last_name,
+	// 	email: req.body.email,
+	// 	password: req.body.password,
+	// 	home_id: req.body.home_id,
+	// })
+	// 	.then((data) => {
+	// 		res.status(201).json(data);
+	// 	})
+	// 	.catch((error) => {
+	// 		console.log(error);
+	// 		res.status(500).json({
+	// 			message: "Error creating record!",
+	// 			err: error,
+	// 		});
+	// 	});
 });
 
 //UPDATE a record
