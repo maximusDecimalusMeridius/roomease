@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
         hbsRoommates = hbsRoommates.map(roommate => roommate.toJSON());
 
         console.log(hbsTasks);
-        console.log(hbsRoommates);
+        // console.log(hbsRoommates);
         
         res.render("tasks",{
             allTasks: hbsTasks,
@@ -57,22 +57,36 @@ router.get("/:id", (req, res) => {
 //POST a new record
 //update to async/awaits with try/catch
 //create task object in table, after which try assigning the task
-router.post("/", (req, res) => {
-    Task.create({
-        task: req.body.task,
-        assignee: req.body.assignee,
-        home_id: 1,
-    })
-        .then((data) => {
-            res.status(201).json(data);
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Error creating record!",
-                err: error,
-            });
+router.post("/", async (req, res) => {
+    try {
+        const roommateId = req.body.roommate_id;
+
+        await Task.create({
+            task: req.body.task,
+            home_id: 1
         });
+
+        const newTask = await Task.findOne({
+            where: {
+                task: req.body.task
+            }
+        })
+
+        const roommate = await Roommate.findOne({
+            where: {
+                id: roommateId
+            }
+        })
+
+        await roommate.addTask(newTask.dataValues.id);
+        return res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Error creating record!",
+            err: error,
+        });
+    }
 });
 
 //UPDATE a record
