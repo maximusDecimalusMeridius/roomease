@@ -132,12 +132,12 @@ router.post("/", async (req, res) => {
 
             let mail = {
                 from: process.env.EMAIL_USERNAME,
-                to: "tran.clarice@gmail.com", //mailList,
+                to: mailList,
                 subject: `Event: ${req.body.what}`,
                 template: "attendingEvent",
                 context: createEventObj,
             };
-            transporter.sendMail(mail);
+            // transporter.sendMail(mail);
         }
         res.json({ status: "success", createEvent, updateAttendees });
     } catch (err) {
@@ -183,26 +183,48 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE a record
-router.delete("/:id", (req, res) => {
-    Event.destroy({
-        where: {
-            id: req.params.id,
-        },
-    })
-        .then((data) => {
-            if (data) {
-                return res.json(data);
-            } else {
-                return res.status(404).json({ message: "Record doesn't exist!" });
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Error deleting record!",
-                error: error,
-            });
+router.delete("/:id", async (req, res) => {
+    try {
+        var mailList = [];
+        const attendees = await Roommate.findAll({
+            attributes: ["email"],
+            include: {
+                model: Event,
+                where: {
+                    id: req.params.id,
+                },
+            },
         });
+
+        const event = await Event.findByPk(req.params.id);
+
+        console.log(attendees);
+        if (attendees.length > 0) {
+            for (var i = 0; i < attendees.length; i++) {
+                console.log(attendees[i].dataValues.email);
+                mailList.push(attendees[i].dataValues.email);
+            }
+            console.log(mailList);
+            let mail = {
+                from: process.env.EMAIL_USERNAME,
+                to: mailList,
+                subject: `${event.dataValues.what} Canceled`,
+                template: "eventDeleted",
+                context: {
+                    what: event.dataValues.what,
+                },
+            };
+            transporter.sendMail(mail);
+        }
+        const deleteEvent = await Event.destroy({ where: { id: req.params.id } });
+        return res.json({ status: "success", deleteEvent });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Error deleting record!",
+            error: err,
+        });
+    }
 });
 
 module.exports = router;
