@@ -5,7 +5,11 @@ const bcrypt = require("bcrypt");
 const Op = require("sequelize")
 
 router.get("/", (req, res)=>{
-    res.render("login");
+    if(req.session.isLoggedIn){
+        return res.redirect("/dashboard");
+    } else {
+        res.render("login");
+    }
 })
 
 router.get("/signup", (req, res) => {
@@ -24,8 +28,9 @@ router.post("/login", async (req, res)=>{
         const dataMatches = (bcrypt.compareSync(req.body.password, roommate.password));
         
         if(dataMatches){
-            req.session.userId = roommate.id;
             req.session.email = roommate.email;
+            req.session.userId = roommate.id;
+            req.session.homeId = roommate.home_id;
             req.session.firstName = roommate.first_name;
             req.session.isLoggedIn = true;
             console.log(req.session);
@@ -50,6 +55,10 @@ router.get("/logout",(req,res)=>{
 
 //show the user their dashboard once they're logged in
 router.get("/dashboard", (req, res) => {
+    if(!req.session.isLoggedIn){
+        return res.redirect("/");
+    }
+    
     Roommate.findByPk(req.session.userId, {
         include:[ 
                 "tasks",
@@ -78,7 +87,7 @@ router.get("/dashboard", (req, res) => {
             console.log(hbsUserRoommates)
             res.render("dashboard", {
                 currentUser:hbsUser,
-                roomates:hbsUserRoommates
+                roommates:hbsUserRoommates
                 //isloggedin is the same req.session.loggedin
                 //ismyprofile -> boolean checking if req.params.id == req.session.userId
             }

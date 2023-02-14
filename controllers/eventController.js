@@ -48,7 +48,7 @@ transporter.use(
 //GET all records
 router.get("/", async (req, res) => {
     if (!req.session.isLoggedIn) {
-        return res.render("login");
+        return res.redirect("/");
     }
     try {
         const eventData = await Event.findAll({
@@ -112,7 +112,7 @@ router.post("/", async (req, res) => {
         let updateAttendees;
         // if there are attendees add them to the database and send out an email letting them know they're attending.
         if (req.body.attendees.length > 0) {
-            // adding attending roomates to userEvent
+            // adding attending roommates to userEvent
             console.log(req.body.attendees);
             // add roommates to an event if their id was selected.
             updateAttendees = await createEvent.addRoommate(req.body.attendees);

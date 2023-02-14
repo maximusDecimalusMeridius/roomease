@@ -7,7 +7,7 @@ const router = express.Router();
 //GET all records
 router.get("/", (req, res) => {
     if(!req.session.isLoggedIn){
-        return res.render("login");
+        return res.redirect("/");
     }
     
   UOM.findAll({

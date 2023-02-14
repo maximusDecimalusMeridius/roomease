@@ -27,9 +27,10 @@
             {{#each allTasks}}
                 <li class="task-list-item" data-task-id={{this.id}}>
                     <span class="task">{{this.task}}</span>
+                    <input class="task-textarea hide"></span>
                     <span>{{this.Roommate.first_name}} {{this.Roommate.last_name}}</span>
                     <div class="buttons">
-                        <button type="button" class="complete-button">Complete</button>
+                        <button type="button" class="save-button hide">Save</button>
                         <div class="edit button"><img src="../images/edit.svg" class="edit-button" /></div>
                         <div class="delete button"><img src="../images/delete.svg" class="delete-button"/></div>
                     </div>

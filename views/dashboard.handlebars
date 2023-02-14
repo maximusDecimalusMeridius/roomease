@@ -1,20 +1,33 @@
-<h1>Welcome {{currentUser.first_name}}</h1>
-<h2>Roommates</h2>
-<ul>{{#each roomates}}
-    <li>{{this.first_name}}</li>
-  {{/each}}</ul>
+<div class="header-window">
+  <h1 class="content-header">Welcome home, {{currentUser.first_name}}</h1>
+</div>
 
-<h2>Tasks</h2>
-<ul>{{#each currentUser.tasks}}
-    <li>{{this.task}}</li>
-  {{/each}}</ul>
+<div class="dashboard-window">
+  <h2>Roommates</h2>
+  <ul>
+    {{#each roommates}}
+      <li>{{this.first_name}}</li>
+    {{/each}}
+  </ul>
 
-<h2>Events</h2>
-<ul>{{#each currentUser.Events}}
-    <li>{{this.what}} on {{this.date}} at {{this.time}}</li>
-  {{/each}}</ul>
+  <h2>Tasks</h2>
+  <ul>
+    {{#each currentUser.tasks}}
+      <li>{{this.task}}</li>
+    {{/each}}
+  </ul>
 
-<h2>UOMs</h2>
-<ul>{{#each currentUser.owe}}
-    <li>I owe {{this.owed_by.first_name}} ${{this.amount}} for {{this.what}} </li>
-  {{/each}}</ul>
+  <h2>Events</h2>
+  <ul>
+    {{#each currentUser.Events}}
+      <li>{{this.what}} on {{this.date}} at {{this.time}}</li>
+    {{/each}}
+  </ul>
+
+  <h2>UOMs</h2>
+  <ul>
+    {{#each currentUser.owe}}
+      <li>I owe {{this.owed_by.first_name}} ${{this.amount}} for {{this.what}} </li>
+    {{/each}}
+  </ul>
+</div>
