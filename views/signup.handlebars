@@ -1,5 +1,9 @@
-<div class="content-window">
+<div class="header-window">
     <h1 class="content-header">Signup</h1>
+</div>
+
+<div id="back-button"><</div>
+<div class="content-window">
     <form id="signup-form">
         <div id="signup-step-one" class="signup-steps">
             <div>
@@ -18,12 +22,12 @@
                 <label for="password">Password</label><br>
                 <input type="password" name="password" id="password" required>
             </div>
+            <div id="step-one-warning" class="signup-warning"></div>
             <div class="signup-buttons">
                 <button id="signup-next" type="button">Next</button>
             </div>
         </div>
         <div id="signup-step-two" class="signup-steps">
-            <div id="back-button"><</div>
             <div>
                 <label for="home">Home</label><br>
                 <input type="text" name="home" id="home" required>
@@ -32,6 +36,7 @@
                 <label for="zipcode">Zipcode</label><br>
                 <input type="text" placeholder="00000" name="zipcode" id="zipcode" required>
             </div>
+            <div id="step-two-warning" class="signup-warning"></div>
             <div class="signup-buttons">
                 <button id="signup-join-home" type="submit">Join Existing</button>
                 <button id="signup-create-home" type="submit">Create New</button>
