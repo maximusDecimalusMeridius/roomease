@@ -1,23 +1,23 @@
 <div class="header-window">
-    <h1 class="content-header">UOMs</h1>
+    <h1 class="content-header">UOM's</h1>
     <div id="add-task" class="add-button">+</div>
 </div>
 <div id="uom-modal" class="modal-content">
   <div id="close"><span class="close">&times;</span></div>
   <form id="uomForm">
     <label for="u">Who owes you?*:</label>
-    <select name="u" id="u">
+    <select name="u" class="u" data-edit-u="{{id}}">
         {{#each allroomies}}
           <option value="{{this.id}}">{{first_name}}
             {{#if last_name}}{{last_name}}{{/if}}</option>
         {{/each}}
       </select>
     <label for="what">For what do they owe you?*:</label>
-    <input type="text" data-edit-time="{{id}}" name="what" id="what" />
+    <input type="text" data-edit-what="{{id}}" name="what" id="what" />
     <label for="amount">How much do they owe you?*</label>
-    <input type="text" data-edit-time="{{id}}" name="amount" id="amount" />
+    <input type="text" data-edit-amount="{{id}}" name="amount" id="amount" />
     <label for="me">Remind me which roommate you are?*</label>
-    <select name="me" id="me">
+    <select name="me" class="me" data-edit-me="{{id}}">
         {{#each allroomies}}
           <option value="{{this.id}}">{{first_name}}
             {{#if last_name}}{{last_name}}{{/if}}</option>
@@ -50,6 +50,23 @@
               /></div>
           </div>
         </li>
+         <form class="edit-uom-form hide" data-edit-uom-id={{id}}>
+         <select name="u" class="u" data-edit-u="{{id}}">
+        {{#each ../allroomies}}
+          <option value="{{this.id}}">{{this.first_name}}
+            {{#if last_name}}{{last_name}}{{/if}}</option>
+        {{/each}}
+      </select>
+                <input type="text" name="what" data-edit-what="{{id}}" value="{{what}}"/>
+                <input type="text" name="amount" data-edit-amount="{{id}}" value="{{amount}}"/>
+             <select name="me" class="me" data-edit-me="{{id}}">
+        {{#each ../allroomies}}
+          <option value="{{this.id}}">{{first_name}}
+            {{#if last_name}}{{last_name}}{{/if}}</option>
+        {{/each}}
+      </select>
+                <button type="submit">Save</button>
+            </form>
       {{/each}}
     </ul>
   </div>
