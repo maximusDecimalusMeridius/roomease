@@ -18,7 +18,7 @@ _loginButton.addEventListener("click", (event) => {
         }
     }).then(res=>{
         if(res.ok){
-            location.href="/roommates"
+            location.href="/dashboard"
         } else {
             alert("trumpet sound")
         }

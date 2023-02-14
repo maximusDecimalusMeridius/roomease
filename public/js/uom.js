@@ -13,6 +13,9 @@ let editForm = document.querySelector(".edit-uom-form");
 let addTask = document.querySelector("#add-task");
 let _modalCloseButton = document.querySelector(".close");
 
+let edit = false;
+let uomId;
+
 // Add button for new tasks (display modals)
 addTask.addEventListener("click", (event) => {
   event.preventDefault();
@@ -73,32 +76,49 @@ function getPeeps(list) {
   return list.options[list.options.selectedIndex].value;
 }
 // edit post
-for (let i = 0; i < editMe.length; i++) {
-  editMe[i].addEventListener("click", (event) => {
-    event.preventDefault();
-    editForm.style.display = "block";
-    const u = getPeeps(document.getElementById("uomForm").elements["u"]);
-    const me = getPeeps(document.getElementById("uomForm").elements["me"]);
-    const uomObj = {
-      what: document.querySelector("#what").value,
-      me: me,
-      u: u,
-      amount: document.querySelector("#amount").value,
-    };
-    console.log(uomObj);
-    fetch(`/uoms/${uomId}`, {
-      method: "PUT",
-      body: JSON.stringify(uomObj),
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).then((res) => {
-      console.log(res);
-      if (res.ok) {
-        location.reload();
+document.querySelectorAll(".edit").forEach((editButton) => {
+  editButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      uomId = e.target.parentNode.parentNode.id;
+      console.log(uomId);
+
+      const editUomForm = document.querySelector(`[data-edit-uom-id="${uomId}"]`);
+      
+      if(!editUomForm.classList.contains("hide")){
+          editUomForm.classList.add("hide");
       } else {
-        console.log(res.body);
+          document.querySelectorAll(".edit-uom-form").forEach((form) => {
+              form.classList.add("hide");
+          });
+          editUomForm.classList.remove("hide");
       }
-    });
+      
   });
-}
+});
+
+document.querySelectorAll(".edit-uom-form").forEach((editUOM) => {
+  editUOM.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const uomObj = {
+        what: document.querySelector(`[data-edit-what="${uomId}"]`).value,
+        me: document.querySelector(`[data-edit-me="${uomId}"]`).value,
+        u: document.querySelector(`[data-edit-u="${uomId}"]`).value,
+        amount: document.querySelector(`[data-edit-amount="${uomId}"]`).value,
+      };
+      fetch(`/uoms/${uomId}`, {
+          method: "PUT",
+          body: JSON.stringify(uomObj),
+          headers: {
+              "Content-Type": "application/json",
+          },
+      })
+          .then((res) => {
+              if (res.ok) {
+                location.reload();
+              }
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  });
+});

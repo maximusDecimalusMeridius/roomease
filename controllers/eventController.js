@@ -48,10 +48,13 @@ transporter.use(
 //GET all records
 router.get("/", async (req, res) => {
     if (!req.session.isLoggedIn) {
-        return res.render("login");
+        return res.redirect("/");
     }
     try {
         const eventData = await Event.findAll({
+            where: {
+                home_id: req.session.homeId
+            },
             include: [
                 {
                     model: Roommate,
@@ -104,6 +107,7 @@ router.post("/", async (req, res) => {
         let createEventObj = {
             what: req.body.what,
             date: req.body.date,
+            home_id: req.session.homeId
         };
         if (req.body.time.length > 0) {
             createEventObj.time = req.body.time;
@@ -112,7 +116,7 @@ router.post("/", async (req, res) => {
         let updateAttendees;
         // if there are attendees add them to the database and send out an email letting them know they're attending.
         if (req.body.attendees.length > 0) {
-            // adding attending roomates to userEvent
+            // adding attending roommates to userEvent
             console.log(req.body.attendees);
             // add roommates to an event if their id was selected.
             updateAttendees = await createEvent.addRoommate(req.body.attendees);
@@ -137,7 +141,7 @@ router.post("/", async (req, res) => {
                 template: "attendingEvent",
                 context: createEventObj,
             };
-            transporter.sendMail(mail);
+            // transporter.sendMail(mail);
         }
         res.json({ status: "success", createEvent, updateAttendees });
     } catch (err) {
@@ -183,26 +187,48 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE a record
-router.delete("/:id", (req, res) => {
-    Event.destroy({
-        where: {
-            id: req.params.id,
-        },
-    })
-        .then((data) => {
-            if (data) {
-                return res.json(data);
-            } else {
-                return res.status(404).json({ message: "Record doesn't exist!" });
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Error deleting record!",
-                error: error,
-            });
+router.delete("/:id", async (req, res) => {
+    try {
+        var mailList = [];
+        const attendees = await Roommate.findAll({
+            attributes: ["email"],
+            include: {
+                model: Event,
+                where: {
+                    id: req.params.id,
+                },
+            },
         });
+
+        const event = await Event.findByPk(req.params.id);
+
+        console.log(attendees);
+        if (attendees.length > 0) {
+            for (var i = 0; i < attendees.length; i++) {
+                console.log(attendees[i].dataValues.email);
+                mailList.push(attendees[i].dataValues.email);
+            }
+            console.log(mailList);
+            let mail = {
+                from: process.env.EMAIL_USERNAME,
+                to: mailList,
+                subject: `${event.dataValues.what} Canceled`,
+                template: "eventDeleted",
+                context: {
+                    what: event.dataValues.what,
+                },
+            };
+            transporter.sendMail(mail);
+        }
+        const deleteEvent = await Event.destroy({ where: { id: req.params.id } });
+        return res.json({ status: "success", deleteEvent });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Error deleting record!",
+            error: err,
+        });
+    }
 });
 
 module.exports = router;

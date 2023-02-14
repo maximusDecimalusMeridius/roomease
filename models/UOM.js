@@ -13,6 +13,10 @@ UOM.init({
     amount: {
         type: DataTypes.FLOAT,
         allowNull: false
+    },
+    home_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 },{
     sequelize,
