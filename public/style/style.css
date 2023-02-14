@@ -2,6 +2,7 @@
     /* CSS HEX from coolors.co*/
     --jet: #353535ff;
     --light-caribbean: rgb(30, 208, 218);
+    --sea-blue: rgb(0, 178, 188);
     --light-caribbean-tp: rgb(30, 208, 218, 0.2);
     --caribbean-glow: rgb(101, 247, 255);
     --caribbean-current: #3c6e71ff;
@@ -53,7 +54,9 @@ body {
 header {
     width: 100%;
     height: 75px;
-    background-color: var(--caribbean-current);
+    background: linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -74,6 +77,10 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+}
+
+#nav-menu a {
+    text-decoration: none;
 }
 
 #mobile-menu-icon {
@@ -130,15 +137,14 @@ header {
 .nav-items:hover,
 #read-more-button:hover {
     color: var(--indigo-dye);
-    text-shadow: 1px 1px 3px rgb(126, 126, 126);
+    text-shadow: 1px 1px 1px var(--sea-blue);
     /* box-shadow: 2px 2px 4px rgb(184, 184, 184); */
     cursor: pointer;
 }
 
 .nav-items:active,
 #read-more-button:active {
-    background-color: var(--white);
-    color: white;
+    box-shadow: inset 0px 0px 4px white;
 }
 
 /* mobile menu css override for nav-items */
@@ -167,6 +173,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 25px 50px 10px 50px;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
 }
 
 .content-header {
@@ -192,8 +201,11 @@ header {
     position: relative;
 }
 
+.dashboard-window {
+
+}
+
 .buttons {
-    width: fit-content;
     height: 25px;
     display: flex;
     justify-content: center;
@@ -201,15 +213,23 @@ header {
     gap: 10px;
 }
 
+/* override CSS for buttons on task list items so save button appear doesn't shift content */
+.task-list-item .buttons {
+    width: 150px;
+    justify-content: flex-end;
+}
+
 .buttons button,
 .buttons div {
     cursor: pointer;
 }
 
-.complete-button {
+.save-button {
+    background-color: var(--indigo-dye);
     padding: 0px;
-    width: 100px;
+    width: 50px;
     height: 25px;
+    font-weight: bold;
 }
 
 /* roommate CSS */
@@ -311,12 +331,13 @@ header {
 }
 
 .task-list-item:nth-child(even) {
-    background-color: var(--light-caribbean-tp);
+    background-color: var(--light-caribbean);
 }
 
 #task-list,
 #eventList {
     width: 100%;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -327,17 +348,25 @@ header {
 }
 
 .task-list-item {
-    width: 100%;
+    width: 95%;
     padding: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    transition: all .4s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
 .task {
     width: 150px;
     flex-shrink: 0;
+}
+
+.highlight-task {
+    transform: scale(1.1) translateY(0px);
+    box-shadow: 4px 2px 4px black;
+    background-color: white;
+    border-radius: 25px;
 }
 
 /* Event CSS TODO: edit modal to bee out of eventList section */
@@ -505,12 +534,13 @@ input::placeholder {
 }
 
 input:required {
-    background-color: rgb(255, 233, 177);
+    background-color: rgba(255, 233, 177, .5);
 }
 
 button {
     width: 100%;
-    background-color: var(--paynes-gray);
+    /* background-color: var(--paynes-gray); */
+    background-color: var(--indigo-dye);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -520,7 +550,8 @@ button {
 }
 
 button:hover {
-    background-color: var(--indigo-dye);
+    background-color: var(--sea-blue);
+    /* background-color: var(--indigo-dye); */
 }
 
 .edit-event-form {

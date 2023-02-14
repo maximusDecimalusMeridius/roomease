@@ -7,10 +7,13 @@ const router = express.Router();
 //GET all records
 router.get("/", (req, res) => {
     if(!req.session.isLoggedIn){
-        return res.render("login");
+        return res.redirect("/");
     }
     
   UOM.findAll({
+    where: {
+      home_id: req.session.homeId
+    },
     include: [
         {model: Roommate,  as:"owed_by"},
         {model: Roommate,  as:"owe"}
@@ -18,11 +21,17 @@ router.get("/", (req, res) => {
   })
     .then((data) => {
         const hbsUOM = data.map(uom=>uom.toJSON())
-        Roommate.findAll().then((roommateData)=>{
-          const roommateDataa = roommateData.map(uom=>uom.toJSON())
+        Roommate.findAll(
+          {
+            where: {
+              home_id: req.session.homeId
+            }
+          }
+        ).then((roommateData)=>{
+          const hbsRoommates = roommateData.map(uom=>uom.toJSON())
           res.render("uom", {
             allUOM: hbsUOM,
-            allroomies:roommateDataa
+            allroomies: hbsRoommates
         })
       });
     })
@@ -64,6 +73,7 @@ router.post("/", (req, res) => {
     me: req.body.me,
     u: req.body.u,
     amount: req.body.amount,
+    home_id: req.session.homeId
   })
     .then((data) => {
       res.status(201).json(data);

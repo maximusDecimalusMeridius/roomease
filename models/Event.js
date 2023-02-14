@@ -18,6 +18,10 @@ Event.init(
     time: {
       type: DataTypes.TIME,
     },
+    home_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		}
   },
   {
     sequelize,
