@@ -13,6 +13,7 @@
     --cadet-gray: #81929eff;
     --paynes-gray: #556f81ff;
     --indigo-dye: #284b63ff;
+    --delete-red: rgb(186, 80, 80);
 }
 
 *,
@@ -30,7 +31,7 @@ video {
 }
 
 main {
-    height: calc(100vh - 225px);
+    /* height: calc(100vh - 225px); */
     display: flex;
     justify-content: center;
     padding-top: 50px;
@@ -154,14 +155,14 @@ header {
 
 .hbs-body {
     width: 80%;
-    min-height: 350px;
+    min-height: 400px;
+    max-height: 80%;
     background-color: var(--white);
-    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
     border-radius: 25px;
     box-shadow: 0px 15px 10px gray, 8px 5px 5px gray;
@@ -172,6 +173,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--white);
     padding: 25px 50px 10px 50px;
     position: sticky;
     top: 0px;
@@ -190,6 +192,8 @@ header {
 }
 
 .content-window {
+    min-height: 300px;
+    height: fit-content;
     width: 90%;
     background-color: var(--white);
     display: flex;
@@ -199,10 +203,11 @@ header {
     border-radius: 25px;
     padding: 30px 20px 20px 20px;
     position: relative;
+    overflow-y: auto;
 }
 
 .dashboard-window {
-
+    min-height: 400px;
 }
 
 .buttons {
@@ -325,19 +330,22 @@ header {
     align-self: center;
 }
 
-#task-table {
+#task-table,
+#uom-table {
     width: 100%;
-    height: fit-content;
+    height: 100%;
 }
 
-.task-list-item:nth-child(even) {
+.task-list-item:nth-child(even),
+.uom-list-item:nth-child(4n-3) {
     background-color: var(--light-caribbean);
 }
 
 #task-list,
-#eventList {
+#eventList,
+#uom-list {
     width: 100%;
-    padding-top: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -347,8 +355,9 @@ header {
     box-shadow: inset 1px 1px 4px black;
 }
 
-.task-list-item {
-    width: 95%;
+.task-list-item,
+.uom-list-item {
+    width: 100%;
     padding: 15px;
     display: flex;
     flex-direction: row;
@@ -356,6 +365,8 @@ header {
     align-items: center;
     transition: all .4s cubic-bezier(0.85, 0, 0.15, 1);
 }
+
+
 
 .task {
     width: 150px;
@@ -479,11 +490,18 @@ header {
 }
 
 /* button CSS */
-.edit-button,
+.edit-button {
+    height: 25px;
+    width: 25px;
+    position: relative;
+}
+
 .delete-button {
     height: 25px;
     width: 25px;
     position: relative;
+    background-color: var(--delete-red);
+    border-radius: inherit;
 }
 
 .button {
@@ -684,6 +702,11 @@ footer a:hover {
         margin-top: 10px;
         align-items: center;
         height: inherit;
+    }
+
+    .eventdetails {
+        flex-direction: column;
+        justify-content: center;
     }
 
     .task-list-item {

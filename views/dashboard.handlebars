@@ -3,31 +3,55 @@
 </div>
 
 <div class="dashboard-window">
-  <h2>Roommates</h2>
-  <ul>
-    {{#each roommates}}
-      <li>{{this.first_name}}</li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-roommates">
+    <div id="dashboard-header">
+      <h2>Roommates</h2>
+    </div>
+    <div id="dashboard-content">
+      <ul>
+        {{#each roommates}}
+          <li>{{this.first_name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 
-  <h2>Tasks</h2>
-  <ul>
-    {{#each currentUser.Tasks}}
-      <li>{{this.task}}</li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-tasks">
+    <div class="dashboard-header">
+      <h2>Tasks</h2>
+    </div>
+    <div class="dashboard-content">
+      <ul>
+        {{#each currentUser.Tasks}}
+          <li>{{this.task}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 
-  <h2>Events</h2>
-  <ul>
-    {{#each currentUser.Events}}
-      <li>{{this.what}} on {{this.date}} at {{this.time}}</li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-events">
+    <div class="dashboard-header">
+      <h2>Events</h2>
+    </div>
+    <div class="dashboard-content">
+      <ul>
+        {{#each currentUser.Events}}
+          <li>{{this.what}} on {{this.date}} at {{this.time}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 
-  <h2>UOMs</h2>
-  <ul>
-    {{#each currentUser.owe}}
-      <li>I owe {{this.owed_by.first_name}} ${{this.amount}} for {{this.what}} </li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-uoms">
+    <div class="dashboard-header">
+      <h2>UOMs</h2>
+    </div>
+    <div class="dashboard-content">
+      <ul>
+        {{#each currentUser.owe}}
+          <li>I owe {{this.owed_by.first_name}} ${{this.amount}} for {{this.what}} </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>  
 </div>

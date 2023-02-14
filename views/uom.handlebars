@@ -29,10 +29,10 @@
 </div>
 {{! {{All editable and deletable. Able to add another }}
 <div class="content-window">
-  <div id="task-table">
-    <ul id="task-list">
+  <div id="uom-table">
+    <ul id="uom-list">
       {{#each allUOM}}
-        <li class="task-list-item" data-me-id="{{this.owed_by.id}}" data-u-id="{{this.owe.id}}" id={{this.id}}>
+        <li class="uom-list-item" data-me-id="{{this.owed_by.id}}" data-u-id="{{this.owe.id}}" id={{this.id}}>
           <span>{{this.owe.first_name}}
             owes ${{this.amount}}
             for

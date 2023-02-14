@@ -26,7 +26,6 @@ Home.belongsTo(UOM);
 Roommate.hasMany(Task);
 Task.belongsTo(Roommate);
 
-
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",
     foreignKey: "me",
