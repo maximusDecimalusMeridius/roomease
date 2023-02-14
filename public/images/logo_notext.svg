@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="13 100 100 100" style="background-color: transparent;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="67" y1="0" x2="67" y2="99.528" id="gradient-1" spreadMethod="pad" gradientTransform="matrix(1.000001, 0.000002, -0.000001, 0.596862, 0.273504, 0.000438)">
+      <stop offset="0" style="stop-color: rgba(40, 76, 99, 1)"/>
+      <stop offset="1" style="stop-color: rgb(73, 135, 177);"/>
+    </linearGradient>
+  </defs>
+  <svg viewBox="0 0 134 139" width="70" height="70" style="fill: rgb(85, 111, 129);" x="28.608999633789068" y="115" transform="matrix(0.503597, 0, 0, 0.503597, 29.867992, 115)">
+    <svg width="134" height="134" viewBox="0 0 134 134" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 67.274 0 C 30.273 0 0.274 30 0.274 67 C 0.274 78.811 3.333 89.895 8.701 99.528 L 27.097 81.131 L 27.097 54.347 L 40.502 54.347 L 40.502 67.726 L 67.274 40.955 L 125.847 99.528 C 131.201 89.895 134.274 78.811 134.274 67 C 134.274 30 104.274 0 67.274 0 Z" style="paint-order: fill; fill: url(#gradient-1);"/>
+      <path d="M 66.802 53.614 L 13.531 106.734 C 25.769 122.726 45.073 133.043 66.802 133.043 C 88.53 133.043 107.834 122.726 120.073 106.734 L 66.802 53.614 Z M 63.184 118.615 L 52.333 118.615 L 52.333 107.794 L 63.184 107.794 L 63.184 118.615 Z M 63.184 102.365 L 52.333 102.365 L 52.333 91.544 L 63.184 91.544 L 63.184 102.365 Z M 81.283 118.615 L 70.432 118.615 L 70.432 107.794 L 81.283 107.794 L 81.283 118.615 Z M 81.283 102.365 L 70.432 102.365 L 70.432 91.544 L 81.283 91.544 L 81.283 102.365 Z" style="fill: rgb(129, 146, 158);"/>
+    </svg>
+  </svg>
+  <svg style="fill: rgb(53, 53, 53);" x="108.60899963378907" y="131.75500011444092" transform="matrix(1, 0, 0, 1, 108.609001, 131.755005)"/>
+</svg>
