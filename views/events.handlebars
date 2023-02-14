@@ -61,6 +61,16 @@
                 <input type="text" name="what" data-edit-what="{{id}}" value="{{what}}"/>
                 <input type="date" name="date" data-edit-date="{{id}}" value="{{date}}"/>
                 <input type="time" name="time" data-edit-time="{{id}}" {{#if time}}value="{{time}}"{{/if}}/>
+                {{#if allRoommates}}
+                    <label for="attendees">Attendees:</label>
+                    <p>To select multiple attendees, please hold down the ctrl key and select.</p>
+                    <select name="attendees" id="attendees" multiple>
+                        {{#each allRoommates}}
+                            <option value={{id}}>{{first_name}}
+                            {{#if last_name}}{{last_name}}{{/if}}</option>
+                        {{/each}}
+                    </select>
+                {{/if}}
                 <button type="submit">Save</button>
             </form>
         {{/each}}

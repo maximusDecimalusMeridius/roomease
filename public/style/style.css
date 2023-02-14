@@ -417,7 +417,7 @@ header {
     border-radius: 50%;
     cursor: pointer;
     z-index: 3;
-    transition: left .5s ease-out;
+    transition: left 0.5s ease-out;
 }
 
 .signup-warning {
@@ -525,6 +525,7 @@ button:hover {
 
 .edit-event-form {
     width: 33%;
+    min-width: 200px;
     padding: 25px 15px;
     margin: 0px auto 10px auto;
     border-radius: 15px;
