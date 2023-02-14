@@ -243,7 +243,8 @@ header {
 
 #task-modal,
 #event-modal,
-#uom-modal {
+#uom-modal,
+#uom-modal-edit {
     width: 80%;
     background-color: white;
     z-index: 4;

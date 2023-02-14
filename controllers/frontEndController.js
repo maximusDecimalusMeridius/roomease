@@ -1,7 +1,8 @@
 const express = require ("express");
-const { Roommate } = require("../models");
+const { Roommate, Event, UOM, Task } = require("../models");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const Op = require("sequelize")
 
 router.get("/", (req, res)=>{
     res.render("login");
@@ -48,27 +49,42 @@ router.get("/logout",(req,res)=>{
 })
 
 //show the user their dashboard once they're logged in
-router.get("/dashboard/:id", (req, res) => {
-    Roommate.findByPk(req.params.id, {
-        include:[
+router.get("/dashboard", (req, res) => {
+    Roommate.findByPk(req.session.userId, {
+        include:[ 
+                "tasks",
             {
-                //tasks
+                model: Event
             },
             {
-                //events
-            },
-            {
-                // UOMs
+                model: UOM,
+            	as: "owe",
+				include: [{model: Roommate, as:"owed_by"}]
             },
         ]
     }).then(userData => {
         const hbsUser = userData.toJSON();
 
-        res.render("dashboard", {
-            //isloggedin is the same req.session.loggedin
-            //ismyprofile -> boolean checking if req.params.id == req.session.userId
+        console.log("===============================")
+        console.log(userData.home_id)
+        console.log(userData.id)
+        console.log("===============================")
+
+        Roommate.findAll({
+            where:{
+                home_id:userData.home_id,
+                id:{[Op.Op.not]:userData.id}
+            }}).then((roommateData)=>{const hbsUserRoommates = roommateData.map(roommate=>roommate.toJSON())
+            console.log(hbsUserRoommates)
+            res.render("dashboard", {
+                currentUser:hbsUser,
+                roomates:hbsUserRoommates
+                //isloggedin is the same req.session.loggedin
+                //ismyprofile -> boolean checking if req.params.id == req.session.userId
+            }
+        )})
         });
     }); 
-});
+
 
 module.exports = router;
