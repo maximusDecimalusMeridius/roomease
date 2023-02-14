@@ -3,29 +3,25 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="./images/favicon/favicon.ico" />
         <title>Roomease</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="./style/style.css" />
     </head>
     <body>
         <div class="cover"></div>
         <header>
- 
+            <div id="logo"></div>
             {{!-- {{#if isLoggedIn}} --}}
             <ul id="nav-menu">
                 <a href="/"><li id="nav-item-1" class="nav-items"><span>HOME</span></li></a>
-                <a href="/roommates"><li id="nav-item-2" class="nav-items"><span
-                        >ROOMMATES</span></li></a>
+                <a href="/roommates"><li id="nav-item-2" class="nav-items"><span>ROOMMATES</span></li></a>
                 <a href="/tasks"><li id="nav-item-3" class="nav-items"><span>TASKS</span></li></a>
                 <a href="/events"><li id="nav-item-4" class="nav-items"><span>EVENTS</span></li></a>
                 <a href="/uoms"><li id="nav-item-5" class="nav-items"><span>UOM</span></li></a>
-                <a href="/settings"><li id="nav-item-6" class="nav-items"><span
-                        >Settings</span></li></a>
+                <a href="/settings"><li id="nav-item-6" class="nav-items"><span>Settings</span></li></a>
             </ul>
             {{!-- {{else}}
         <ul id="nav-menu">
@@ -39,15 +35,11 @@
         <main>
             <ul id="mobile-menu" class="nav-menu">
                 <a href="/"><li id="mobile-item-1" class="nav-items"><span>HOME</span></li></a>
-                <a href="/roommates"><li id="mobile-item-2" class="nav-items"><span
-                        >ROOMMATES</span></li></a>
-                <a href="/tasks"><li id="mobile-item-3" class="nav-items"><span
-                        >TASKS</span></li></a>
-                <a href="/events"><li id="mobile-item-4" class="nav-items"><span
-                        >EVENTS</span></li></a>
+                <a href="/roommates"><li id="mobile-item-2" class="nav-items"><span>ROOMMATES</span></li></a>
+                <a href="/tasks"><li id="mobile-item-3" class="nav-items"><span>TASKS</span></li></a>
+                <a href="/events"><li id="mobile-item-4" class="nav-items"><span>EVENTS</span></li></a>
                 <a href="/uoms"><li id="mobile-item-5" class="nav-items"><span>UOM</span></li></a>
-                <a href="/settings"><li id="mobile-item-6" class="nav-items"><span
-                        >Settings</span></li></a>
+                <a href="/settings"><li id="mobile-item-6" class="nav-items"><span>Settings</span></li></a>
             </ul>
             <div class="hbs-body">
                 {{{body}}}
@@ -59,8 +51,7 @@
                 <ul id="team-list"><span>Meet the Team!</span>
                     <a href="https://github.com/Kawaikimono" target="_blank"><li>Aly Geiger</li></a>
                     <a href="https://github.com/claricetran" target="_blank"><li>Clarice Tran</li></a>
-                    <a href="https://github.com/maximusDecimalusMeridius" target="_blank"><li>Andy
-                            Gaudy</li></a>
+                    <a href="https://github.com/maximusDecimalusMeridius" target="_blank"><li>Andy Gaudy</li></a>
                 </ul>
             </div>
         </footer>
