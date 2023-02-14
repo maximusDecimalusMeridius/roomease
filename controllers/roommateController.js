@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 			}]
     }).then(roommateData=>{
         const hbsRoommates = roommateData.map(roommate=>roommate.toJSON())
-        console.log(roommateData);
+        console.log(hbsRoommates);
 		res.render("roommates",{
             allRoommates:hbsRoommates
         });
