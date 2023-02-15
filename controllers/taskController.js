@@ -99,7 +99,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
 
     try {
-        const roommates = await Roommate.findAll({
+        let roommates = await Roommate.findAll({
             where: {
                 home_id: req.session.userId
             }
