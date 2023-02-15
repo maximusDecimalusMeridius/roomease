@@ -22,6 +22,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* border: 1px solid red; */
 }
 
 img,
@@ -30,16 +31,26 @@ video {
     height: 100%;
 }
 
+html {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
 main {
-    /* height: calc(100vh - 225px); */
+    height: 80vh;
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding: 25px;
+    overflow: hidden;
 }
 
 body {
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     background-color: var(--platinum);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     font-family: "Josefin Sans", sans-serif;
 }
@@ -104,7 +115,7 @@ header {
 
 #mobile-menu {
     width: 250px;
-    height: 100%;
+    height: 100vh;
     padding: 100px 15px;
     display: none;
     flex-direction: column;
@@ -154,9 +165,9 @@ header {
 }
 
 .hbs-body {
-    width: 80%;
-    min-height: 400px;
-    max-height: 80%;
+    width: 90%;
+    height: 90%;
+    min-height: 300px;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
@@ -192,7 +203,6 @@ header {
 }
 
 .content-window {
-    min-height: 300px;
     height: fit-content;
     width: 90%;
     background-color: var(--white);
@@ -276,17 +286,22 @@ header {
 #event-modal,
 #uom-modal,
 #uom-modal-edit {
-    width: 80%;
+    height: 100%;
+    width: 95%;
+    margin: 10px;
     background-color: white;
     z-index: 4;
-    position: absolute;
     padding: 15px;
     display: none;
+    position: absolute;
+    inset: 0;
     border-radius: 25px;
     box-shadow: 2px 2px 4px black;
+    overflow-y: auto;
 }
 
-#success-modal {
+#success-modal,
+#logout-modal {
     height: 50px;
     width: 250px;
     background-color: white;
@@ -336,23 +351,21 @@ header {
     height: 100%;
 }
 
-.task-list-item:nth-child(even),
-.uom-list-item:nth-child(4n-3) {
-    background-color: var(--light-caribbean);
-}
-
 #task-list,
 #eventList,
 #uom-list {
+    height: 100%;
     width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     list-style-type: none;
     border-radius: 5px;
     box-shadow: inset 1px 1px 4px black;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .task-list-item,
@@ -366,7 +379,10 @@ header {
     transition: all .4s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
-
+.task-list-item:nth-child(even),
+.uom-list-item:nth-child(4n+3) {
+    background-color: var(--light-caribbean-tp);
+}
 
 .task {
     width: 150px;
@@ -603,37 +619,14 @@ button:hover {
 }
 
 footer {
-    width: 100vw;
-    height: 15vh;
-    padding: 25px;
-    background: linear-gradient(
-        270deg,
-        hsla(183, 31%, 34%, 1) 0%,
-        hsla(183, 19%, 44%, 1) 50%,
-        hsla(183, 16%, 47%, 1) 61%,
-        hsla(182, 12%, 61%, 1) 76%,
-        hsla(180, 9%, 73%, 1) 89%,
-        hsla(0, 0%, 85%, 1) 100%
-    );
-    background: -moz-linear-gradient(
-        270deg,
-        hsla(183, 31%, 34%, 1) 0%,
-        hsla(183, 19%, 44%, 1) 50%,
-        hsla(183, 16%, 47%, 1) 61%,
-        hsla(182, 12%, 61%, 1) 76%,
-        hsla(180, 9%, 73%, 1) 89%,
-        hsla(0, 0%, 85%, 1) 100%
-    );
-    background: -webkit-linear-gradient(
-        270deg,
-        hsla(183, 31%, 34%, 1) 0%,
-        hsla(183, 19%, 44%, 1) 50%,
-        hsla(183, 16%, 47%, 1) 61%,
-        hsla(182, 12%, 61%, 1) 76%,
-        hsla(180, 9%, 73%, 1) 89%,
-        hsla(0, 0%, 85%, 1) 100%
-    );
-    color: var(--platinum);
+    width: 100%;
+    min-height: 80px;
+    height: 10vh;
+    padding: 10px;
+    background: linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    color: var(--white);
     font-family: "Times New Roman", Times, serif;
     position: absolute;
     bottom: 0px;
@@ -642,17 +635,30 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-start;
+    box-shadow: 1px -8px 10px 2px gray;
+}
+
+footer span {
+    font-weight: bold;
 }
 
 footer ul {
     list-style-type: none;
 }
 
+footer ul li {
+    width: 150px;
+    padding: 0px 5px;
+}
+
 footer div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
+    border-left: 2px solid var(--light-caribbean);
 }
 
 footer a {
@@ -668,7 +674,8 @@ footer a:hover {
     width: 200px;
     height: fit-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -698,10 +705,36 @@ footer a:hover {
         left: 10px;
     }
 
+    .header-window {
+        padding: 10px 25px 5px 25px;
+    }
+
+    .hbs-body {
+        width: 90%;
+    }
+
+    .content-header {
+        font-size: 24px;
+    }
+
+    .content-window {
+        padding: 15px 10px 10px 10px;
+    }
+
+    .add-button {
+        height: 40px;
+        width: 40px;
+    }
+
     .buttons {
         margin-top: 10px;
         align-items: center;
         height: inherit;
+    }
+
+    .task-list-item .buttons {
+        width: 150px;
+        justify-content: center;
     }
 
     .eventdetails {
@@ -709,7 +742,8 @@ footer a:hover {
         justify-content: center;
     }
 
-    .task-list-item {
+    .task-list-item,
+    .uom-list-item {
         width: 100%;
         padding: 20px;
         display: flex;
@@ -720,5 +754,9 @@ footer a:hover {
 
     .task {
         text-align: center;
+    }
+
+    footer {
+        justify-content: center;
     }
 }

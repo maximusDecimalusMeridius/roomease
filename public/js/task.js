@@ -24,6 +24,10 @@ _addTaskButton.addEventListener("click", (event) => {
 for(let i = 0; i < _editButtons.length; i++){
     _editButtons[i].addEventListener("click", (event) => {
         
+        let buttonDiv = event.target.parentNode;
+        let task = buttonDiv.parentNode.firstElementChild;
+        let textarea = buttonDiv.parentNode.firstElementChild.nextElementSibling;
+        console.log(task);
         if(event.target.dataset.clicked != "true"){
             for(let j = 0; j < _editButtons.length; j++){
                 _editButtons[j].dataset.clicked = "false";
@@ -31,19 +35,20 @@ for(let i = 0; i < _editButtons.length; i++){
                 _editButtons[j].parentNode.firstElementChild.classList.add("hide");
                 _editButtons[j].parentNode.lastElementChild.classList.remove("hide");
             }
-            event.target.parentNode.parentNode.firstElementChild.classList.toggle("hide");
-            event.target.parentNode.parentNode.firstElementChild.nextElementSibling.classList.toggle("hide");
+            task.classList.toggle("hide");
+            textarea.classList.toggle("hide");
+            textarea.value = task.textContent; //pre-add old value
             event.target.dataset.clicked = "true";
-            event.target.parentNode.parentNode.classList.toggle("highlight-task");
-            event.target.parentNode.firstElementChild.classList.toggle("hide");
-            event.target.parentNode.lastElementChild.classList.toggle("hide");
+            buttonDiv.parentNode.classList.toggle("highlight-task");
+            buttonDiv.firstElementChild.classList.toggle("hide");
+            buttonDiv.lastElementChild.classList.toggle("hide");
         } else {
-            event.target.parentNode.parentNode.firstElementChild.classList.toggle("hide");
-            event.target.parentNode.parentNode.firstElementChild.nextElementSibling.classList.toggle("hide");
+            buttonDiv.parentNode.firstElementChild.classList.toggle("hide");
+            textarea.classList.toggle("hide");
             event.target.dataset.clicked = "";
-            event.target.parentNode.parentNode.classList.toggle("highlight-task");
-            event.target.parentNode.firstElementChild.classList.toggle("hide");
-            event.target.parentNode.lastElementChild.classList.toggle("hide");
+            buttonDiv.parentNode.classList.toggle("highlight-task");
+            buttonDiv.firstElementChild.classList.toggle("hide");
+            buttonDiv.lastElementChild.classList.toggle("hide");
         }
     })
 }
