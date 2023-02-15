@@ -93,6 +93,7 @@ header {
 
 #logo {
     background-image: url("../images/logo.png");
+    background-size: cover;
     height: 70px;
     width: 200px;
     float: left;
