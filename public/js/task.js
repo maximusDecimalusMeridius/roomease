@@ -27,13 +27,15 @@ for(let i = 0; i < _editButtons.length; i++){
         let buttonDiv = event.target.parentNode;
         let task = buttonDiv.parentNode.firstElementChild;
         let textarea = buttonDiv.parentNode.firstElementChild.nextElementSibling;
-        console.log(task);
+
         if(event.target.dataset.clicked != "true"){
             for(let j = 0; j < _editButtons.length; j++){
                 _editButtons[j].dataset.clicked = "false";
                 _editButtons[j].parentNode.parentNode.classList.remove("highlight-task");
                 _editButtons[j].parentNode.firstElementChild.classList.add("hide");
                 _editButtons[j].parentNode.lastElementChild.classList.remove("hide");
+                _editButtons[j].parentNode.parentNode.firstElementChild.nextElementSibling.classList.add("hide");
+                _editButtons[j].parentNode.parentNode.firstElementChild.classList.remove("hide");
             }
             task.classList.toggle("hide");
             textarea.classList.toggle("hide");
