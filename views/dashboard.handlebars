@@ -3,31 +3,64 @@
 </div>
 
 <div class="dashboard-window">
-  <h2>Roommates</h2>
-  <ul>
-    {{#each roommates}}
-      <li>{{this.first_name}}</li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-roommates" class="dashboard-grid-square">
+    <div id="roommates-card" class="dashboard-card">
+      <div id="roommates-header" class="card-header">
+        <h2>Roommates</h2>
+      </div>
+      <div id="dashboard-content">
+        <ul>
+          {{#each roommates}}
+            <li>{{this.first_name}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <h2>Tasks</h2>
-  <ul>
-    {{#each currentUser.Tasks}}
-      <li>{{this.task}}</li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-tasks" class="dashboard-grid-square">
+    <div id="tasks-card" class="dashboard-card">
+      <div id="tasks-header" class="card-header">
+        <h2>Tasks</h2>
+      </div>
+      <div class="dashboard-content">
+        <ul id="task-list">
+          {{#each currentUser.Tasks}}
+            <li class="task-list-item">{{this.task}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <h2>Events</h2>
-  <ul>
-    {{#each currentUser.Events}}
-      <li>{{this.what}} on {{this.date}} at {{this.time}}</li>
-    {{/each}}
-  </ul>
+  <div id="dashboard-events" class="dashboard-grid-square">
+    <div id="events-card" class="dashboard-card">
+      <div id="events-header" class="card-header">
+        <h2>Events</h2>
+      </div>
 
-  <h2>UOMs</h2>
-  <ul>
-    {{#each currentUser.owe}}
-      <li>I owe {{this.owed_by.first_name}} ${{this.amount}} for {{this.what}} </li>
-    {{/each}}
-  </ul>
+      <div class="dashboard-content">
+        <ul id="eventList">
+          {{#each currentUser.Events}}
+            <li class="eventBlock">{{this.what}} on {{this.date}} at {{this.time}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="dashboard-uoms" class="dashboard-grid-square">
+    <div id="uoms-card" class="dashboard-card">
+      <div id="uoms-header" class="card-header">
+        <h2>UOMs</h2>
+      </div>
+      <div class="dashboard-content">
+        <ul id="uom-list">
+          {{#each currentUser.owe}}
+            <li class="uom-list-item">I owe {{this.owed_by.first_name}} ${{this.amount}} for {{this.what}} </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>  
 </div>

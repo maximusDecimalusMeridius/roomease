@@ -21,4 +21,7 @@ router.use("/tasks", taskRoutes);
 const homeRoutes = require("./homeController");
 router.use("/homes", homeRoutes);
 
+const settingsRoutes = require("./settingsController");
+router.use("/settings", settingsRoutes);
+
 module.exports = router;

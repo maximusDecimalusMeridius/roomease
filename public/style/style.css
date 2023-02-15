@@ -2,8 +2,8 @@
     /* CSS HEX from coolors.co*/
     --jet: #353535ff;
     --light-caribbean: rgb(30, 208, 218);
+    --light-caribbean-tp: rgba(30, 209, 218, 0.2);
     --sea-blue: rgb(0, 178, 188);
-    --light-caribbean-tp: rgb(30, 208, 218, 0.2);
     --caribbean-glow: rgb(101, 247, 255);
     --caribbean-current: #3c6e71ff;
     --ash-gray: #9eb7b8ff;
@@ -13,6 +13,16 @@
     --cadet-gray: #81929eff;
     --paynes-gray: #556f81ff;
     --indigo-dye: #284b63ff;
+    --delete-red: rgb(186, 80, 80);
+
+    --roommates: rgb(218, 196, 247);
+    --roommates-banding: rgba(218, 196, 247, .2);
+    --uoms: rgb(255, 89, 94);
+    --uoms-banding: rgba(255, 89, 94, .2);
+    --tasks: rgb(255, 202, 58);
+    --tasks-banding: rgba(255, 202, 58, .2);
+    --events: rgb(117, 221, 221);
+    --events-banding: rgba(117, 221, 221, .2);
 }
 
 *,
@@ -21,6 +31,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* border: 1px solid red; */
 }
 
 img,
@@ -29,24 +40,40 @@ video {
     height: 100%;
 }
 
+html {
+    height: 100vh;
+    width: 100vw;
+    min-width: 350px;
+    min-height: 670px;
+    overflow: hidden;
+}
+
 main {
-    height: calc(100vh - 225px);
+    height: 80vh;
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding: 25px;
+    overflow: hidden;
 }
 
 body {
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     background-color: var(--platinum);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     font-family: "Josefin Sans", sans-serif;
+}
+
+ul {
+    list-style-type: none;
 }
 
 .cover {
     background-color: rgba(100, 100, 100, 0.6);
     position: absolute;
-    inset: 0;
+    inset: 0px;
     z-index: 3;
     display: none;
 }
@@ -61,10 +88,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 1px 5px 10px 2px gray;
 }
 
 #logo {
-    background-image: url("../images/logo.svg");
+    background-image: url("../images/logo.png");
+    background-size: cover;
     height: 70px;
     width: 200px;
     float: left;
@@ -72,7 +101,6 @@ header {
 
 #nav-menu {
     width: fit-content;
-    list-style-type: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -90,7 +118,6 @@ header {
     background-size: cover;
     background-repeat: no-repeat;
     display: none;
-    /* margin: 20px; */
     cursor: pointer;
     transition: all 0.1s ease-out;
     position: relative;
@@ -103,7 +130,7 @@ header {
 
 #mobile-menu {
     width: 250px;
-    height: 100%;
+    height: 100vh;
     padding: 100px 15px;
     display: none;
     flex-direction: column;
@@ -116,7 +143,6 @@ header {
     z-index: 2;
     transition: all 0.2s ease-out;
     gap: 10px;
-    list-style-type: none;
     z-index: 3;
     box-shadow: -4px 0px 6px rgb(0, 0, 0);
 }
@@ -153,15 +179,15 @@ header {
 }
 
 .hbs-body {
-    width: 80%;
-    min-height: 350px;
+    width: 90%;
+    height: 90%;
+    min-height: 300px;
     background-color: var(--white);
-    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
     border-radius: 25px;
     box-shadow: 0px 15px 10px gray, 8px 5px 5px gray;
@@ -172,6 +198,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--white);
     padding: 25px 50px 10px 50px;
     position: sticky;
     top: 0px;
@@ -190,6 +217,7 @@ header {
 }
 
 .content-window {
+    height: fit-content;
     width: 90%;
     background-color: var(--white);
     display: flex;
@@ -199,10 +227,129 @@ header {
     border-radius: 25px;
     padding: 30px 20px 20px 20px;
     position: relative;
+    overflow-y: auto;
 }
 
 .dashboard-window {
+    padding-top: 10px;
+    height: 80%;
+    width: 95%;
+    display: grid;
+    grid-template-areas:
+        "roommates uoms"
+        "tasks events"
+    ;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 49% 49%;
+    gap: 10px;
+    overflow-y: auto;
+}
 
+/* .dashboard-window * {
+    border: 1px solid green;
+} */
+
+.dashboard-grid-square {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-card {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    padding: 30px 15px 15px 15px;
+    border-radius: 25px;
+    box-shadow: 2px 4px 4px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    height: 35px;
+    width: fit-content;
+    padding: 0px 10px;
+    border-radius: 25px;
+    position: absolute;
+    color: black;
+    box-shadow: 2px 4px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header h2 {
+    height: 1em;
+    padding-top: 3px;
+}
+
+.dashboard-content {
+    height: 100%;
+    width: 100%;
+}
+
+#roommates-header {
+    left: 25px;
+    top: -15px;
+    background-color: var(--roommates);
+}
+
+#roommates-card {
+    background-color: var(--roommates);
+}
+
+#roommates-card li {
+    font-size: 42px;
+}
+
+#tasks-header {
+    left: 25px;
+    top: -15px;
+    background-color: var(--tasks);
+}
+
+#tasks-card {
+    background-color: var(--tasks);
+}
+
+#uoms-header {
+    right: 25px;
+    top: -15px;
+    background-color: var(--uoms);
+}
+
+#uoms-card {
+    background-color: var(--uoms);
+}
+
+#events-header {
+    right: 25px;
+    top: -15px;
+    background-color: var(--events);
+}
+
+#events-card {
+    background-color: var(--events);
+}
+
+#dashboard-roommates {
+    grid-area: roommates;
+}
+
+#dashboard-tasks {
+    grid-area: tasks;
+}
+
+#dashboard-events {
+    grid-area: events;
+}
+
+#dashboard-uoms {
+    grid-area: uoms;
 }
 
 .buttons {
@@ -233,9 +380,6 @@ header {
 }
 
 /* roommate CSS */
-.roommate-header {
-}
-
 .roommate-header h2 {
     margin-top: 25px;
 }
@@ -271,17 +415,23 @@ header {
 #event-modal,
 #uom-modal,
 #uom-modal-edit {
-    width: 80%;
+    height: 100%;
+    width: 95%;
+    margin: 10px;
     background-color: white;
     z-index: 4;
-    position: absolute;
+    margin: 0 auto;
     padding: 15px;
     display: none;
+    position: absolute;
+    top: 20px;
     border-radius: 25px;
     box-shadow: 2px 2px 4px black;
+    overflow-y: auto;
 }
 
-#success-modal {
+#success-modal,
+#logout-modal {
     height: 50px;
     width: 250px;
     background-color: white;
@@ -308,15 +458,12 @@ header {
     box-shadow: 2px 2px 4px black;
 }
 
-#task {
-    width: 200px;
-}
-
 #task-form {
+    padding-top: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -325,36 +472,55 @@ header {
     align-self: center;
 }
 
-#task-table {
+#task-table,
+#uom-table {
     width: 100%;
-    height: fit-content;
-}
-
-.task-list-item:nth-child(even) {
-    background-color: var(--light-caribbean);
+    height: 100%;
 }
 
 #task-list,
-#eventList {
+#eventList,
+#uom-list {
+    height: 100%;
     width: 100%;
-    padding-top: 20px;
+    padding: 10px;
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    list-style-type: none;
     border-radius: 5px;
     box-shadow: inset 1px 1px 4px black;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.task-list-item {
-    width: 95%;
+.task-list-item,
+.uom-list-item {
+    width: 100%;
     padding: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    transition: all .4s cubic-bezier(0.85, 0, 0.15, 1);
+    transition: all .2s ease-out;
+}
+
+.task-list-item:nth-child(even) {
+    background-color: var(--tasks-banding);
+}
+
+.content-window .uom-list-item:nth-child(4n+3) {
+    background-color: var(--uoms-banding);
+}
+
+/* dashboard uom list item CSS override */
+.dashboard-content #uom-list .uom-list-item:nth-child(even) {
+    background-color: var(--uoms-banding);
+}
+
+.dashboard-grid-square #eventList .eventBlock:nth-child(even) {
+    background-color: var(--events-banding);
 }
 
 .task {
@@ -363,13 +529,12 @@ header {
 }
 
 .highlight-task {
-    transform: scale(1.1) translateY(0px);
+    transform: scale(0.99) translateY(0px);
     box-shadow: 4px 2px 4px black;
     background-color: white;
     border-radius: 25px;
 }
 
-/* Event CSS TODO: edit modal to bee out of eventList section */
 #event-modal {
     display: none;
 }
@@ -386,8 +551,8 @@ header {
     width: inherit;
 }
 
-.eventBlock:nth-child(4n + 3) {
-    background-color: var(--light-caribbean-tp);
+.eventBlock:nth-child(4n+3) {
+    background-color: var(--events-banding);
 }
 
 .eventBlock h3 {
@@ -479,11 +644,18 @@ header {
 }
 
 /* button CSS */
-.edit-button,
+.edit-button {
+    height: 25px;
+    width: 25px;
+    position: relative;
+}
+
 .delete-button {
     height: 25px;
     width: 25px;
     position: relative;
+    background-color: var(--delete-red);
+    border-radius: inherit;
 }
 
 .button {
@@ -534,7 +706,7 @@ input::placeholder {
 }
 
 input:required {
-    background-color: rgba(255, 233, 177, .5);
+    background-color: rgba(255, 233, 177, 0.5);
 }
 
 button {
@@ -585,37 +757,14 @@ button:hover {
 }
 
 footer {
-    width: 100vw;
-    height: 15vh;
-    padding: 25px;
-    background: linear-gradient(
-        270deg,
-        hsla(183, 31%, 34%, 1) 0%,
-        hsla(183, 19%, 44%, 1) 50%,
-        hsla(183, 16%, 47%, 1) 61%,
-        hsla(182, 12%, 61%, 1) 76%,
-        hsla(180, 9%, 73%, 1) 89%,
-        hsla(0, 0%, 85%, 1) 100%
-    );
-    background: -moz-linear-gradient(
-        270deg,
-        hsla(183, 31%, 34%, 1) 0%,
-        hsla(183, 19%, 44%, 1) 50%,
-        hsla(183, 16%, 47%, 1) 61%,
-        hsla(182, 12%, 61%, 1) 76%,
-        hsla(180, 9%, 73%, 1) 89%,
-        hsla(0, 0%, 85%, 1) 100%
-    );
-    background: -webkit-linear-gradient(
-        270deg,
-        hsla(183, 31%, 34%, 1) 0%,
-        hsla(183, 19%, 44%, 1) 50%,
-        hsla(183, 16%, 47%, 1) 61%,
-        hsla(182, 12%, 61%, 1) 76%,
-        hsla(180, 9%, 73%, 1) 89%,
-        hsla(0, 0%, 85%, 1) 100%
-    );
-    color: var(--platinum);
+    width: 100%;
+    min-height: 80px;
+    height: 10vh;
+    padding: 10px;
+    background: linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(180deg, hsla(184, 28%, 36%, 1) 25%, hsla(173, 100%, 44%, 1) 100%);
+    color: var(--white);
     font-family: "Times New Roman", Times, serif;
     position: absolute;
     bottom: 0px;
@@ -624,17 +773,26 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-start;
+    box-shadow: 1px -8px 10px 2px gray;
 }
 
-footer ul {
-    list-style-type: none;
+footer span {
+    font-weight: bold;
+}
+
+footer ul li {
+    width: 150px;
+    padding: 0px 5px;
 }
 
 footer div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
+    border-left: 2px solid var(--light-caribbean);
 }
 
 footer a {
@@ -650,7 +808,8 @@ footer a:hover {
     width: 200px;
     height: fit-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -659,6 +818,23 @@ footer a:hover {
     margin-bottom: 8px;
     font-weight: bold;
     text-decoration: underline;
+}
+
+#settings {
+    width: 66%;
+}
+
+.settings-row {
+    display: flex;
+}
+
+.settings-row div {
+    width: 45%;
+}
+
+.formSection {
+    flex-flow: row wrap;
+    margin: 0 20px;
 }
 
 /* Responsive CSS */
@@ -680,13 +856,73 @@ footer a:hover {
         left: 10px;
     }
 
+    .header-window {
+        padding: 10px 25px 5px 25px;
+    }
+
+    .hbs-body {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .content-header {
+        font-size: 24px;
+    }
+
+    .content-window {
+        padding: 15px 10px 10px 10px;
+    }
+
+    .add-button {
+        height: 40px;
+        width: 40px;
+    }
+
     .buttons {
         margin-top: 10px;
         align-items: center;
         height: inherit;
     }
 
-    .task-list-item {
+    .dashboard-window {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "roommates"
+        "uoms"
+        "tasks"
+        "events"
+        ;
+    }
+
+    /* To center uncomment and align dashboard card header to center */
+    /* #uoms-header {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+
+    #uoms-header {
+        right: 0px;
+        left: 25px;
+    }
+
+    #events-header {
+        right: 0px;
+        left: 25px;
+    }
+
+    .task-list-item .buttons {
+        width: 150px;
+        justify-content: center;
+    }
+
+    .eventdetails {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .task-list-item,
+    .uom-list-item {
         width: 100%;
         padding: 20px;
         display: flex;
@@ -697,5 +933,26 @@ footer a:hover {
 
     .task {
         text-align: center;
+    }
+
+    footer {
+        justify-content: center;
+    }
+
+    #settings {
+        width: 66%;
+    }
+
+    .settings-row {
+        display: inline-block;
+    }
+
+    .settings-row div {
+        width: inherit;
+    }
+
+    .formSection {
+        flex-flow: row wrap;
+        margin: 0;
     }
 }

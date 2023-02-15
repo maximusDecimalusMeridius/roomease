@@ -69,8 +69,8 @@ document.querySelectorAll(".edit").forEach((editButton) => {
         console.log(eventId);
 
         const editEventForm = document.querySelector(`[data-edit-event-id="${eventId}"]`);
-        
-        if(!editEventForm.classList.contains("hide")){
+
+        if (!editEventForm.classList.contains("hide")) {
             editEventForm.classList.add("hide");
         } else {
             document.querySelectorAll(".edit-event-form").forEach((form) => {
@@ -78,7 +78,6 @@ document.querySelectorAll(".edit").forEach((editButton) => {
             });
             editEventForm.classList.remove("hide");
         }
-        
     });
 });
 
@@ -123,5 +122,3 @@ document.getElementById("close").addEventListener("click", (e) => {
     _eventModal.style.display = "none";
     _bedCover.style.display = "none";
 });
-
-function clearFormValues() {}

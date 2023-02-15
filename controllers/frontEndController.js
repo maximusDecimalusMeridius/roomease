@@ -50,7 +50,17 @@ router.post("/login", async (req, res)=>{
 //DELETE route for logout
 router.get("/logout",(req,res)=>{
     req.session.destroy();
-    res.send("logged out")
+    //put into logout js
+    
+    // _bedCover.style.display = "block";
+    // _accountLogoutModal = document.createElement("div");
+    // _accountLogoutModal.textContent = "Successfully Logged Out!";
+    // _accountLogoutModal.id = "logout-modal"
+    // _bedCover.append(_accountLogoutModal);
+    
+    setTimeout(() => {
+        res.redirect("/");
+    }, "1000")
 })
 
 //show the user their dashboard once they're logged in

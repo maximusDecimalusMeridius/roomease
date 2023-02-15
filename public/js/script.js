@@ -5,7 +5,6 @@ const _bedCover = document.querySelector(".cover");
 
 const _mobileListItems = document.querySelectorAll("#mobile-menu li");
 
-console.log(_mobileListItems);
 
 _mobileMenuButton.addEventListener("click", (event) => {
     const style = getComputedStyle(event.target);
