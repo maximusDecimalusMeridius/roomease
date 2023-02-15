@@ -1,10 +1,9 @@
 const _mobileMenuButton = document.querySelector("#mobile-menu-icon");
 const _mobileMenu = document.querySelector("#mobile-menu");
+const _mobileListItems = document.querySelectorAll("#mobile-menu li");
 const _navMenu = document.querySelector("#nav-menu");
 const _bedCover = document.querySelector(".cover");
-
-const _mobileListItems = document.querySelectorAll("#mobile-menu li");
-
+const _hbsBody = document.querySelector(".hbs-body");
 
 _mobileMenuButton.addEventListener("click", (event) => {
     const style = getComputedStyle(event.target);
@@ -25,6 +24,27 @@ _mobileListItems.forEach((listItem) => {
         hideMenu();
     })
 })
+
+function setItUp() {
+    //Hide menu for login screen/path
+    if(location.pathname == "/"){
+        document.querySelector("#nav-menu").style.display = "none";
+    }
+
+    //set colors according to pathname
+    if(location.pathname == "/tasks"){
+        _hbsBody.style.backgroundColor = "var(--tasks)";
+    }
+    if(location.pathname == "/events"){
+        _hbsBody.style.backgroundColor = "var(--events)";
+    }
+    if(location.pathname == "/roommates"){
+        _hbsBody.style.backgroundColor = "var(--roommates)";
+    }
+    if(location.pathname == "/uoms"){
+        _hbsBody.style.backgroundColor = "var(--uoms)";
+    }
+}
 
 function showMenu() {
     _mobileMenuButton.style.height = "0px";
