@@ -114,11 +114,10 @@ header {
 #mobile-menu-icon {
     height: 25px;
     width: 40px;
-    background-image: url("../images/icon-menu.png");
+    background-image: url("../images/icon-menu.svg");
     background-size: cover;
     background-repeat: no-repeat;
     display: none;
-    /* margin: 20px; */
     cursor: pointer;
     transition: all 0.1s ease-out;
     position: relative;
