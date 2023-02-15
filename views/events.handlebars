@@ -64,7 +64,7 @@
                 {{#if ../allRoommates}}
                     <label for="attendees">Attendees:</label>
                     <p>To select multiple attendees, please hold down the ctrl key and select.</p>
-                    <select name="attendees" id="attendees" multiple>
+                    <select name="attendees" multiple>
                         {{#each ../allRoommates}}
                             <option value={{id}}>{{first_name}}
                             {{#if last_name}}{{last_name}}{{/if}}</option>

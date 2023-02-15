@@ -110,8 +110,8 @@ router.get("/:id", (req, res) => {
 //POST a new record
 router.post("/", async (req, res) => {
     try {
-        var mailList = [];
-        var roommates = [];
+        let mailList = [];
+        let roommates = [];
         let createEventObj = {
             what: req.body.what,
             date: req.body.date,
@@ -130,7 +130,7 @@ router.post("/", async (req, res) => {
             updateAttendees = await createEvent.addRoommate(req.body.attendees);
 
             //send out email based off of selected roommates by getting their emails from Roommates table
-            for (var i = 0; i < req.body.attendees.length; i++) {
+            for (let i = 0; i < req.body.attendees.length; i++) {
                 const roommate = await Roommate.findByPk(req.body.attendees[i]);
                 console.log(roommate.dataValues.email);
                 mailList.push(roommate.dataValues.email);
@@ -172,20 +172,104 @@ router.put("/:id", async (req, res) => {
         if (req.body.time.length > 0) {
             updateEventObj.time = req.body.time;
         }
+
+        let oldEvent = await Event.findOne({
+            where: {
+                id: req.params.id,
+            },
+            include: {
+                model: Roommate,
+            },
+        });
+        oldEvent = oldEvent.toJSON();
+        // console.log(oldEvent.Roommates);
+        let oldAttendees = oldEvent.Roommates.map((roommate) => roommate.id);
+        console.log(oldAttendees);
+        let newAttendees = req.body.attendees;
+        newAttendees = newAttendees.map((str) => parseInt(str));
+        console.log(newAttendees);
+        let mailAttendees = oldAttendees.concat(newAttendees);
+        console.log(mailAttendees);
+        for (let i = 0; i < mailAttendees.length; ++i) {
+            for (let j = i + 1; j < mailAttendees.length; ++j) {
+                if (mailAttendees[i] === mailAttendees[j]) {
+                    mailAttendees.splice(j--, 1);
+                }
+            }
+        }
+        console.log(mailAttendees);
+
+        const matching = [];
+        // check if there are any matching ids in old and new attendeees selections and push the value to the matching array
+        // if (oldAttendees.length > 0 && newAttendees.length > 0) {
+        for (let i = 0; i < oldAttendees.length; i++) {
+            for (let j = 0; j < newAttendees.length; j++) {
+                if (oldAttendees[i] == newAttendees[j]) {
+                    matching.push(oldAttendees[i]);
+                }
+            }
+        }
+        // }
+        console.log(matching);
+        // if there are matching values remove them from oldAttendees and remove them from new Attendees.
+        if (matching.length > 0) {
+            for (let k = 0; k < matching.length; k++) {
+                let matchOld = oldAttendees.indexOf(matching[k]);
+                console.log("old match index: " + matchOld);
+                oldAttendees.splice(matchOld, 1);
+                let matchNew = newAttendees.indexOf(matching[k]);
+                console.log("new match index: " + matchNew);
+                newAttendees.splice(matchNew, 1);
+            }
+            console.log(oldAttendees);
+            console.log(newAttendees);
+        }
         //updateEvent.addRoommate() & updateEvent.removeRoommate();
         const updateEvent = await Event.update(updateEventObj, {
             where: {
                 id: req.params.id,
             },
         });
-        const eventRoommateUpdate = await Event.findByPk(req.params.id);
-        if (req.body.deleteAttendees > 0) {
-            eventRoommateUpdate.removeRoommate(req.body.deleteAttendees);
+
+        const attending = newAttendees.concat(matching);
+        const updatedEvent = await Event.findByPk(req.params.id);
+        console.log(updateEvent);
+        if (oldAttendees.length > 0 || newAttendees.length == 0) {
+            updatedEvent.removeRoommates(oldAttendees);
         }
-        if (req.body.createAttendees > 0) {
-            eventRoommateUpdate.addRoommate(req.body.createAttendees);
+        if (newAttendees.length > 0 || oldAttendees.length == 0) {
+            updatedEvent.addRoommates(newAttendees);
         }
-        return res.json({ status: "success", updateEvent, eventRoommateUpdate });
+
+        let mailList = [];
+        let roommates = [];
+        if (mailAttendees.length > 0) {
+            for (let i = 0; i < mailAttendees.length; i++) {
+                const roommate = await Roommate.findByPk(mailAttendees[i]);
+                console.log(roommate.dataValues.email);
+                mailList.push(roommate.dataValues.email);
+                if (attending.includes(mailAttendees[i])) {
+                    const name = {
+                        first_name: roommate.dataValues.first_name,
+                        last_name: roommate.dataValues.last_name,
+                    };
+                    roommates.push(name);
+                }
+            }
+            updateEventObj.Roommates = roommates;
+
+            let mail = {
+                from: process.env.EMAIL_USERNAME,
+                to: mailList,
+                subject: `Event Updated: ${req.body.what}`,
+                template: "eventChanged",
+                context: updateEventObj,
+            };
+
+            transporter.sendMail(mail);
+        }
+
+        return res.json({ status: "success", updateEvent });
     } catch (err) {
         console.log(err);
         res.status(500).json({
@@ -198,7 +282,7 @@ router.put("/:id", async (req, res) => {
 //DELETE a record
 router.delete("/:id", async (req, res) => {
     try {
-        var mailList = [];
+        let mailList = [];
         const attendees = await Roommate.findAll({
             attributes: ["email"],
             include: {
@@ -213,7 +297,7 @@ router.delete("/:id", async (req, res) => {
 
         console.log(attendees);
         if (attendees.length > 0) {
-            for (var i = 0; i < attendees.length; i++) {
+            for (let i = 0; i < attendees.length; i++) {
                 console.log(attendees[i].dataValues.email);
                 mailList.push(attendees[i].dataValues.email);
             }
