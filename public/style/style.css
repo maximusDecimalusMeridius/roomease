@@ -93,6 +93,7 @@ header {
 
 #logo {
     background-image: url("../images/logo.png");
+    background-size: cover;
     height: 70px;
     width: 200px;
     float: left;
@@ -380,9 +381,6 @@ header {
 }
 
 /* roommate CSS */
-.roommate-header {
-}
-
 .roommate-header h2 {
     margin-top: 25px;
 }
@@ -538,7 +536,6 @@ header {
     border-radius: 25px;
 }
 
-/* Event CSS TODO: edit modal to bee out of eventList section */
 #event-modal {
     display: none;
 }
