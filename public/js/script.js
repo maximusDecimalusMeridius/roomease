@@ -29,19 +29,24 @@ function setItUp() {
     //Hide menu for login screen/path
     if(location.pathname == "/"){
         document.querySelector("#nav-menu").style.display = "none";
+        document.querySelector("#mobile-menu-icon").style.display = "none";
     }
 
     //set colors according to pathname
     if(location.pathname == "/tasks"){
+        _hbsBody.style.background = "none";
         _hbsBody.style.backgroundColor = "var(--tasks)";
     }
     if(location.pathname == "/events"){
+        _hbsBody.style.background = "none";
         _hbsBody.style.backgroundColor = "var(--events)";
     }
     if(location.pathname == "/roommates"){
+        _hbsBody.style.background = "none";
         _hbsBody.style.backgroundColor = "var(--roommates)";
     }
     if(location.pathname == "/uoms"){
+        _hbsBody.style.background = "none";
         _hbsBody.style.backgroundColor = "var(--uoms)";
     }
 }

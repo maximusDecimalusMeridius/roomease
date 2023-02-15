@@ -108,7 +108,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 
 #nav-menu a {
@@ -151,6 +151,13 @@ header {
     box-shadow: -4px 0px 6px rgb(0, 0, 0);
 }
 
+.mobile-separator {
+    width: 80%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, .5);
+    margin: 5px auto;
+}
+
 .nav-items {
     width: fit-content;
     height: 30px;
@@ -182,11 +189,29 @@ header {
     margin-top: 15px;
 }
 
+#nav-logout,
+#mobile-logout {
+    background-color: var(--delete-red);
+}
+
+#nav-logout {
+    height: 20px;
+    font-size: 18px;
+    padding: 3px 6px;
+}
+
+#nav-logout:hover,
+#mobile-logout:hover {
+    color: var(--white);
+}
+
 .hbs-body {
     width: 90%;
-    height: 90%;
-    min-height: 300px;
-    background-color: var(--white);
+    height: 95%;
+    min-height: 400px;
+    background: linear-gradient(270deg, #A8D1EA 0%, white 100%);
+    background: -moz-linear-gradient(270deg, #A8D1EA 0%, white 100%);
+    background: -webkit-linear-gradient(270deg, #A8D1EA 0%, white 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -202,7 +227,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 50px 10px 50px;
+    padding: 25px 50px;
     position: sticky;
     top: 0px;
     z-index: 2;
@@ -235,9 +260,14 @@ header {
     overflow-y: auto;
 }
 
+.dashboard-header {
+    width: 100%;
+    text-align: center;
+}
+
 .dashboard-window {
-    padding-top: 10px;
-    height: 80%;
+    padding: 20px 0px;
+    height: 90%;
     width: 95%;
     display: grid;
     grid-template-areas:
@@ -247,7 +277,6 @@ header {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 49% 49%;
     gap: 10px;
-    overflow-y: auto;
 }
 
 /* .dashboard-window * {
@@ -268,7 +297,7 @@ header {
     position: relative;
     padding: 30px 15px 15px 15px;
     border-radius: 25px;
-    box-shadow: 2px 4px 4px gray;
+    box-shadow: 3px 4px 10px gray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -840,11 +869,11 @@ footer a:hover {
 
 /* Responsive CSS */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
     #nav-menu {
         display: none;
     }
-
+    
     #mobile-menu-icon {
         display: block;
     }
@@ -852,7 +881,9 @@ footer a:hover {
     #mobile-menu {
         display: flex;
     }
+}
 
+@media screen and (max-width: 650px) {
     #back-button {
         left: 10px;
     }
@@ -894,6 +925,7 @@ footer a:hover {
         ;
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+        overflow-y: auto;
     }
 
     .dashboard-grid-square {
