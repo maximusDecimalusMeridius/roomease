@@ -3,21 +3,25 @@
 </div>
 
 <div class="content-window">
-  <div class="roommate-header">
-    {{#each allRoommates}}
-      <h2>{{this.first_name}}</h2>
-      <div>Tasks:</div>
-      {{#each this.Tasks}}
-        <span>- {{this.task}}</span>
-      {{/each}}
-      <div>Events:</div>
-      {{#each this.Events}}
-      <span>- {{this.what}} WHEN: {{this.date}} @ {{this.time}}</span>
-      {{/each}}
-      <div>UOMs:</div>
-      {{#each this.owed_by}}
-      <span>- {{this.owe.first_name}} owes me ${{this.amount}} for: {{this.what}} </span>
-      {{/each}}
-    {{/each}}
+  <div id="roomie-table">
+    <div id="roomie-list">
+      <div class="roomie-block">
+        {{#each allRoommates}}
+          <h2>{{this.first_name}}</h2>
+          <div>Tasks:</div>
+          {{#each this.Tasks}}
+            <span>- {{this.task}}</span>
+          {{/each}}
+          <div>Events:</div>
+          {{#each this.Events}}
+          <span>- {{this.what}} WHEN: {{this.date}} @ {{this.time}}</span>
+          {{/each}}
+          <div>UOMs:</div>
+          {{#each this.owed_by}}
+          <span>- {{this.owe.first_name}} owes me ${{this.amount}} for: {{this.what}} </span>
+          {{/each}}
+        {{/each}}
+      </div>
+    </div>
   </div>
 </div>

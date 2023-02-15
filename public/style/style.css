@@ -509,14 +509,16 @@ header {
 }
 
 #task-table,
-#uom-table {
+#uom-table,
+#roomie-table {
     width: 100%;
     height: 100%;
 }
 
 #task-list,
 #eventList,
-#uom-list {
+#uom-list,
+#roomie-list {
     height: 100%;
     width: 100%;
     padding: 10px;
@@ -575,7 +577,8 @@ header {
     display: none;
 }
 
-.eventBlock {
+.eventBlock,
+.roomie-block {
     width: 100%;
     padding: 10px;
     text-align: center;
