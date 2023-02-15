@@ -18,15 +18,15 @@ const seed = async () => {
     const tasks = await Task.bulkCreate([
         {
             task: "Wash the trash",
-            home_id: 1
+            home_id: 1,
         },
         {
             task: "Put away the dog",
-            home_id: 1
+            home_id: 1,
         },
         {
             task: "Walk the dishes",
-            home_id: 1
+            home_id: 1,
         },
     ]);
 
@@ -35,19 +35,19 @@ const seed = async () => {
             what: "Teletubby Concert",
             date: "2023-02-10",
             time: "12:30:00",
-            home_id: 1
+            home_id: 1,
         },
         {
             what: "Friend Party!",
             date: "2023-02-17",
             time: "16:30:00",
-            home_id: 1
+            home_id: 1,
         },
         {
             what: "Breakfast Things!",
             date: "2023-02-10",
             time: "08:30:00",
-            home_id: 2
+            home_id: 2,
         },
     ]);
 
@@ -86,21 +86,21 @@ const seed = async () => {
             u: 2,
             me: 1,
             amount: 25,
-            home_id: 1
+            home_id: 1,
         },
         {
             what: "Coffee",
             u: 1,
             me: 3,
             amount: 5,
-            home_id: 1
+            home_id: 1,
         },
         {
             what: "Plane Ticket",
             u: 3,
             me: 2,
             amount: 225,
-            home_id: 1
+            home_id: 1,
         },
     ]);
 
@@ -111,7 +111,7 @@ const seed = async () => {
     await events[0].addRoommate(1);
     await events[1].addRoommate(2);
     await events[2].addRoommate(3);
-    
+
     // await homes[0].addEvent(1);
     // await homes[0].addEvent(2);
     // await homes[0].addEvent(3);

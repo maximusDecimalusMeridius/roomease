@@ -92,7 +92,7 @@ header {
 }
 
 #logo {
-    background-image: url("../images/logo.svg");
+    background-image: url("../images/logo.png");
     height: 70px;
     width: 200px;
     float: left;
@@ -113,7 +113,7 @@ header {
 #mobile-menu-icon {
     height: 25px;
     width: 40px;
-    background-image: url("../images/icon-menu.svg");
+    background-image: url("../images/icon-menu.png");
     background-size: cover;
     background-repeat: no-repeat;
     display: none;
@@ -710,7 +710,7 @@ input::placeholder {
 }
 
 input:required {
-    background-color: rgba(255, 233, 177, .5);
+    background-color: rgba(255, 233, 177, 0.5);
 }
 
 button {
@@ -824,6 +824,23 @@ footer a:hover {
     text-decoration: underline;
 }
 
+#settings {
+    width: 66%;
+}
+
+.settings-row {
+    display: flex;
+}
+
+.settings-row div {
+    width: 45%;
+}
+
+.formSection {
+    flex-flow: row wrap;
+    margin: 0 20px;
+}
+
 /* Responsive CSS */
 
 @media screen and (max-width: 650px) {
@@ -924,5 +941,22 @@ footer a:hover {
 
     footer {
         justify-content: center;
+    }
+
+    #settings {
+        width: 66%;
+    }
+
+    .settings-row {
+        display: inline-block;
+    }
+
+    .settings-row div {
+        width: inherit;
+    }
+
+    .formSection {
+        flex-flow: row wrap;
+        margin: 0;
     }
 }

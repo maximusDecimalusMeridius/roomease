@@ -1,0 +1,37 @@
+<div class="header-window">
+    <h1 class="content-header">Settings</h1>
+</div>
+<div class="content-window">
+    <form id="settings">
+        <div class="settings-row" id="settings-name">
+            <div class="formSection">
+                <label for="first_name">First Name:</label>
+                <input type="text" value={{first_name}} />
+            </div>
+            <div class="formSection">
+                <label for="last_name">Last Name:</label>
+                <input type="text" value={{last_name}} />
+            </div>
+        </div>
+        <div class="settings-row" id="settings-name">
+            <div class="formSection">
+                <label for="email">Email:</label>
+                <input type="text" value={{email}} readonly />
+            </div>
+            <div class="formSection">
+                <label for="home_name">Home:</label>
+                <input type="text" value={{home.name}} data-home-id={{home.id}} data-home-name={{home.name}} readonly />
+            </div>
+        </div>
+        {{! <div class="formSection">
+            <label for="last_name">Change Password:</label>
+            <input type="password" placeholder="Old Password" />
+        </div>
+        <div class="formSection" id="newPass">
+            <input type="password" placeholder="New Password" /><input type="password" placeholder="Confirm New Password" />
+        </div> }}
+        <p id="settingsErrorMessage"></p>
+        <button type="button">Save</button>
+    </form>
+</div>
+<script src="/js/settings.js"></script>
