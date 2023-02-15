@@ -7,36 +7,50 @@ const Home = require("./Home");
 
 //Add table associations
 //Roommate - Home assoication
-Roommate.hasOne(Home);
-Home.belongsTo(Roommate);
+
+// Roommate.hasOne(Home);
+// Home.belongsTo(Roommate);
+
+Home.hasMany(Roommate);
+Roommate.belongsTo(Home);
 
 //Task - Home association
-Task.hasOne(Home);
-Home.belongsTo(Task);
+
+// Task.hasOne(Home);
+// Home.belongsTo(Task);
+
+Home.hasMany(Task);
+Task.belongsTo(Home);
 
 //Event - Home association
-Event.hasOne(Home);
-Home.belongsTo(Event);
+
+// Event.hasOne(Home);
+// Home.belongsTo(Event);
+
+Home.hasMany(Event);
+Event.belongsTo(Home);
 
 //UOM - Home association
 UOM.hasOne(Home);
 Home.belongsTo(UOM);
 
+// Home.hasMany(UOM);
+// UOM.belongsTo(Home);
+
 // Roommate - Task association
 Roommate.hasMany(Task);
 Task.belongsTo(Roommate);
 
-
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",
     foreignKey: "me",
-    as:"owed_by"
+    as: "owed_by",
 });
 
 UOM.belongsTo(Roommate, {
     onDelete: "CASCADE",
     foreignKey: "u",
-    as:"owe"
+    as: "owe",
 });
 
 Roommate.hasMany(UOM, {

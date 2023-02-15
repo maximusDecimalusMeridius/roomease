@@ -53,7 +53,7 @@ router.get("/", async (req, res) => {
     try {
         const eventData = await Event.findAll({
             where: {
-                home_id: req.session.homeId
+                home_id: req.session.homeId,
             },
             include: [
                 {
@@ -61,10 +61,18 @@ router.get("/", async (req, res) => {
                 },
             ],
         });
-        const roommateData = await Roommate.findAll();
+        const roommateData = await Roommate.findAll({
+            where: {
+                home_id: req.session.homeId,
+            },
+        });
 
         const hbsEvents = eventData.map((event) => event.toJSON());
         const hbsRoommates = roommateData.map((roommate) => roommate.toJSON());
+        const newThings = hbsEvents.map((event) => {
+            return { ...event, allRoommates: hbsRoommates };
+        });
+
         res.render("events", {
             allEvents: hbsEvents,
             allRoommates: hbsRoommates,
@@ -107,7 +115,7 @@ router.post("/", async (req, res) => {
         let createEventObj = {
             what: req.body.what,
             date: req.body.date,
-            home_id: req.session.homeId
+            home_id: req.session.homeId,
         };
         if (req.body.time.length > 0) {
             createEventObj.time = req.body.time;
@@ -141,7 +149,8 @@ router.post("/", async (req, res) => {
                 template: "attendingEvent",
                 context: createEventObj,
             };
-            // transporter.sendMail(mail);
+
+            transporter.sendMail(mail);
         }
         res.json({ status: "success", createEvent, updateAttendees });
     } catch (err) {
