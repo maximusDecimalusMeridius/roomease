@@ -159,14 +159,21 @@ router.post("/:type", async (req, res) => {
 
 //UPDATE a record
 router.put("/:id", (req, res) => {
+	let RoommateObj={
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+	} 
+	if (req.body.email){
+		RoommateObj.email=req.body.email
+	}
+	if (req.body.password){
+		RoommateObj.password=req.body.password
+	}
+	if (req.body.home_id){
+		RoommateObj.home_id=req.body.home_id
+	}
 	Roommate.update(
-		{
-			first_name: req.body.first_name,
-			last_name: req.body.last_name,
-			email: req.body.email,
-			password: req.body.password,
-			home_id: req.body.home_id,
-		},
+		RoommateObj,
 		{
 			where: {
 				id: req.params.id,
