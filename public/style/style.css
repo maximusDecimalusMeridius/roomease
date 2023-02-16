@@ -70,6 +70,10 @@ ul {
     list-style-type: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 .cover {
     background-color: rgba(100, 100, 100, 0.6);
     position: absolute;
@@ -104,7 +108,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 
 #nav-menu a {
@@ -147,6 +151,13 @@ header {
     box-shadow: -4px 0px 6px rgb(0, 0, 0);
 }
 
+.mobile-separator {
+    width: 80%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, .5);
+    margin: 5px auto;
+}
+
 .nav-items {
     width: fit-content;
     height: 30px;
@@ -178,11 +189,23 @@ header {
     margin-top: 15px;
 }
 
+#nav-logout,
+#mobile-logout {
+    background-color: var(--delete-red);
+}
+
+#nav-logout:hover,
+#mobile-logout:hover {
+    color: var(--white);
+}
+
 .hbs-body {
     width: 90%;
-    height: 90%;
-    min-height: 300px;
-    background-color: var(--white);
+    height: 95%;
+    min-height: 400px;
+    background: linear-gradient(270deg, #A8D1EA 0%, white 100%);
+    background: -moz-linear-gradient(270deg, #A8D1EA 0%, white 100%);
+    background: -webkit-linear-gradient(270deg, #A8D1EA 0%, white 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -198,18 +221,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--white);
-    padding: 25px 50px 10px 50px;
+    padding: 25px 50px;
     position: sticky;
     top: 0px;
     z-index: 2;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .content-header {
     height: 50px;
     width: fit-content;
     padding: 15px;
-    background-color: var(--white);
     font-style: italic;
     position: sticky;
     top: 0px;
@@ -217,22 +240,28 @@ header {
 }
 
 .content-window {
-    height: fit-content;
-    width: 90%;
-    background-color: var(--white);
+    height: 100%;
+    width: 100%;
+    /* background-color: var(--tasks); */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    border-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
     padding: 30px 20px 20px 20px;
     position: relative;
     overflow-y: auto;
 }
 
+.dashboard-header {
+    width: 100%;
+    text-align: center;
+}
+
 .dashboard-window {
-    padding-top: 10px;
-    height: 80%;
+    padding: 20px 0px;
+    height: 90%;
     width: 95%;
     display: grid;
     grid-template-areas:
@@ -242,7 +271,6 @@ header {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 49% 49%;
     gap: 10px;
-    overflow-y: auto;
 }
 
 /* .dashboard-window * {
@@ -263,7 +291,7 @@ header {
     position: relative;
     padding: 30px 15px 15px 15px;
     border-radius: 25px;
-    box-shadow: 2px 4px 4px gray;
+    box-shadow: 3px 4px 10px gray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,6 +318,7 @@ header {
 .dashboard-content {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 #roommates-header {
@@ -303,7 +332,7 @@ header {
 }
 
 #roommates-card li {
-    font-size: 42px;
+    font-size: 32px;
 }
 
 #tasks-header {
@@ -397,6 +426,7 @@ header {
     font-size: 42px;
     cursor: pointer;
     transition: all 0.3s ease-out;
+    border: 2px solid white;
 }
 
 .add-button:hover {
@@ -415,7 +445,7 @@ header {
 #event-modal,
 #uom-modal,
 #uom-modal-edit {
-    height: 100%;
+    height: 90%;
     width: 95%;
     margin: 10px;
     background-color: white;
@@ -473,15 +503,18 @@ header {
 }
 
 #task-table,
-#uom-table {
+#uom-table,
+#roomie-table {
     width: 100%;
     height: 100%;
 }
 
 #task-list,
 #eventList,
-#uom-list {
-    height: 100%;
+#uom-list,
+#roomie-list {
+    height: fit-content;
+    max-height: 90%;
     width: 100%;
     padding: 10px;
     background-color: var(--white);
@@ -495,10 +528,78 @@ header {
     overflow-x: hidden;
 }
 
+.roomie-block {
+    max-height: 50px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 25px;
+    transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+}
+
+.roomie-block div {
+
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.roomie-block .eventBlock {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.roomie-block .eventBlock span {
+    width: 30%;
+}
+
+.roomie-block .eventBlock span:first-child {
+    font-weight: bold;
+}
+
+.roomie-block #task-list,
+.roomie-block #eventList,
+.roomie-block #uom-list {
+    max-height: 200px;
+}
+
+.roomie-block h2 {
+    width: 100%;
+    padding: 5px 15px;
+    margin: 0px auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .3);
+    border-radius: 25px;
+    display: block;
+}
+
+.roomie-block h3 {
+    margin-top: 10px;
+}
+
+.roomie-block:nth-child(n+1) {
+    background-color: var(--events);
+}
+.roomie-block:nth-child(n+2) {
+    background-color: var(--tasks);
+}
+.roomie-block:nth-child(n+3) {
+    background-color: var(--uoms);
+}
+.roomie-block:nth-child(n+4) {
+    background-color: var(--roommates);
+}
+
 .task-list-item,
 .uom-list-item {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -515,11 +616,13 @@ header {
 }
 
 /* dashboard uom list item CSS override */
-.dashboard-content #uom-list .uom-list-item:nth-child(even) {
+.dashboard-content #uom-list .uom-list-item:nth-child(even),
+.roomie-block #uom-list .uom-list-item:nth-child(even) {
     background-color: var(--uoms-banding);
 }
 
-.dashboard-grid-square #eventList .eventBlock:nth-child(even) {
+.dashboard-content #eventList .eventBlock:nth-child(even),
+.roomie-block div #eventList .eventBlock:nth-child(even) {
     background-color: var(--events-banding);
 }
 
@@ -539,11 +642,6 @@ header {
     display: none;
 }
 
-#eventList {
-    height: inherit;
-    width: 100%;
-}
-
 .eventBlock {
     width: 100%;
     padding: 10px;
@@ -551,7 +649,7 @@ header {
     width: inherit;
 }
 
-.eventBlock:nth-child(4n+3) {
+.content-window .eventBlock:nth-child(4n+3) {
     background-color: var(--events-banding);
 }
 
@@ -772,7 +870,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     box-shadow: 1px -8px 10px 2px gray;
 }
 
@@ -796,7 +894,6 @@ footer div {
 }
 
 footer a {
-    text-decoration: none;
     color: var(--white);
 }
 
@@ -839,11 +936,11 @@ footer a:hover {
 
 /* Responsive CSS */
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
     #nav-menu {
         display: none;
     }
-
+    
     #mobile-menu-icon {
         display: block;
     }
@@ -851,7 +948,9 @@ footer a:hover {
     #mobile-menu {
         display: flex;
     }
+}
 
+@media screen and (max-width: 650px) {
     #back-button {
         left: 10px;
     }
@@ -885,13 +984,20 @@ footer a:hover {
     }
 
     .dashboard-window {
-        grid-template-columns: 1fr;
         grid-template-areas:
         "roommates"
         "uoms"
         "tasks"
         "events"
         ;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        overflow-y: auto;
+    }
+
+    .dashboard-grid-square {
+        min-height: 250px;
+        max-height: 600px;
     }
 
     /* To center uncomment and align dashboard card header to center */
@@ -909,6 +1015,15 @@ footer a:hover {
     #events-header {
         right: 0px;
         left: 25px;
+    }
+
+    .roomie-block .eventBlock {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .roomie-block .uom-list-item {
+        text-align: center;
     }
 
     .task-list-item .buttons {

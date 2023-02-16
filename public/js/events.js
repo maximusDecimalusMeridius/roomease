@@ -83,11 +83,14 @@ document.querySelectorAll(".edit").forEach((editButton) => {
 
 document.querySelectorAll(".edit-event-form").forEach((editEvent) => {
     editEvent.addEventListener("submit", (e) => {
+        const editEventForm = document.querySelector(`[data-edit-event-id="${eventId}"]`);
+        const attendees = getSelectedAttendees(editEventForm.elements["attendees"]);
         e.preventDefault();
         const eventObj = {
             what: document.querySelector(`[data-edit-what="${eventId}"]`).value,
             date: document.querySelector(`[data-edit-date="${eventId}"]`).value,
             time: document.querySelector(`[data-edit-time="${eventId}"]`).value,
+            attendees: attendees,
         };
         fetch(`/events/${eventId}`, {
             method: "PUT",
