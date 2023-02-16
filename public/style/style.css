@@ -538,8 +538,8 @@ header {
     justify-content: center;
     align-items: flex-start;
     border-radius: 25px;
-    transition: max-height 1s ease-out;
-    -moz-transition: max-height 1s ease-out;
+    transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
 }
 
 .roomie-block div {
@@ -550,7 +550,7 @@ header {
 
 .roomie-block .eventBlock {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -1020,6 +1020,10 @@ footer a:hover {
     .roomie-block .eventBlock {
         flex-direction: column;
         gap: 5px;
+    }
+
+    .roomie-block .uom-list-item {
+        text-align: center;
     }
 
     .task-list-item .buttons {

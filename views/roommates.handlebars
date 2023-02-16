@@ -20,7 +20,7 @@
               <h3>Events</h3>
               <ul id="eventList">
                 {{#each this.Events}}
-                  <li class="eventBlock"><span>{{this.what}}</span><span>{{this.date}}</span><span>{{this.time}}</span></li>
+                  <li class="eventBlock"><span>{{this.what}}</span><span>{{this.date}}</span>{{#if this.time}}<span>{{this.time}}</span>{{/if}}</li>
                 {{/each}}
               </ul>
             </div>
