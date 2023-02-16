@@ -1,13 +1,15 @@
 <div class="header-window">
-  <h1 class="content-header">Welcome home, {{currentUser.first_name}}</h1>
+  <h1 class="dashboard-header">Welcome home, {{currentUser.first_name}}</h1>
 </div>
 
 <div class="dashboard-window">
   <div id="dashboard-roommates" class="dashboard-grid-square">
     <div id="roommates-card" class="dashboard-card">
-      <div id="roommates-header" class="card-header">
-        <h2>Roommates</h2>
-      </div>
+      <a href="/roommates">
+        <div id="roommates-header" class="card-header">
+          <h2>Roommates</h2>
+        </div>
+      </a>
       <div id="dashboard-content">
         <ul>
           {{#each roommates}}
@@ -20,9 +22,12 @@
 
   <div id="dashboard-tasks" class="dashboard-grid-square">
     <div id="tasks-card" class="dashboard-card">
-      <div id="tasks-header" class="card-header">
-        <h2>Tasks</h2>
-      </div>
+      
+      <a href="/tasks">
+        <div id="tasks-header" class="card-header">
+          <h2>Tasks</h2>
+        </div>
+      </a>
       <div class="dashboard-content">
         <ul id="task-list">
           {{#each currentUser.Tasks}}
@@ -35,14 +40,16 @@
 
   <div id="dashboard-events" class="dashboard-grid-square">
     <div id="events-card" class="dashboard-card">
-      <div id="events-header" class="card-header">
-        <h2>Events</h2>
-      </div>
+      <a href="/events">
+        <div id="events-header" class="card-header">
+          <h2>Events</h2>
+        </div>
+      </a>
 
       <div class="dashboard-content">
         <ul id="eventList">
           {{#each currentUser.Events}}
-            <li class="eventBlock">{{this.what}} on {{this.date}} at {{this.time}}</li>
+            <li class="eventBlock">{{this.what}} on {{this.date}} {{#if this.time}}at {{this.time}}{{/if}}</li>
           {{/each}}
         </ul>
       </div>
@@ -51,9 +58,11 @@
 
   <div id="dashboard-uoms" class="dashboard-grid-square">
     <div id="uoms-card" class="dashboard-card">
-      <div id="uoms-header" class="card-header">
-        <h2>UOMs</h2>
-      </div>
+      <a href="/uoms">
+        <div id="uoms-header" class="card-header">
+          <h2>UOMs</h2>
+        </div>
+      </a>
       <div class="dashboard-content">
         <ul id="uom-list">
           {{#each currentUser.owe}}

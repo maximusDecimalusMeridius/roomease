@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="./style/style.css" />
     </head>
-    <body>
+    <body onload="setItUp()">
         <div class="cover"></div>
         <header>
             <div id="logo"></div>
@@ -22,6 +22,7 @@
                 <a href="/events"><li id="nav-item-4" class="nav-items"><span>EVENTS</span></li></a>
                 <a href="/uoms"><li id="nav-item-5" class="nav-items"><span>UOM</span></li></a>
                 <a href="/settings"><li id="nav-item-6" class="nav-items"><span>Settings</span></li></a>
+                <a href="/logout"><li id="nav-logout" class="nav-items"><span>Logout</span></li></a>
             </ul>
             {{!-- {{else}}
         <ul id="nav-menu">
@@ -39,7 +40,9 @@
                 <a href="/tasks"><li id="mobile-item-3" class="nav-items"><span>TASKS</span></li></a>
                 <a href="/events"><li id="mobile-item-4" class="nav-items"><span>EVENTS</span></li></a>
                 <a href="/uoms"><li id="mobile-item-5" class="nav-items"><span>UOM</span></li></a>
+                <div class="mobile-separator"></div>
                 <a href="/settings"><li id="mobile-item-6" class="nav-items"><span>Settings</span></li></a>
+                <a href="/logout"><li id="mobile-logout" class="nav-items"><span>Logout</span></li></a>
             </ul>
             <div class="hbs-body">
                 {{{body}}}
