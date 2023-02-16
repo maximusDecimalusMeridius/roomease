@@ -611,7 +611,7 @@ header {
     background-color: var(--tasks-banding);
 }
 
-.content-window > .uom-list-item:nth-child(4n+3) {
+.content-window .uom-list-item:nth-child(4n+3) {
     background-color: var(--uoms-banding);
 }
 
@@ -649,7 +649,7 @@ header {
     width: inherit;
 }
 
-.content-window > .eventBlock:nth-child(4n+3) {
+.content-window .eventBlock:nth-child(4n+3) {
     background-color: var(--events-banding);
 }
 
@@ -870,7 +870,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     box-shadow: 1px -8px 10px 2px gray;
 }
 
