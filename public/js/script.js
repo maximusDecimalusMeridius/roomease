@@ -28,7 +28,7 @@ _mobileListItems.forEach((listItem) => {
 //runs on page load from the <body>
 function setItUp() {
     //Hide menu for login screen/path
-    if(location.pathname == "/"){
+    if(location.pathname == "/" || location.pathname == "/signup"){
         document.querySelector("#nav-menu").style.display = "none";
         document.querySelector("#mobile-menu-icon").style.display = "none";
     }
