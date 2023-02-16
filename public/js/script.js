@@ -27,10 +27,14 @@ _mobileListItems.forEach((listItem) => {
 
 //runs on page load from the <body>
 function setItUp() {
+    
     //Hide menu for login screen/path
     if(location.pathname == "/" || location.pathname == "/signup"){
         document.querySelector("#nav-menu").style.display = "none";
         document.querySelector("#mobile-menu-icon").style.display = "none";
+    } else {
+        document.querySelector("#nav-menu").style.opacity = 1;
+        document.querySelector("#mobile-menu-icon").style.opacity = 1;
     }
 
     //set colors according to pathname
