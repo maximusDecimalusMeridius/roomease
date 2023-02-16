@@ -99,7 +99,6 @@ THEN that data should update in the database.
 -   [Usage](#usage)
 -   [License](#license)
 -   [Credits](#credits)
--   [Questions](#questions)
 
 ## Installation
 
@@ -111,14 +110,20 @@ Once installed, users can test functionality with Insomnia, Postman, or another 
 
 ### GIF walkthrough of website
 
-![usage image](./public/images/roomeaseusage.gif)
+![usage image](https://github.com/maximusDecimalusMeridius/roomease/blob/dev/public/images/roomeaseusage.gif?raw=true)
 
 ## License
 
 MIT License - Please refer to the LICENSE in the repo.
 
+[Copyright 2010 The Josefin Sans Project Authors](https://github.com/ThomasJockin/JosefinSansFont-master), with Reserved Font Name "Josefin Sans".
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is available with a FAQ at: http://scripts.sil.org/OFL
+
 ## Credits
 
-Authors: [Aly Geiger](https://github.com/claricetran), [Clarice Tran](https://github.com/claricetran), [Andy Gaudy](https://github.com/claricetran)
+Authors: [Aly Geiger](https://github.com/KawaiKimono), [Clarice Tran](https://github.com/claricetran), [Andy Gaudy](https://github.com/maximusDecimalusMeridius)
+
+Thanks to [Experte](https://www.experte.com/logo-maker#/) - for their free logo maker.
 
 For any questions, please feel free to reach out to one of us!
