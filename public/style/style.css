@@ -109,6 +109,7 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    opacity: 0;
 }
 
 #nav-menu a {
@@ -126,6 +127,7 @@ header {
     transition: all 0.1s ease-out;
     position: relative;
     z-index: 4;
+    opacity: 0;
 }
 
 #mobile-menu-icon:hover {
