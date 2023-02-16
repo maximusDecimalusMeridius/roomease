@@ -25,6 +25,7 @@ _mobileListItems.forEach((listItem) => {
     })
 })
 
+//runs on page load from the <body>
 function setItUp() {
     //Hide menu for login screen/path
     if(location.pathname == "/"){
@@ -34,8 +35,8 @@ function setItUp() {
 
     //set colors according to pathname
     if(location.pathname == "/tasks"){
-        _hbsBody.style.background = "none";
-        _hbsBody.style.backgroundColor = "var(--tasks)";
+        // _hbsBody.style.background = "none";
+        _hbsBody.style.background = "var(--tasks)";
     }
     if(location.pathname == "/events"){
         _hbsBody.style.background = "none";

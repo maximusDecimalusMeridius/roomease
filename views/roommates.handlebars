@@ -5,23 +5,38 @@
 <div class="content-window">
   <div id="roomie-table">
     <div id="roomie-list">
-      <div class="roomie-block">
         {{#each allRoommates}}
-          <h2>{{this.first_name}}</h2>
-          <div>Tasks:</div>
-          {{#each this.Tasks}}
-            <span>- {{this.task}}</span>
-          {{/each}}
-          <div>Events:</div>
-          {{#each this.Events}}
-          <span>- {{this.what}} WHEN: {{this.date}} @ {{this.time}}</span>
-          {{/each}}
-          <div>UOMs:</div>
-          {{#each this.owed_by}}
-          <span>- {{this.owe.first_name}} owes me ${{this.amount}} for: {{this.what}} </span>
-          {{/each}}
+          <div class="roomie-block">
+            <h2>{{this.first_name}}</h2>
+            <div>
+              <h3>Tasks</h3>
+              <ul id="task-list">
+                {{#each this.Tasks}}
+                  <li class="task-list-item">{{this.task}}</li>
+                {{/each}}
+              </ul>
+            </div>
+            <div>
+              <h3>Events</h3>
+              <ul id="eventList">
+                {{#each this.Events}}
+                  <li class="eventBlock"><span>{{this.what}}</span><span>{{this.date}}</span><span>{{this.time}}</span></li>
+                {{/each}}
+              </ul>
+            </div>
+            <div>
+              <h3>UOMs</h3>
+              <ul id="uom-list">
+                {{#each this.owed_by}}
+                  <li class="uom-list-item">{{this.owe.first_name}} owes me ${{this.amount}} for: {{this.what}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
         {{/each}}
       </div>
     </div>
   </div>
 </div>
+
+<script src="./js/roommates.js"></script>

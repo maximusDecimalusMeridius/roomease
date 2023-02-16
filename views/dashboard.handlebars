@@ -49,7 +49,7 @@
       <div class="dashboard-content">
         <ul id="eventList">
           {{#each currentUser.Events}}
-            <li class="eventBlock">{{this.what}} on {{this.date}} at {{this.time}}</li>
+            <li class="eventBlock">{{this.what}} on {{this.date}} {{#if this.time}}at {{this.time}}{{/if}}</li>
           {{/each}}
         </ul>
       </div>

@@ -194,12 +194,6 @@ header {
     background-color: var(--delete-red);
 }
 
-#nav-logout {
-    height: 20px;
-    font-size: 18px;
-    padding: 3px 6px;
-}
-
 #nav-logout:hover,
 #mobile-logout:hover {
     color: var(--white);
@@ -246,7 +240,7 @@ header {
 }
 
 .content-window {
-    height: fit-content;
+    height: 100%;
     width: 100%;
     /* background-color: var(--tasks); */
     display: flex;
@@ -451,7 +445,7 @@ header {
 #event-modal,
 #uom-modal,
 #uom-modal-edit {
-    height: 100%;
+    height: 90%;
     width: 95%;
     margin: 10px;
     background-color: white;
@@ -519,7 +513,8 @@ header {
 #eventList,
 #uom-list,
 #roomie-list {
-    height: 100%;
+    height: fit-content;
+    max-height: 90%;
     width: 100%;
     padding: 10px;
     background-color: var(--white);
@@ -533,10 +528,78 @@ header {
     overflow-x: hidden;
 }
 
+.roomie-block {
+    max-height: 50px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 25px;
+    transition: max-height 1s ease-out;
+    -moz-transition: max-height 1s ease-out;
+}
+
+.roomie-block div {
+
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.roomie-block .eventBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.roomie-block .eventBlock span {
+    width: 30%;
+}
+
+.roomie-block .eventBlock span:first-child {
+    font-weight: bold;
+}
+
+.roomie-block #task-list,
+.roomie-block #eventList,
+.roomie-block #uom-list {
+    max-height: 200px;
+}
+
+.roomie-block h2 {
+    width: 100%;
+    padding: 5px 15px;
+    margin: 0px auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .3);
+    border-radius: 25px;
+    display: block;
+}
+
+.roomie-block h3 {
+    margin-top: 10px;
+}
+
+.roomie-block:nth-child(n+1) {
+    background-color: var(--events);
+}
+.roomie-block:nth-child(n+2) {
+    background-color: var(--tasks);
+}
+.roomie-block:nth-child(n+3) {
+    background-color: var(--uoms);
+}
+.roomie-block:nth-child(n+4) {
+    background-color: var(--roommates);
+}
+
 .task-list-item,
 .uom-list-item {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -548,16 +611,18 @@ header {
     background-color: var(--tasks-banding);
 }
 
-.content-window .uom-list-item:nth-child(4n+3) {
+.content-window > .uom-list-item:nth-child(4n+3) {
     background-color: var(--uoms-banding);
 }
 
 /* dashboard uom list item CSS override */
-.dashboard-content #uom-list .uom-list-item:nth-child(even) {
+.dashboard-content #uom-list .uom-list-item:nth-child(even),
+.roomie-block #uom-list .uom-list-item:nth-child(even) {
     background-color: var(--uoms-banding);
 }
 
-.dashboard-content #eventList .eventBlock:nth-child(even) {
+.dashboard-content #eventList .eventBlock:nth-child(even),
+.roomie-block div #eventList .eventBlock:nth-child(even) {
     background-color: var(--events-banding);
 }
 
@@ -577,15 +642,14 @@ header {
     display: none;
 }
 
-.eventBlock,
-.roomie-block {
+.eventBlock {
     width: 100%;
     padding: 10px;
     text-align: center;
     width: inherit;
 }
 
-.content-window .eventBlock:nth-child(4n+3) {
+.content-window > .eventBlock:nth-child(4n+3) {
     background-color: var(--events-banding);
 }
 
@@ -951,6 +1015,11 @@ footer a:hover {
     #events-header {
         right: 0px;
         left: 25px;
+    }
+
+    .roomie-block .eventBlock {
+        flex-direction: column;
+        gap: 5px;
     }
 
     .task-list-item .buttons {
