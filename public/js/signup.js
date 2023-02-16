@@ -17,10 +17,10 @@ const _joinButton = document.querySelector("#signup-join-home");
 const _createButton = document.querySelector("#signup-create-home");
 const _backButton = document.querySelector("#back-button");
 
+const noSpacesOrSpecials = /^[a-zA-Z0-9_]*$/;
+const noSpaces = /^\S*$/;
+
 _nextButton.addEventListener("click", (event) => {
-    console.log(_signupEmail.value);
-    console.log(_signupEmail.value);
-    console.log(_signupEmail.value);
     if(_signupEmail.value.length == 0 || _signupFirstName.value.length == 0 || _signupPassword.value.length == 0){
         alert("Please fill in all required fields");
     }
@@ -50,23 +50,37 @@ const success = () => {
 }
 
 const failure = (step, message) => {
-    const showWarning = () => {
         
-    }
-    
     if(step == 2){
         _stepTwoWarning.textContent = message;
-        _backButton.style.border = "2px solid red";
         setTimeout(() => {
             _stepTwoWarning.textContent = "";
-            _backButton.style.border = "0px";
         }, 3000)
+    }
+}
+
+const validateMe = () => {
+    if(!noSpaces.test(_signupEmail.value)) {
+        failure(2, "Please enter an email address with no spaces");
+        return false;
+    } else if(!noSpaces.test(_signupPassword.value)) {
+        failure(2, "Please enter a password without spaces");
+        return false;
+    } else if (!noSpacesOrSpecials.test(_signupHome.value)) {
+        failure(2, "Home names cannot contain spaces or special characters");
+        return false;
+    } else {
+        return true;
     }
 }
 
 _joinButton.addEventListener("click", async (event) => {
     event.preventDefault();
- 
+
+    if(!validateMe()){
+        return;
+    }
+
     try {
         const roommateObj = {
             first_name: _signupFirstName.value,
@@ -97,6 +111,10 @@ _joinButton.addEventListener("click", async (event) => {
 
 _createButton.addEventListener("click", async (event) => {
     event.preventDefault();
+
+    if(!validateMe()){
+        return;
+    }
 
     try {
         const roommateObj = {
